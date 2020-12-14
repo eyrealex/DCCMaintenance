@@ -1,5 +1,6 @@
 package com.alexeyre.dccmaintenance;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,20 +16,30 @@ import androidx.core.view.GravityCompat;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button callRegister;
+    Button loginRegBtn, loginBtn;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        callRegister = findViewById(R.id.signupTv);
+        loginRegBtn = findViewById(R.id.loginRegBtn);
+        loginBtn = findViewById(R.id.loginBtn);
 
-        callRegister.setOnClickListener(new View.OnClickListener() {
+        loginRegBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

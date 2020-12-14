@@ -116,18 +116,19 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/loginBtn"
             android:layout_width="match_parent"
             android:layout_height="61dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:backgroundTint="#99537983"
             android:fontFamily="sans-serif"
-            android:text="GO"
+            android:text="Sign In"
             android:textColor="@color/white"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/signupTv"
+            android:id="@+id/loginRegBtn"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

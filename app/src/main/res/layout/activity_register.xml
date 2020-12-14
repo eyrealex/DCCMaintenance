@@ -44,7 +44,7 @@
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/firstname"
+            android:id="@+id/reg_firstname"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/surname"
+            android:id="@+id/reg_surname"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/email"
+            android:id="@+id/reg_email"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phonenumber"
+            android:id="@+id/reg_phonenumber"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/password"
+            android:id="@+id/reg_password"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -147,18 +147,19 @@
 
 
     <Button
+        android:id="@+id/regBtn"
         android:layout_width="match_parent"
         android:layout_height="61dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:backgroundTint="#99537983"
         android:fontFamily="sans-serif"
-        android:text="GO"
+        android:text="Register"
         android:textColor="@color/white"
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/registerloginTv"
+        android:id="@+id/regLoginBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#00000000"
