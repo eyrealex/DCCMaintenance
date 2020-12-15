@@ -9,7 +9,12 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.NoActionBar">
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".LocationActivity"></activity>
+        <activity android:name="SettingPackage.SettingActivity" />
+        <activity android:name="MetricPackage.MetricActivity" />
+        <activity android:name="JobsPackage.JobActivity" />
+        <activity android:name="EmployeePackage.EmployeeActivity" />
+        <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity" />
         <activity

@@ -43,6 +43,7 @@ public class SplashActivity extends AppCompatActivity {
         image.setAnimation(topAnim);
         logo.setAnimation(bottomAnim);
 
+
         //handles the animation time and launches main activity when finished
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -53,6 +54,7 @@ public class SplashActivity extends AppCompatActivity {
                 pairs[0] = new Pair<View,String>(image, "app_image");
                 pairs[1] = new Pair<View,String>(logo, "app_text");
 
+                //if android is running at least version lollipop it will run animation
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                     ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this,pairs);
                     startActivity(intent,options.toBundle());
@@ -61,5 +63,6 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, SPLASH_SCREEN);
     }//end on create method
+
 
 }//end splash activity

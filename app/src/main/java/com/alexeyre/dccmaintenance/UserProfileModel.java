@@ -1,56 +1,56 @@
 package com.alexeyre.dccmaintenance;
 
 public class UserProfileModel {
-    String firstName, surname, email, phoneNumber, password;
+    String name, username, email, phoneNumber, password;
 
     public UserProfileModel() {
     }
 
-    public UserProfileModel(String firstName, String surname, String email, String phoneNumber, String password) {
-        this.firstName = firstName;
-        this.surname = surname;
+    public UserProfileModel(String name, String username, String email, String phoneNumber, String password) {
+        this.name = name;
+        this.username = username;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
     }
 
-    public String getfirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setfirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String Name) {
+        this.name = name;
     }
 
-    public String getsurname() {
-        return surname;
+    public String getUsername() {
+        return username;
     }
 
-    public void setsurname(String surname) {
-        this.surname = surname;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getemail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setemail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getphoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setphoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getpassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setpassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 }
