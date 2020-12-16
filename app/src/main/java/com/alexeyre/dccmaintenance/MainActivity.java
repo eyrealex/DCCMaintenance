@@ -20,4 +20,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, LoginActivity.class));
         finish();
     }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
+    public void locations(View view) {
+        startActivity(new Intent(MainActivity.this, MapsActivity.class));
+    }
 }

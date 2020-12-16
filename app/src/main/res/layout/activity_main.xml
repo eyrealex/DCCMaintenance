@@ -60,7 +60,7 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/layoutJobs"
+                android:id="@+id/layout_jobs"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
@@ -69,7 +69,7 @@
                 android:orientation="vertical"
                 android:padding="10dp"
                 app:layout_constraintDimensionRatio="H,1:1"
-                app:layout_constraintEnd_toStartOf="@id/layoutEmployees"
+                app:layout_constraintEnd_toStartOf="@id/layout_employees"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -94,7 +94,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layoutEmployees"
+                android:id="@+id/layout_employees"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
@@ -104,7 +104,7 @@
                 android:padding="10dp"
                 app:layout_constraintDimensionRatio="H,1:1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/layoutJobs"
+                app:layout_constraintStart_toEndOf="@id/layout_jobs"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
@@ -128,7 +128,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layoutMetrics"
+                android:id="@+id/layout_metrics"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
@@ -137,9 +137,9 @@
                 android:orientation="vertical"
                 android:padding="10dp"
                 app:layout_constraintDimensionRatio="H,1:1"
-                app:layout_constraintEnd_toStartOf="@id/layoutLocations"
+                app:layout_constraintEnd_toStartOf="@id/layout_locations"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layoutJobs">
+                app:layout_constraintTop_toBottomOf="@id/layout_jobs">
 
                 <ImageView
                     android:layout_width="100dp"
@@ -162,7 +162,8 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layoutLocations"
+                android:id="@+id/layout_locations"
+                android:onClick="locations"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
@@ -172,8 +173,8 @@
                 android:padding="10dp"
                 app:layout_constraintDimensionRatio="H,1:1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/layoutMetrics"
-                app:layout_constraintTop_toBottomOf="@id/layoutEmployees">
+                app:layout_constraintStart_toEndOf="@id/layout_metrics"
+                app:layout_constraintTop_toBottomOf="@id/layout_employees">
 
                 <ImageView
                     android:layout_width="100dp"
@@ -195,7 +196,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layoutSettings"
+                android:id="@+id/layout_settings"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
@@ -204,9 +205,9 @@
                 android:orientation="vertical"
                 android:padding="10dp"
                 app:layout_constraintDimensionRatio="H,1:1"
-                app:layout_constraintEnd_toStartOf="@id/layoutSignOut"
+                app:layout_constraintEnd_toStartOf="@id/layout_signout"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layoutMetrics">
+                app:layout_constraintTop_toBottomOf="@id/layout_metrics">
 
                 <ImageView
                     android:layout_width="100dp"
@@ -228,7 +229,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layoutSignOut"
+                android:id="@+id/layout_signout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
@@ -239,8 +240,8 @@
                 android:onClick="signOut"
                 app:layout_constraintDimensionRatio="H,1:1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/layoutSettings"
-                app:layout_constraintTop_toBottomOf="@id/layoutLocations">
+                app:layout_constraintStart_toEndOf="@id/layout_settings"
+                app:layout_constraintTop_toBottomOf="@id/layout_locations">
 
                 <ImageView
                     android:id="@+id/signout_btn"
