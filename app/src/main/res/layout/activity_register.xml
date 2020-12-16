@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,166 +9,153 @@
     android:padding="15dp"
     tools:context=".RegisterActivity">
 
-
-    <ImageView
-        android:id="@+id/reg_icon"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@drawable/app_icon"
-        android:transitionName="app_image" />
-
-    <TextView
-        android:id="@+id/reg_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="monospace"
-        android:text="Welcome to DCC Maintenance"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:transitionName="app_text" />
-
-    <TextView
-        android:id="@+id/reg_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register an account"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="#99537983"
-        app:fontFamily="sans-serif"
-        android:transitionName="desc_tran"/>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#34445e"
         android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/reg_name"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <ImageView
+            android:id="@+id/reg_icon"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/app_icon"
+            android:transitionName="app_image" />
+
+        <TextView
+            android:id="@+id/reg_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="Welcome to DCC Maintenance"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:transitionName="app_text" />
+
+        <TextView
+            android:id="@+id/reg_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register an account"
+            android:textColor="#99537983"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:transitionName="desc_tran" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:hint="Name"
-            android:theme="@style/TextInputLayoutStyle"
-            app:boxStrokeColor="@color/white"
-            app:hintTextColor="@color/white"
-            android:transitionName="name_tran">
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reg_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
+                android:clickable="true"
+                android:hint="Name"
+                android:textColorHint="@color/white">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/reg_username"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reg_username"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:hint="Username"
+                android:transitionName="username_tran"
+                android:textColorHint="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reg_email"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:hint="Email"
+                android:textColorHint="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reg_phone_number"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:hint="Phone Number"
+                android:textColorHint="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reg_password"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:hint="Password"
+                android:transitionName="password_tran"
+                app:passwordToggleEnabled="true"
+                android:textColorHint="@color/white"
+                app:passwordToggleTint="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/reg_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-4dp"
-            android:clickable="true"
-            android:hint="Username"
-            android:theme="@style/TextInputLayoutStyle"
-            app:boxStrokeColor="@color/white"
-            app:hintTextColor="@color/white"
-            android:transitionName="username_tran">
+            android:backgroundTint="#99537983"
+            android:onClick="registerUser"
+            android:text="Register"
+            android:textColor="@color/white"
+            android:transitionName="btn_tran" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/reg_email"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <Button
+            android:id="@+id/reg_login_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-4dp"
-            android:clickable="true"
-            android:hint="Email"
-            android:theme="@style/TextInputLayoutStyle"
-            app:boxStrokeColor="@color/white"
-            app:hintTextColor="@color/white"
-            android:transitionName="email_tran">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/reg_phone_number"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-4dp"
-            android:clickable="true"
-            android:hint="Phone Number"
-            android:theme="@style/TextInputLayoutStyle"
-            app:boxStrokeColor="@color/white"
-            app:hintTextColor="@color/white"
-            android:transitionName="phone_tran">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/reg_password"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-4dp"
-            android:clickable="true"
-            android:hint="Password"
-            android:theme="@style/TextInputLayoutStyle"
-            app:boxStrokeColor="@color/white"
-            app:hintTextColor="@color/white"
-            app:passwordToggleEnabled="true"
-            android:transitionName="password_tran">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            android:background="#00000000"
+            android:text="Already have an account?"
+            android:textColor="@color/white"
+            android:transitionName="account_tran" />
 
     </LinearLayout>
 
-
-    <Button
-        android:id="@+id/reg_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#99537983"
-        android:fontFamily="sans-serif"
-        android:onClick="registerUser"
-        android:text="Register"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:transitionName="btn_tran"/>
-
-    <Button
-        android:id="@+id/reg_login_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="#00000000"
-        android:fontFamily="sans-serif"
-        android:text="Already have an account?"
-        android:textColor="@color/white"
-        android:transitionName="account_tran"/>
-
-</LinearLayout>
+</ScrollView>
