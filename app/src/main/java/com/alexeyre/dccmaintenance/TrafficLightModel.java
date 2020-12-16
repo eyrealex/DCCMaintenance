@@ -2,16 +2,35 @@ package com.alexeyre.dccmaintenance;
 
 public class TrafficLightModel {
 
-    String locationName, latitude, longitude;
+    private String name;
+    private String latitude;
+    private String longitude;
 
     //empty constructor to invoke on object creation of  the respective class in MainActivity.java
     public TrafficLightModel() {
     }
 
-    // constructor that will store the retrieved data from firebase
-    public TrafficLightModel(String locationName, String latitude, String longitude) {
-        this.locationName = locationName;
+    public String getname() {
+        return name;
+    }
+
+    public void setname(String name) {
+        this.name = name;
+    }
+
+    public String getlatitude() {
+        return latitude;
+    }
+
+    public void setlatitude(String latitude) {
         this.latitude = latitude;
+    }
+
+    public String getlongitude() {
+        return longitude;
+    }
+
+    public void setlongitude(String longitude) {
         this.longitude = longitude;
     }
 }
