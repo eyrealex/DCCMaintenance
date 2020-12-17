@@ -53,20 +53,21 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/login_username"
+                android:id="@+id/login_email"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:hint="Username"
-                android:transitionName="username_tran"
+                android:hint="Email"
+                android:textColorHint="@color/white"
+                android:transitionName="email_tran"
                 app:startIconDrawable="@drawable/ic_user"
-                app:startIconTint="@color/white"
-                android:textColorHint="@color/white">
+                app:startIconTint="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -77,16 +78,17 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:hint="Password"
+                android:textColorHint="@color/white"
                 android:transitionName="password_tran"
                 app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/white"
                 app:startIconDrawable="@drawable/ic_password"
-                app:startIconTint="@color/white"
-                android:textColorHint="@color/white"
-                app:passwordToggleTint="@color/white">
+                app:startIconTint="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -111,7 +113,6 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:backgroundTint="#99537983"
-            android:onClick="loginUser"
             android:text="Sign In"
             android:textColor="@color/white"
             android:textStyle="bold"
@@ -124,7 +125,6 @@
             android:layout_gravity="center"
             android:background="#00000000"
             android:text="No Account? Sign Up"
-            android:onClick="callRegisterActivity"
             android:textColor="@color/white"
             android:transitionName="account_tran" />
 

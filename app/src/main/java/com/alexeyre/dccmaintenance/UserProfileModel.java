@@ -1,16 +1,15 @@
 package com.alexeyre.dccmaintenance;
 
 public class UserProfileModel {
-    String name, username, email, phoneNumber, password;
+    String name, email, phone, password;
 
     public UserProfileModel() {
     }
 
-    public UserProfileModel(String name, String username, String email, String phoneNumber, String password) {
+    public UserProfileModel(String name, String email, String phone, String password) {
         this.name = name;
-        this.username = username;
         this.email = email;
-        this.phoneNumber = phoneNumber;
+        this.phone = phone;
         this.password = password;
     }
 
@@ -22,14 +21,6 @@ public class UserProfileModel {
         this.name = name;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -38,12 +29,12 @@ public class UserProfileModel {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone(String phoneNumber) {
+        this.phone = phoneNumber;
     }
 
     public String getPassword() {
