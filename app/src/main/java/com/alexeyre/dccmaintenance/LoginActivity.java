@@ -28,6 +28,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,7 +41,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class LoginActivity extends AppCompatActivity {
 
     //variables
-    private Button mLoginBtn, mAccountBtn;
+    private Button mLoginBtn, mAccountBtn, mResetBtn;
     private ImageView mImage;
     private TextView mLogo, mDesc;
     private TextInputLayout mEmail, mPassword;
@@ -60,8 +61,10 @@ public class LoginActivity extends AppCompatActivity {
         mDesc = findViewById(R.id.login_desc);
         mLoginBtn = findViewById(R.id.login_btn);
         mAccountBtn = findViewById(R.id.login_reg_btn);
+        mResetBtn = findViewById(R.id.login_forgot_btn);
 
         mAuth = FirebaseAuth.getInstance();
+
 
         mAccountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +90,17 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        mResetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+            }
+        });
+
+
         loginUser();
+
+
     }//end on create method
 
     private Boolean validateEmail() {
@@ -128,7 +141,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-
+    //login method
     private void loginUser() {
         findViewById(R.id.login_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,23 +154,34 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                //sweet dialog animations
-                //TODO: Create a custom dialog using the https://github.com/pedant/sweet-alert-dialog github library
-                SweetAlertDialog loadingDialog = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.PROGRESS_TYPE);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    loadingDialog.getProgressHelper().setBarColor(getColor(R.color.colorPrimary));
-                }
-                loadingDialog.setTitleText("Logging In");
-                loadingDialog.setContentText("Please wait...");
-                loadingDialog.setCancelable(false);
-                loadingDialog.show();
-
+                //authenticate the login using email and password
                 mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            //redirect user to dashboard
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                            //check for email verification before logging in
+                            if (user.isEmailVerified()) {
+                                //loading animations
+                                SweetAlertDialog loadingDialog = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.PROGRESS_TYPE);
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                    loadingDialog.getProgressHelper().setBarColor(getColor(R.color.colorPrimary));
+                                }
+                                loadingDialog.setTitleText("Logging In");
+                                loadingDialog.setContentText("Please wait...");
+                                loadingDialog.setCancelable(false);
+                                loadingDialog.show();
+                                loadingDialog.dismissWithAnimation();
+
+
+                                //redirect user to dashboard
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+
+                            } else {
+                                user.sendEmailVerification();
+                                Toast.makeText(LoginActivity.this, "Check your email to verify account", Toast.LENGTH_LONG).show();
+                            }
 
                         } else {
                             Toast.makeText(LoginActivity.this, "Failed to login! Try again", Toast.LENGTH_LONG).show();

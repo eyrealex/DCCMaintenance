@@ -59,7 +59,17 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(intent);
+                //create pairs for animation
+                Pair[] pairs = new Pair[3];
+                pairs[0] = new Pair<View, String>(mEmail, "username_tran");
+                pairs[1] = new Pair<View, String>(mPassword, "password_tran");
+                pairs[2] = new Pair<View, String>(mAccountBtn, "account_tran");
+
+                //Call next activity by attaching the animation with it.
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegisterActivity.this, pairs);
+                    startActivity(intent, options.toBundle());
+                }
             }
         });
 

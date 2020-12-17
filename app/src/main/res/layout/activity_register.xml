@@ -128,7 +128,7 @@
         <Button
             android:id="@+id/reg_btn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:backgroundTint="#99537983"
             android:text="Register"
             android:textColor="@color/white"

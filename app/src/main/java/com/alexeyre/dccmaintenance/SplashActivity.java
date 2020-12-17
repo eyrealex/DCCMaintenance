@@ -18,8 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static int SPLASH_SCREEN = 3000;
-
     //variables
     Animation topAnim, bottomAnim;
     ImageView image;
@@ -45,6 +43,7 @@ public class SplashActivity extends AppCompatActivity {
 
 
         //handles the animation time and launches main activity when finished
+        int SPLASH_SCREEN = 3000;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
