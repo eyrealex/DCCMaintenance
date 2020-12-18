@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.alexeyre.dccmaintenance.R;
+import com.alexeyre.publicmaintenance.R;
 
 public class JobActivity extends AppCompatActivity {
 

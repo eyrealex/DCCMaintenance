@@ -1,4 +1,4 @@
-package com.alexeyre.dccmaintenance;
+package com.alexeyre.publicmaintenance;
 
 import org.junit.Test;
 

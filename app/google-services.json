@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "234570034947",
-    "firebase_url": "https://dccmaintenance-5ffb8-default-rtdb.firebaseio.com",
-    "project_id": "dccmaintenance-5ffb8",
-    "storage_bucket": "dccmaintenance-5ffb8.appspot.com"
+    "project_number": "270487720750",
+    "firebase_url": "https://publicmaintenance-bc8cb-default-rtdb.firebaseio.com",
+    "project_id": "publicmaintenance-bc8cb",
+    "storage_bucket": "publicmaintenance-bc8cb.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:234570034947:android:d05b340ca73249a866c336",
+        "mobilesdk_app_id": "1:270487720750:android:4e2620e2e08bbb077160bf",
         "android_client_info": {
-          "package_name": "com.alexeyre.dccmaintenance"
+          "package_name": "com.alexeyre.publicmaintenance"
         }
       },
       "oauth_client": [
         {
-          "client_id": "234570034947-7bsf8ttgks2k7j79kadfapa65a4gsg1p.apps.googleusercontent.com",
+          "client_id": "270487720750-h4p353p52volem4a8lofe7c9u26iog17.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAEgs71iC_iVQrdSEvZATY_jQv7FUP7cSU"
+          "current_key": "AIzaSyCgt_8U51ttYOk-loHL5PorNyIbwmFZbSg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "234570034947-7bsf8ttgks2k7j79kadfapa65a4gsg1p.apps.googleusercontent.com",
+              "client_id": "270487720750-h4p353p52volem4a8lofe7c9u26iog17.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

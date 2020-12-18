@@ -1,4 +1,4 @@
-package com.alexeyre.dccmaintenance;
+package com.alexeyre.publicmaintenance;
 
 import androidx.appcompat.app.AppCompatActivity;
 

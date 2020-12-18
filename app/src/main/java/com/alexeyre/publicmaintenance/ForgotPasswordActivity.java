@@ -1,9 +1,8 @@
-package com.alexeyre.dccmaintenance;
+package com.alexeyre.publicmaintenance;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;

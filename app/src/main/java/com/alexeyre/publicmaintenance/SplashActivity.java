@@ -1,6 +1,5 @@
-package com.alexeyre.dccmaintenance;
+package com.alexeyre.publicmaintenance;
 
-import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.alexeyre.dccmaintenance;
+package com.alexeyre.publicmaintenance;
 
 public class UserProfileModel {
     String name, email, phone, password;
