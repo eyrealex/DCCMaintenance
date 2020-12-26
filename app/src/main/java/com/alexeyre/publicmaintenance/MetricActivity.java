@@ -1,16 +1,17 @@
-package SettingPackage;
+package com.alexeyre.publicmaintenance;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.alexeyre.publicmaintenance.R;
 
-public class SettingActivity extends AppCompatActivity {
+
+
+public class MetricActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
+        setContentView(R.layout.activity_metric);
     }
 }

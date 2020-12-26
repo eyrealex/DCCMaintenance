@@ -1,4 +1,4 @@
-package com.alexeyre.publicmaintenance;
+package Constants;
 
 public class Constants {
 

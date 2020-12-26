@@ -1,10 +1,9 @@
-package EmployeePackage;
+package com.alexeyre.publicmaintenance;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.alexeyre.publicmaintenance.R;
 
 public class EmployeeActivity extends AppCompatActivity {
 

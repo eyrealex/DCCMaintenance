@@ -1,4 +1,4 @@
-package com.alexeyre.publicmaintenance;
+package Helpers;
 
 public class UserProfileModel {
     String name, email, phone, password;

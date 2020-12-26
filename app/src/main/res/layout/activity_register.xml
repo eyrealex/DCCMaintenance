@@ -7,7 +7,7 @@
     android:background="#34445e"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context=".RegisterActivity">
+    tools:context="com.alexeyre.publicmaintenance.RegisterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="monospace"
-            android:text="Welcome to DCC Maintenance"
+            android:text="Welcome to Public Maintenance"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold"

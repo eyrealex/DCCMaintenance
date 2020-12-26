@@ -1,10 +1,8 @@
-package com.alexeyre.publicmaintenance;
+package Helpers;
 
 public class TrafficLightModel {
 
-    private String name;
-    private String latitude;
-    private String longitude;
+    private String name, latitude , longitude;
 
     //empty constructor to invoke on object creation of  the respective class in MainActivity.java
     public TrafficLightModel() {

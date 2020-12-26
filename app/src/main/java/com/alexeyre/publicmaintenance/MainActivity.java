@@ -1,5 +1,6 @@
 package com.alexeyre.publicmaintenance;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,37 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //launch jobs activity
+    public void Jobs(View view) {
+        startActivity(new Intent(MainActivity.this, JobActivity.class));
+    }
+
+    //launch the locations activity
+    public void locations(View view) {
+        startActivity(new Intent(MainActivity.this, MapsActivity.class));
+    }
+
+    //launch the employees activity
+    public void Employees(View view) {
+        startActivity(new Intent(MainActivity.this, EmployeeActivity.class));
+    }
+
+    //launch the metrics activity
+    public void Metrics(View view) {
+        startActivity(new Intent(MainActivity.this, MetricActivity.class));
+    }
+
+    //launch the settings activity
+    public void Settings(View view) {
+        startActivity(new Intent(MainActivity.this, SettingActivity.class));
+    }
+
+    //launch profile activity
+    public void Profile(View view) {
+        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+    }
+
+    //signout the user
     public void logoutBtn(View view) {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(MainActivity.this, LoginActivity.class));
@@ -28,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         moveTaskToBack(true);
     }
 
-    public void locations(View view) {
-        startActivity(new Intent(MainActivity.this, MapsActivity.class));
-    }
+
+
 }
