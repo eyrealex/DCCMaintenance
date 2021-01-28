@@ -7,7 +7,7 @@
     android:background="#34445e"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context="com.alexeyre.publicmaintenance.LoginActivity">
+    tools:context="com.alexeyre.publicmaintenance.Activities.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -60,9 +60,11 @@
                 android:clickable="true"
                 android:hint="Email"
                 android:textColorHint="@color/white"
+                app:hintTextColor="@color/white"
                 android:transitionName="email_tran"
                 app:startIconDrawable="@drawable/ic_user"
-                app:startIconTint="@color/white">
+                app:startIconTint="@color/white"
+                app:boxStrokeColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -78,12 +80,14 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:hint="Password"
+                app:hintTextColor="@color/white"
                 android:textColorHint="@color/white"
                 android:transitionName="password_tran"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="@color/white"
                 app:startIconDrawable="@drawable/ic_password"
-                app:startIconTint="@color/white">
+                app:startIconTint="@color/white"
+                app:boxStrokeColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"

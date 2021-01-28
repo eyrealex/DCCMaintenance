@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.alexeyre.publicmaintenance">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -16,7 +15,10 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".Activities.CreateInspectionsActivity"></activity>
+        <activity android:name=".Activities.PrevInspectionsActivity" />
+        <activity android:name=".Activities.InspectionsActivity" />
+        <activity android:name=".Activities.TrafficLightProfileActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -30,21 +32,18 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="com.alexeyre.publicmaintenance.MapsActivity"
-            android:label="@string/title_activity_maps">
-
-        </activity>
-        <activity android:name="com.alexeyre.publicmaintenance.ProfileActivity" />
-        <activity android:name="com.alexeyre.publicmaintenance.ForgotPasswordActivity" />
-        <activity android:name="com.alexeyre.publicmaintenance.SettingActivity" />
-        <activity android:name="com.alexeyre.publicmaintenance.MetricActivity" />
-        <activity android:name="com.alexeyre.publicmaintenance.JobActivity" />
-        <activity android:name="com.alexeyre.publicmaintenance.EmployeeActivity" />
-        <activity android:name="com.alexeyre.publicmaintenance.RegisterActivity" />
-        <activity android:name="com.alexeyre.publicmaintenance.LoginActivity" />
-        <activity android:name="com.alexeyre.publicmaintenance.MainActivity" />
+            android:name=".Activities.MapsActivity"
+            android:label="@string/title_activity_maps" />
+        <activity android:name=".Activities.ProfileActivity" />
+        <activity android:name=".Activities.ForgotPasswordActivity" />
+        <activity android:name=".Activities.SettingActivity" />
+        <activity android:name=".Activities.MetricActivity" />
+        <activity android:name=".Activities.EmployeeActivity" />
+        <activity android:name=".Activities.RegisterActivity" />
+        <activity android:name=".Activities.LoginActivity" />
+        <activity android:name=".Activities.MainActivity" />
         <activity
-            android:name="com.alexeyre.publicmaintenance.SplashActivity"
+            android:name=".Activities.SplashActivity"
             android:label="PublicM">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

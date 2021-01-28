@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey_300"
-    tools:context="com.alexeyre.publicmaintenance.MainActivity">
+    tools:context="com.alexeyre.publicmaintenance.Activities.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_header"
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/layout_jobs"
+                android:id="@+id/layout_inspections"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
@@ -95,13 +95,13 @@
                     android:layout_margin="8dp"
                     android:contentDescription="@string/app_name"
                     android:padding="8dp"
-                    android:src="@drawable/icon_jobs" />
+                    android:src="@drawable/icon_inspections" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Jobs"
+                    android:text="Inspections"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -121,7 +121,7 @@
                 android:padding="10dp"
                 app:layout_constraintDimensionRatio="H,1:1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/layout_jobs"
+                app:layout_constraintStart_toEndOf="@id/layout_inspections"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
@@ -157,7 +157,7 @@
                 app:layout_constraintDimensionRatio="H,1:1"
                 app:layout_constraintEnd_toStartOf="@id/layout_locations"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layout_jobs">
+                app:layout_constraintTop_toBottomOf="@id/layout_inspections">
 
                 <ImageView
                     android:layout_width="100dp"

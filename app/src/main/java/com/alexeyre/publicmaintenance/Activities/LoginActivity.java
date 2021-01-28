@@ -1,4 +1,4 @@
-package com.alexeyre.publicmaintenance;
+package com.alexeyre.publicmaintenance.Activities;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.alexeyre.publicmaintenance.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;

@@ -1,4 +1,4 @@
-package com.alexeyre.publicmaintenance;
+package com.alexeyre.publicmaintenance.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.alexeyre.publicmaintenance.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     //launch jobs activity
     public void Jobs(View view) {
-        startActivity(new Intent(MainActivity.this, JobActivity.class));
+        startActivity(new Intent(MainActivity.this, InspectionsActivity.class));
     }
 
     //launch the locations activity
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     //launch profile activity
     public void Profile(View view) {
-        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+        startActivity(new Intent(MainActivity.this, TrafficLightProfileActivity.class));
     }
 
     //signout the user

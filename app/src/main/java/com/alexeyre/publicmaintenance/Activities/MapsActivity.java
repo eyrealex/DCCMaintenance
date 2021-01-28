@@ -1,4 +1,4 @@
-package com.alexeyre.publicmaintenance;
+package com.alexeyre.publicmaintenance.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -6,8 +6,9 @@ import androidx.fragment.app.FragmentActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import Constants.Constants;
-import Helpers.TrafficLightModel;
+import com.alexeyre.publicmaintenance.Constants.Constants;
+import com.alexeyre.publicmaintenance.Helpers.TrafficLightModel;
+import com.alexeyre.publicmaintenance.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

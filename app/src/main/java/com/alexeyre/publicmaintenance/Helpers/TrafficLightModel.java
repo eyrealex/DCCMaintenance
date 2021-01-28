@@ -1,4 +1,4 @@
-package Helpers;
+package com.alexeyre.publicmaintenance.Helpers;
 
 public class TrafficLightModel {
 

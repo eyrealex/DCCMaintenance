@@ -7,7 +7,7 @@
     android:background="#34445e"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context="com.alexeyre.publicmaintenance.RegisterActivity">
+    tools:context="com.alexeyre.publicmaintenance.Activities.RegisterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
