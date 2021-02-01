@@ -1,6 +1,5 @@
 package com.alexeyre.publicmaintenance.Activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     //launch jobs activity
     public void Jobs(View view) {
-        startActivity(new Intent(MainActivity.this, InspectionsActivity.class));
+        startActivity(new Intent(MainActivity.this, JobInspectionsActivity.class));
     }
 
     //launch the locations activity

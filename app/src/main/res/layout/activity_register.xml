@@ -26,21 +26,20 @@
             android:id="@+id/reg_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="monospace"
+            android:fontFamily="@font/nunito_bold"
             android:text="Welcome to Public Maintenance"
             android:textColor="@color/white"
             android:textSize="25sp"
-            android:textStyle="bold"
             android:transitionName="app_text" />
 
         <TextView
             android:id="@+id/reg_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_bold"
             android:text="Register an account"
             android:textColor="#99537983"
             android:textSize="18sp"
-            android:textStyle="bold"
             android:transitionName="desc_tran" />
 
         <LinearLayout
@@ -130,6 +129,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:backgroundTint="#99537983"
+            android:fontFamily="@font/nunito_bold"
             android:text="Register"
             android:textColor="@color/white"
             android:transitionName="btn_tran" />
@@ -139,6 +139,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#00000000"
+            android:fontFamily="@font/nunito_regular"
             android:text="Already have an account?"
             android:textColor="@color/white"
             android:transitionName="account_tran" />

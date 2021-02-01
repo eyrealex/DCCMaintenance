@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.alexeyre.publicmaintenance.R;
 
-public class InspectionsActivity extends AppCompatActivity {
+public class JobInspectionsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inspections);
+        setContentView(R.layout.activity_job_inspections);
     }
 }

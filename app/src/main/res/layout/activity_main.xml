@@ -20,12 +20,11 @@
             android:id="@+id/activity_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/spacing_large"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="4dp"
-            android:fontFamily="monospace"
+            android:paddingLeft="10dp"
+            android:fontFamily="@font/nunito_bold"
             android:text="Dashboard"
-            android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,6 +52,7 @@
             android:layout_marginEnd="4dp"
             android:maxWidth="100dp"
             android:textColor="@color/white"
+            android:fontFamily="@font/nunito_italic"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -104,8 +104,7 @@
                     android:text="Inspections"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:fontFamily="sans-serif" />
+                    app:fontFamily="@font/nunito_bold" />
 
             </LinearLayout>
 
@@ -139,8 +138,7 @@
                     android:text="Employees"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:fontFamily="sans-serif" />
+                    app:fontFamily="@font/nunito_bold" />
 
             </LinearLayout>
 
@@ -174,8 +172,7 @@
                     android:text="Metrics"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:fontFamily="sans-serif" />
+                    app:fontFamily="@font/nunito_bold" />
 
             </LinearLayout>
 
@@ -209,8 +206,7 @@
                     android:text="Locations"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:fontFamily="sans-serif" />
+                    app:fontFamily="@font/nunito_bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -243,8 +239,7 @@
                     android:text="Settings"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:fontFamily="sans-serif" />
+                    app:fontFamily="@font/nunito_bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -278,8 +273,7 @@
                     android:text="Sign Out"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:fontFamily="sans-serif" />
+                    app:fontFamily="@font/nunito_bold" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

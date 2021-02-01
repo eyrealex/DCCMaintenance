@@ -135,6 +135,7 @@
 
                 <Button
                     android:id="@+id/create_inspection_btn"
+                    android:onClick="createInspectionBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

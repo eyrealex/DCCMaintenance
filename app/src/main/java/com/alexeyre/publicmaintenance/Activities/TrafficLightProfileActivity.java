@@ -19,4 +19,8 @@ public class TrafficLightProfileActivity extends AppCompatActivity {
     public void prevInspectionsBtn(View view) {
         startActivity(new Intent(TrafficLightProfileActivity.this, PrevInspectionsActivity.class));
     }
+
+    public void createInspectionBtn(View view) {
+        startActivity(new Intent(TrafficLightProfileActivity.this, CreateInspectionsActivity.class));
+    }
 }
