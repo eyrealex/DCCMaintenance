@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/grey_300"
+    android:orientation="vertical"
     tools:context="com.alexeyre.publicmaintenance.Activities.ProfileActivity">
 
     <RelativeLayout
@@ -24,30 +24,31 @@
             app:civ_border_width="2dp" />
 
         <TextView
-            android:id="@+id/profile_name"
+            android:id="@+id/profile_name_banner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/profile_image"
-            android:includeFontPadding="false"
-            android:text="Alex Eyre"
             android:fontFamily="@font/nunito_bold"
-            android:textSize="30sp"
-            android:textColor="@color/white"/>
+            android:includeFontPadding="false"
+            tools:text="Alex Eyre"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
 
         <TextView
+            android:id="@+id/profile_email_banner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/profile_name"
+            android:layout_below="@id/profile_name_banner"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/profile_image"
-            android:includeFontPadding="false"
-            android:text="eyrealex97@gmail.com"
             android:fontFamily="@font/nunito_regular"
-            android:textSize="18sp"
-            android:textColor="@color/white"/>
+            android:includeFontPadding="false"
+            tools:text="eyrealex97@gmail.com"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
 
     </RelativeLayout>
@@ -61,16 +62,17 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name">
+            tools:hint="Name">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profile_name_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_user"
+                android:background="@color/trans"
+                android:drawableStart="@drawable/ic_user"
                 android:drawablePadding="10dp"
-                android:text="Alex Eyre"
                 android:fontFamily="@font/nunito_regular"
-                android:background="@color/trans"/>
+                android:text="Alex Eyre" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -81,13 +83,14 @@
             android:hint="Email">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profile_email_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_email"
+                android:background="@color/trans"
+                android:drawableStart="@drawable/ic_email"
                 android:drawablePadding="10dp"
-                android:text="eyrealex@gmail.com"
                 android:fontFamily="@font/nunito_regular"
-                android:background="@color/trans"/>
+                tools:text="eyrealex@gmail.com" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -98,13 +101,14 @@
             android:hint="Phone Number">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profile_number_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_phone"
+                android:background="@color/trans"
+                android:drawableStart="@drawable/ic_phone"
                 android:drawablePadding="10dp"
-                android:text="08457621445"
                 android:fontFamily="@font/nunito_regular"
-                android:background="@color/trans"/>
+                tools:text="08457621445" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -112,16 +116,19 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password">
+            android:hint="Password"
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profile_password_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_password"
+                android:background="@color/trans"
+                android:drawableStart="@drawable/ic_password"
                 android:drawablePadding="10dp"
-                android:text="Password123"
                 android:fontFamily="@font/nunito_regular"
-                android:background="@color/trans"/>
+                android:inputType="textPassword"
+                tools:text="Password123" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -130,18 +137,18 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
-            android:text="Update"
-            android:fontFamily="@font/nunito_bold"
             android:backgroundTint="@color/colorPrimaryLight"
+            android:fontFamily="@font/nunito_bold"
+            android:text="Update"
             android:textColor="@color/white" />
 
         <Button
-            android:onClick="signoutBtn"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Sign Out"
-            android:fontFamily="@font/nunito_bold"
             android:backgroundTint="@color/colorPrimaryLight"
+            android:fontFamily="@font/nunito_bold"
+            android:onClick="signoutBtn"
+            android:text="Sign Out"
             android:textColor="@color/white" />
 
 

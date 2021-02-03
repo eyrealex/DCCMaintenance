@@ -3,7 +3,7 @@ package com.alexeyre.publicmaintenance.Helpers;
 import java.io.Serializable;
 
 public class UserProfileModel implements Serializable {
-    String name, email, phone;
+    String name, email, phone, profile_photo_url;
     private Boolean admin;
 
     public UserProfileModel() {
@@ -13,6 +13,14 @@ public class UserProfileModel implements Serializable {
         this.name = name;
         this.email = email;
         this.phone = phone;
+    }
+
+    public String getprofile_photo_url() {
+        return profile_photo_url;
+    }
+
+    public void setprofile_photo_url(String profile_photo_url) {
+        this.profile_photo_url = profile_photo_url;
     }
 
     public String getname() {

@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.getValue() != null && snapshot.hasChildren()) {
                     currentUser = snapshot.getValue(UserProfileModel.class);
-                    if (currentUser != null){
+                    if (currentUser != null) {
                         setupControls();
                     }
                 }
@@ -63,8 +63,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //Added for everyone
-        controls.add(new HomePageWidgetModel(R.drawable.icon_inspections, "My Inspection", JobInspectionsActivity.class));
+        controls.add(new HomePageWidgetModel(R.drawable.icon_inspections, "My Inspection", TrafficLightLocationsActivity.class));
         controls.add(new HomePageWidgetModel(R.drawable.icon_chart, "Metrics", MetricActivity.class));
+        controls.add(new HomePageWidgetModel(R.drawable.icon_locations, "Traffic Lights", MapsActivity.class));
+        controls.add(new HomePageWidgetModel(R.drawable.icon_settings, "Settings", SettingActivity.class));
 
         setAdapter(controls);
     }
@@ -76,34 +78,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //    //launch jobs activity
-//    public void Jobs(View view) {
-//        startActivity(new Intent(MainActivity.this, JobInspectionsActivity.class));
-//    }
-//
-//    //launch the locations activity
-//    public void locations(View view) {
-//        startActivity(new Intent(MainActivity.this, MapsActivity.class));
-//    }
-//
-//    //launch the employees activity
-//    public void Employees(View view) {
-//        startActivity(new Intent(MainActivity.this, EmployeeActivity.class));
-//    }
-//
-//    //launch the metrics activity
-//    public void Metrics(View view) {
-//        startActivity(new Intent(MainActivity.this, MetricActivity.class));
-//    }
-//
-//    //launch the settings activity
-//    public void Settings(View view) {
-//        startActivity(new Intent(MainActivity.this, SettingActivity.class));
-//    }
-//
-    //launch profile activity
     public void Profile(View view) {
-        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("object", currentUser);
+        startActivity(new Intent(MainActivity.this, ProfileActivity.class).putExtra("bundle", bundle));
     }
 
 
@@ -111,6 +89,4 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         moveTaskToBack(true);
     }
-
-
 }

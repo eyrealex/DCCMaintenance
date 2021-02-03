@@ -3,7 +3,9 @@ package com.alexeyre.publicmaintenance.Activities;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.alexeyre.publicmaintenance.Constants.Constants;
@@ -106,4 +108,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void showMarkerDetails(Marker marker) {
         Toast.makeText(this, marker.getTitle(), Toast.LENGTH_SHORT).show();
     }
+
+    public void list_view_btn(View view) {
+        startActivity(new Intent(MapsActivity.this, TrafficLightLocationsActivity.class));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
 }

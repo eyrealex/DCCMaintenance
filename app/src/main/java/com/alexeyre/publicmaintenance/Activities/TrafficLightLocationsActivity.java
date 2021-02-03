@@ -3,6 +3,7 @@ package com.alexeyre.publicmaintenance.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alexeyre.publicmaintenance.Adapters.InspectionAdapter;
 import com.alexeyre.publicmaintenance.Constants.Constants;
-import com.alexeyre.publicmaintenance.Helpers.TrafficLightInspectionModel;
 import com.alexeyre.publicmaintenance.Helpers.TrafficLightModel;
 import com.alexeyre.publicmaintenance.R;
 import com.google.firebase.database.DataSnapshot;
@@ -20,9 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class JobInspectionsActivity extends AppCompatActivity {
+public class TrafficLightLocationsActivity extends AppCompatActivity {
 
     //variables
     private ArrayList<TrafficLightModel> mInspectionTemplateList;
@@ -33,16 +32,12 @@ public class JobInspectionsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_job_inspections);
+        setContentView(R.layout.taffic_light_locations);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.job_inspections_recycler_view);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(JobInspectionsActivity.this, 1);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(TrafficLightLocationsActivity.this, 1);
         mRecyclerView.setLayoutManager(gridLayoutManager);
 
-//        //create an array list for the job inspections
-//        mInspectionTemplateList = new ArrayList<>();
-//        mInspectionAdapter = new InspectionAdapter(JobInspectionsActivity.this, mInspectionTemplateList);
-//        mRecyclerView.setAdapter(mInspectionAdapter);
 
         //reference the database path for the coordinates
         FirebaseDatabase.getInstance().getReference().child(Constants.COORDINATES).addValueEventListener(new ValueEventListener() {
@@ -58,7 +53,7 @@ public class JobInspectionsActivity extends AppCompatActivity {
                     }
                 }
 
-                mInspectionAdapter = new InspectionAdapter(JobInspectionsActivity.this, mInspectionTemplateList);
+                mInspectionAdapter = new InspectionAdapter(TrafficLightLocationsActivity.this, mInspectionTemplateList);
                 mRecyclerView.setAdapter(mInspectionAdapter);
             }
 
@@ -73,8 +68,11 @@ public class JobInspectionsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(JobInspectionsActivity.this, MainActivity.class));
-        finish();
+        super.onBackPressed();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
+    public void map_view_btn(View view) {
+        startActivity(new Intent(TrafficLightLocationsActivity.this, MapsActivity.class));
     }
 }//end JobInspectionActivity

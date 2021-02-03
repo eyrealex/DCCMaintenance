@@ -15,9 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.alexeyre.publicmaintenance.Helpers.TrafficLightModel;
 import com.alexeyre.publicmaintenance.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 public class InspectionAdapter extends RecyclerView.Adapter<InspectionViewHolder> {
@@ -36,14 +34,14 @@ public class InspectionAdapter extends RecyclerView.Adapter<InspectionViewHolder
     @NonNull
     @Override
     public InspectionViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View mView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.inspection_recycler_template, viewGroup, false);
+        View mView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.inspection_list_item, viewGroup, false);
         return new InspectionViewHolder(mView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull InspectionViewHolder inspectionViewHolder, int position) {
-        inspectionViewHolder.template_id.setText(String.format(Locale.ENGLISH, "ID: %s", trafficLightModelList.get(position).getkey()));
-        inspectionViewHolder.template_id.setText(String.format(Locale.ENGLISH, "ID: %s", trafficLightModelList.get(position).getkey()));
+        inspectionViewHolder.id_tv.setText(String.format(Locale.ENGLISH, "ID: %s", trafficLightModelList.get(position).getkey()));
+        inspectionViewHolder.id_tv.setText(String.format(Locale.ENGLISH, "ID: %s", trafficLightModelList.get(position).getkey()));
 
 
         //load in the job inspections template from the database with an animation
@@ -99,7 +97,7 @@ public class InspectionAdapter extends RecyclerView.Adapter<InspectionViewHolder
 
 class InspectionViewHolder extends RecyclerView.ViewHolder {
 
-    TextView template_id, template_location;
+    TextView id_tv, template_location;
 
     //template variables
     //private TextView mId, mLocation, mLastInspection, mNextInspection, mStatus;
@@ -109,7 +107,7 @@ class InspectionViewHolder extends RecyclerView.ViewHolder {
     public InspectionViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        template_id = itemView.findViewById(R.id.template_id);
+        id_tv = itemView.findViewById(R.id.id_tv);
 
         //template hooks
         // mId = itemView.findViewById(R.id.template_id);

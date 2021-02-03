@@ -15,9 +15,9 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.CreateInspectionsActivity"></activity>
+        <activity android:name=".Activities.CreateInspectionsActivity"/>
         <activity android:name=".Activities.PrevInspectionsActivity" />
-        <activity android:name=".Activities.JobInspectionsActivity" />
+        <activity android:name=".Activities.TrafficLightLocationsActivity" />
         <activity android:name=".Activities.TrafficLightProfileActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
