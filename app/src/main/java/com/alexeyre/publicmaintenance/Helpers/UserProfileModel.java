@@ -1,7 +1,10 @@
 package com.alexeyre.publicmaintenance.Helpers;
 
-public class UserProfileModel {
+import java.io.Serializable;
+
+public class UserProfileModel implements Serializable {
     String name, email, phone;
+    private Boolean admin;
 
     public UserProfileModel() {
     }
@@ -12,28 +15,35 @@ public class UserProfileModel {
         this.phone = phone;
     }
 
-    public String getName() {
+    public String getname() {
         return name;
     }
 
-    public void setName(String Name) {
+    public void setname(String name) {
         this.name = name;
     }
 
-    public String getEmail() {
+    public String getemail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setemail(String email) {
         this.email = email;
     }
 
-    public String getPhone() {
+    public String getphone() {
         return phone;
     }
 
-    public void setPhone(String phoneNumber) {
-        this.phone = phoneNumber;
+    public void setphone(String phone) {
+        this.phone = phone;
     }
 
+    public Boolean getadmin() {
+        return admin;
+    }
+
+    public void setadmin(Boolean admin) {
+        this.admin = admin;
+    }
 }

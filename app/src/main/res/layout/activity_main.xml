@@ -22,8 +22,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="4dp"
-            android:paddingLeft="10dp"
             android:fontFamily="@font/nunito_bold"
+            android:paddingLeft="10dp"
             android:text="Dashboard"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
@@ -33,11 +33,11 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_pic"
-            android:onClick="Profile"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="8dp"
+            android:onClick="Profile"
             android:src="@drawable/ic_userprofile_placeholder"
             app:civ_border_color="#FFFFFF"
             app:civ_border_width="2dp"
@@ -50,14 +50,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="4dp"
+            android:fontFamily="@font/nunito_italic"
             android:maxWidth="100dp"
             android:textColor="@color/white"
-            android:fontFamily="@font/nunito_italic"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Alex Eyre"
-            />
+            tools:text="Alex Eyre" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -70,212 +69,232 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_header">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/layout_inspections"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:background="@drawable/white_rectangle_background"
-                android:gravity="center"
-                android:onClick="Jobs"
-                android:orientation="vertical"
-                android:padding="10dp"
-                app:layout_constraintDimensionRatio="H,1:1"
-                app:layout_constraintEnd_toStartOf="@id/layout_employees"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/widget_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                tools:itemCount="4"
+                tools:listitem="@layout/home_page_widget" />
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="8dp"
-                    android:contentDescription="@string/app_name"
-                    android:padding="8dp"
-                    android:src="@drawable/icon_inspections" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Inspections"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:fontFamily="@font/nunito_bold" />
+        </LinearLayout>
 
-            </LinearLayout>
+        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content">-->
 
-            <LinearLayout
-                android:id="@+id/layout_employees"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:background="@drawable/white_rectangle_background"
-                android:gravity="center"
-                android:onClick="Employees"
-                android:orientation="vertical"
-                android:padding="10dp"
-                app:layout_constraintDimensionRatio="H,1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/layout_inspections"
-                app:layout_constraintTop_toTopOf="parent">
+        <!--            <include   layout="@layout/home_page_widget"/>-->
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="8dp"
-                    android:contentDescription="@string/app_name"
-                    android:padding="8dp"
-                    android:src="@drawable/icon_employees" />
+        <!--&lt;!&ndash;            <LinearLayout&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:id="@+id/layout_inspections"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_width="0dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_marginTop="22dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:background="@drawable/white_rectangle_background"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:gravity="center"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:onClick="Jobs"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:orientation="vertical"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:padding="10dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintDimensionRatio="H,1:1"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintEnd_toStartOf="@id/layout_employees"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintTop_toTopOf="parent">&ndash;&gt;-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Employees"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:fontFamily="@font/nunito_bold" />
+        <!--&lt;!&ndash;                <ImageView&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_width="100dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_height="100dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_margin="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:contentDescription="@string/app_name"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:padding="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:src="@drawable/icon_inspections" />&ndash;&gt;-->
 
-            </LinearLayout>
+        <!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:gravity="center"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:text="My Inspections"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:textColor="@color/black"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:textSize="20sp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    app:fontFamily="@font/nunito_bold" />&ndash;&gt;-->
 
-            <LinearLayout
-                android:id="@+id/layout_metrics"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:background="@drawable/white_rectangle_background"
-                android:gravity="center"
-                android:onClick="Metrics"
-                android:orientation="vertical"
-                android:padding="10dp"
-                app:layout_constraintDimensionRatio="H,1:1"
-                app:layout_constraintEnd_toStartOf="@id/layout_locations"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layout_inspections">
+        <!--&lt;!&ndash;            </LinearLayout>&ndash;&gt;-->
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="8dp"
-                    android:contentDescription="@string/app_name"
-                    android:padding="8dp"
-                    android:src="@drawable/icon_chart" />
+        <!--&lt;!&ndash;            <LinearLayout&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:id="@+id/layout_employees"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_width="0dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_marginTop="22dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:background="@drawable/white_rectangle_background"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:gravity="center"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:onClick="Employees"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:orientation="vertical"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:padding="10dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintDimensionRatio="H,1:1"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintStart_toEndOf="@id/layout_inspections"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintTop_toTopOf="parent">&ndash;&gt;-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Metrics"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:fontFamily="@font/nunito_bold" />
+        <!--&lt;!&ndash;                <ImageView&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_width="100dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_height="100dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_margin="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:contentDescription="@string/app_name"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:padding="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:src="@drawable/icon_employees" />&ndash;&gt;-->
 
-            </LinearLayout>
+        <!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:gravity="center"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:text="Employees"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:textColor="@color/black"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:textSize="20sp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    app:fontFamily="@font/nunito_bold" />&ndash;&gt;-->
 
-            <LinearLayout
-                android:id="@+id/layout_locations"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:background="@drawable/white_rectangle_background"
-                android:gravity="center"
-                android:onClick="locations"
-                android:orientation="vertical"
-                android:padding="10dp"
-                app:layout_constraintDimensionRatio="H,1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/layout_metrics"
-                app:layout_constraintTop_toBottomOf="@id/layout_employees">
+        <!--&lt;!&ndash;            </LinearLayout>&ndash;&gt;-->
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="8dp"
-                    android:contentDescription="@string/app_name"
-                    android:padding="8dp"
-                    android:src="@drawable/icon_locations" />
+        <!--&lt;!&ndash;            <LinearLayout&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:id="@+id/layout_metrics"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_width="0dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_marginTop="22dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:background="@drawable/white_rectangle_background"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:gravity="center"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:onClick="Metrics"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:orientation="vertical"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:padding="10dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintDimensionRatio="H,1:1"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintEnd_toStartOf="@id/layout_locations"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintTop_toBottomOf="@id/layout_inspections">&ndash;&gt;-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Locations"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:fontFamily="@font/nunito_bold" />
-            </LinearLayout>
+        <!--&lt;!&ndash;                <ImageView&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_width="100dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_height="100dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_margin="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:contentDescription="@string/app_name"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:padding="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:src="@drawable/icon_chart" />&ndash;&gt;-->
 
-            <LinearLayout
-                android:id="@+id/layout_settings"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:background="@drawable/white_rectangle_background"
-                android:gravity="center"
-                android:onClick="Settings"
-                android:orientation="vertical"
-                android:padding="10dp"
-                app:layout_constraintDimensionRatio="H,1:1"
-                app:layout_constraintEnd_toStartOf="@id/layout_signout"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layout_metrics">
+        <!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:gravity="center"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:text="Metrics"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:textColor="@color/black"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:textSize="20sp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    app:fontFamily="@font/nunito_bold" />&ndash;&gt;-->
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="8dp"
-                    android:contentDescription="@string/app_name"
-                    android:padding="8dp"
-                    android:src="@drawable/icon_settings" />
+        <!--&lt;!&ndash;            </LinearLayout>&ndash;&gt;-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Settings"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:fontFamily="@font/nunito_bold" />
-            </LinearLayout>
+        <!--&lt;!&ndash;            <LinearLayout&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:id="@+id/layout_locations"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_width="0dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_marginTop="22dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:background="@drawable/white_rectangle_background"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:gravity="center"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:onClick="locations"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:orientation="vertical"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:padding="10dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintDimensionRatio="H,1:1"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintStart_toEndOf="@id/layout_metrics"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintTop_toBottomOf="@id/layout_employees">&ndash;&gt;-->
 
-            <LinearLayout
-                android:id="@+id/layout_signout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:background="@drawable/white_rectangle_background"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="10dp"
-                app:layout_constraintDimensionRatio="H,1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/layout_settings"
-                app:layout_constraintTop_toBottomOf="@id/layout_locations">
+        <!--&lt;!&ndash;                <ImageView&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_width="100dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_height="100dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_margin="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:contentDescription="@string/app_name"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:padding="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:src="@drawable/icon_locations" />&ndash;&gt;-->
 
-                <ImageView
-                    android:id="@+id/signout_btn"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="8dp"
-                    android:contentDescription="@string/app_name"
-                    android:padding="8dp"
-                    android:src="@drawable/icon_sign_out" />
+        <!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:gravity="center"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:text="Locations"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:textColor="@color/black"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:textSize="20sp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    app:fontFamily="@font/nunito_bold" />&ndash;&gt;-->
+        <!--&lt;!&ndash;            </LinearLayout>&ndash;&gt;-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Sign Out"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:fontFamily="@font/nunito_bold" />
-            </LinearLayout>
+        <!--&lt;!&ndash;            <LinearLayout&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:id="@+id/layout_settings"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_width="0dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_marginTop="22dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:background="@drawable/white_rectangle_background"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:gravity="center"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:onClick="Settings"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:orientation="vertical"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:padding="10dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintDimensionRatio="H,1:1"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintEnd_toStartOf="@id/layout_signout"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintTop_toBottomOf="@id/layout_metrics">&ndash;&gt;-->
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!--&lt;!&ndash;                <ImageView&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_width="100dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_height="100dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_margin="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:contentDescription="@string/app_name"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:padding="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:src="@drawable/icon_settings" />&ndash;&gt;-->
+
+        <!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:gravity="center"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:text="Settings"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:textColor="@color/black"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:textSize="20sp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    app:fontFamily="@font/nunito_bold" />&ndash;&gt;-->
+        <!--&lt;!&ndash;            </LinearLayout>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;            <LinearLayout&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:id="@+id/layout_signout"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_width="0dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:layout_marginTop="22dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:background="@drawable/white_rectangle_background"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:gravity="center"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:orientation="vertical"&ndash;&gt;-->
+        <!--&lt;!&ndash;                android:padding="10dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintDimensionRatio="H,1:1"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintStart_toEndOf="@id/layout_settings"&ndash;&gt;-->
+        <!--&lt;!&ndash;                app:layout_constraintTop_toBottomOf="@id/layout_locations">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;                <ImageView&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:id="@+id/signout_btn"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_width="100dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_height="100dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_margin="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:contentDescription="@string/app_name"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:padding="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:src="@drawable/icon_sign_out" />&ndash;&gt;-->
+
+        <!--&lt;!&ndash;                <TextView&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:gravity="center"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:text="Sign Out"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:textColor="@color/black"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    android:textSize="20sp"&ndash;&gt;-->
+        <!--&lt;!&ndash;                    app:fontFamily="@font/nunito_bold" />&ndash;&gt;-->
+        <!--&lt;!&ndash;            </LinearLayout>&ndash;&gt;-->
+
+        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
     </ScrollView>
 
