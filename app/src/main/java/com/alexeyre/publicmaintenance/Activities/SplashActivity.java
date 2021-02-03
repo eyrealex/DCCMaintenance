@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alexeyre.publicmaintenance.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -51,14 +52,13 @@ public class SplashActivity extends AppCompatActivity {
                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
 
                 Pair[] pairs = new Pair[2];
-                pairs[0] = new Pair<View,String>(image, "app_image");
-                pairs[1] = new Pair<View,String>(logo, "app_text");
+                pairs[0] = new Pair<View, String>(image, "app_image");
+                pairs[1] = new Pair<View, String>(logo, "app_text");
 
                 //if android is running at least version lollipop it will run animation
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this,pairs);
-                    startActivity(intent,options.toBundle());
-                    finish();
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this, pairs);
+                    startActivity(intent, options.toBundle());
                 }
             }
         }, SPLASH_SCREEN);

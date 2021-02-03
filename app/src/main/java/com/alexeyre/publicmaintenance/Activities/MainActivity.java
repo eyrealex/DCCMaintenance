@@ -46,14 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
     //launch profile activity
     public void Profile(View view) {
-        startActivity(new Intent(MainActivity.this, TrafficLightProfileActivity.class));
+        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
     }
 
-    //signout the user
-    public void logoutBtn(View view) {
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(MainActivity.this, LoginActivity.class));
-    }
 
     @Override
     public void onBackPressed() {

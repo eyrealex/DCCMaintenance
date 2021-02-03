@@ -1,11 +1,23 @@
 package com.alexeyre.publicmaintenance.Helpers;
 
-public class TrafficLightModel {
+import java.io.Serializable;
+import java.util.ArrayList;
 
-    private String name, latitude , longitude;
+public class TrafficLightModel implements Serializable {
+
+    private String name, latitude , longitude, key;
+    private ArrayList<TrafficLightInspectionModel> inspection;
 
     //empty constructor to invoke on object creation of  the respective class in MainActivity.java
     public TrafficLightModel() {
+    }
+
+    public String getkey() {
+        return key;
+    }
+
+    public void setkey(String key) {
+        this.key = key;
     }
 
     public String getname() {
@@ -30,5 +42,13 @@ public class TrafficLightModel {
 
     public void setlongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public ArrayList<TrafficLightInspectionModel> getinspection() {
+        return inspection;
+    }
+
+    public void setinspection(ArrayList<TrafficLightInspectionModel> inspection) {
+        this.inspection = inspection;
     }
 }

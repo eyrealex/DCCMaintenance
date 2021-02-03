@@ -1,16 +1,15 @@
 package com.alexeyre.publicmaintenance.Helpers;
 
 public class UserProfileModel {
-    String name, email, phone, password;
+    String name, email, phone;
 
     public UserProfileModel() {
     }
 
-    public UserProfileModel(String name, String email, String phone, String password) {
+    public UserProfileModel(String name, String email, String phone) {
         this.name = name;
         this.email = email;
         this.phone = phone;
-        this.password = password;
     }
 
     public String getName() {
@@ -37,11 +36,4 @@ public class UserProfileModel {
         this.phone = phoneNumber;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

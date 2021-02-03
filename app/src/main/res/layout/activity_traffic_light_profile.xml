@@ -114,7 +114,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/rounded_btn_primary_dark"
+                    android:background="@drawable/rounded_btn_primary_light"
                     android:text="All Inspections"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
@@ -128,7 +128,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/rounded_btn_primary_dark"
+                    android:background="@drawable/rounded_btn_primary_light"
                     android:text="Previous Inspection"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
@@ -142,7 +142,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/rounded_btn_primary_dark"
+                    android:background="@drawable/rounded_btn_primary_light"
                     android:text="Create Inspection"
                     android:textColor="@color/white"
                     android:textSize="12sp" />

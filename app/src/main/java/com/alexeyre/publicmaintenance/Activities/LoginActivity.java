@@ -38,8 +38,16 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
+        //Check if the user is already logged in
+        //if so, redirect straight to Home Page
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+            return;
+        }
+
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
 
         //hooks

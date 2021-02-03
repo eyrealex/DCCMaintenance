@@ -132,7 +132,16 @@
             android:layout_marginTop="20dp"
             android:text="Update"
             android:fontFamily="@font/nunito_bold"
-            android:backgroundTint="#34445e"
+            android:backgroundTint="@color/colorPrimaryLight"
+            android:textColor="@color/white" />
+
+        <Button
+            android:onClick="signoutBtn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Sign Out"
+            android:fontFamily="@font/nunito_bold"
+            android:backgroundTint="@color/colorPrimaryLight"
             android:textColor="@color/white" />
 
 
