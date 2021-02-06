@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#34445e"
-    tools:context="com.alexeyre.publicmaintenance.Activities.SplashActivity">
+    tools:context=".Activities.SplashActivity">
 
     <ImageView
         android:id="@+id/appicon"
@@ -29,21 +29,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="21dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
         android:gravity="center"
-        android:text="Public Maintenance"
+        android:text="FixIt"
         android:textColor="@color/white"
         android:textSize="45sp"
+        android:transitionName="app_text"
         app:fontFamily="@font/nunito_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appicon"
-        app:layout_constraintVertical_bias="0.0"
-        android:transitionName="app_text"/>
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.alexeyre.publicmaintenance">
+    package="com.alexeyre.fixit">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -11,11 +11,11 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/app_icon"
-        android:label="PublicM"
+        android:label="FixIt"
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.CreateInspectionsActivity"/>
+        <activity android:name=".Activities.CreateInspectionsActivity" />
         <activity android:name=".Activities.PrevInspectionsActivity" />
         <activity android:name=".Activities.TrafficLightLocationsActivity" />
         <activity android:name=".Activities.TrafficLightProfileActivity" />
@@ -44,7 +44,7 @@
         <activity android:name=".Activities.MainActivity" />
         <activity
             android:name=".Activities.SplashActivity"
-            android:label="PublicM">
+            android:label="FixIt">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

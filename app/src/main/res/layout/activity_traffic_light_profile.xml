@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/grey_300"
     android:orientation="vertical"
-    tools:context="com.alexeyre.publicmaintenance.Activities.TrafficLightProfileActivity">
+    tools:context=".Activities.TrafficLightProfileActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -24,80 +24,106 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.AppTheme.TextInputLayoutList"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="ID"
+                android:textColorHint="@color/colorAccent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/traffic_id_tf"
+                    android:id="@+id/id_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/trans"
+                    android:drawableStart="@drawable/ic_user"
+                    android:drawablePadding="10dp"
                     android:focusableInTouchMode="false"
-                    android:hint="ID"
-                    android:textColor="@color/black" />
+                    android:fontFamily="@font/nunito_regular"
+                    tools:text="0" />
+
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.AppTheme.TextInputLayoutList"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="Location"
+                android:textColorHint="@color/colorAccent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/traffic_location_tf"
+                    android:id="@+id/location_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/trans"
+                    android:drawableStart="@drawable/ic_location"
+                    android:drawablePadding="10dp"
                     android:focusableInTouchMode="false"
-                    android:hint="Location"
-                    android:textColor="@color/black" />
+                    android:fontFamily="@font/nunito_regular"
+                    tools:text="Henry St" />
+
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.AppTheme.TextInputLayoutList"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="Next Inspection"
+                android:textColorHint="@color/colorAccent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/traffic_next_inspection_tf"
+                    android:id="@+id/next_inspec_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/trans"
+                    android:drawableStart="@drawable/ic_forward"
+                    android:drawablePadding="10dp"
                     android:focusableInTouchMode="false"
-                    android:hint="Next Inspection"
-                    android:textColor="@color/black" />
+                    android:fontFamily="@font/nunito_regular"
+                    tools:text="01/01/2020" />
+
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.AppTheme.TextInputLayoutList"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="Last Inspection"
+                android:textColorHint="@color/colorAccent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/traffic_last_inspection_tf"
+                    android:id="@+id/last_inspec_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/trans"
+                    android:drawableStart="@drawable/ic_back"
+                    android:drawablePadding="10dp"
                     android:focusableInTouchMode="false"
-                    android:hint="Last Inspection"
-                    android:textColor="@color/black" />
+                    android:fontFamily="@font/nunito_regular"
+                    tools:text="01/01/2020" />
+
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.AppTheme.TextInputLayoutList"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="Last Assigned Employee"
+                android:textColorHint="@color/colorAccent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/traffic_last_employee_tf"
+                    android:id="@+id/last_employee_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/trans"
+                    android:drawableStart="@drawable/ic_employee"
+                    android:drawablePadding="10dp"
                     android:focusableInTouchMode="false"
-                    android:hint="Last Assigned Employee"
-                    android:textColor="@color/black" />
+                    android:fontFamily="@font/nunito_regular"
+                    tools:text="Alex Eyre" />
+
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -110,51 +136,53 @@
                     android:id="@+id/all_inspections_btn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="@dimen/spacing_large"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_btn_primary_light"
+                    android:fontFamily="@font/nunito_bold"
+                    android:onClick="all_inspections"
                     android:text="All Inspections"
                     android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
 
                 <Button
-                    android:id="@+id/prev_inspection_btn"
-                    android:onClick="prevInspectionsBtn"
+                    android:id="@+id/prev_inspections_btn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="@dimen/spacing_large"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_btn_primary_light"
-                    android:text="Previous Inspection"
+                    android:fontFamily="@font/nunito_bold"
+                    android:onClick="prev_inspections"
+                    android:text="All Inspections"
                     android:textColor="@color/white"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
 
                 <Button
                     android:id="@+id/create_inspection_btn"
-                    android:onClick="createInspectionBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/spacing_large"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_btn_primary_light"
-                    android:text="Create Inspection"
+                    android:fontFamily="@font/nunito_bold"
+                    android:onClick="create_inspection"
+                    android:text="Create Inspections"
                     android:textColor="@color/white"
-                    android:textSize="12sp" />
-
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
             </LinearLayout>
 
-            <com.google.android.gms.maps.MapView
-                android:id="@+id/traffic_profile_map"
-                android:layout_width="match_parent"
-                android:layout_height="400dp" />
 
         </LinearLayout>
+
 
     </ScrollView>
 

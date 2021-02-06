@@ -7,7 +7,7 @@
     android:background="#34445e"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context="com.alexeyre.publicmaintenance.Activities.RegisterActivity">
+    tools:context=".Activities.RegisterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,20 +27,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunito_bold"
-            android:text="Welcome to Public Maintenance"
+            android:text="Welcome to FixIt"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:transitionName="app_text" />
 
-        <TextView
-            android:id="@+id/reg_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/nunito_bold"
-            android:text="Register an account"
-            android:textColor="#99537983"
-            android:textSize="18sp"
-            android:transitionName="desc_tran" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -128,7 +119,7 @@
             android:id="@+id/reg_btn"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:backgroundTint="#99537983"
+            android:backgroundTint="@color/colorAccent"
             android:fontFamily="@font/nunito_bold"
             android:text="Register"
             android:textColor="@color/white"
@@ -139,7 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#00000000"
-            android:fontFamily="@font/nunito_regular"
+            android:fontFamily="@font/nunito_bold"
             android:text="Already have an account?"
             android:textColor="@color/white"
             android:transitionName="account_tran" />

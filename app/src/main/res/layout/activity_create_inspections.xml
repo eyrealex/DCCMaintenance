@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/grey_300"
     android:orientation="vertical"
-    tools:context="com.alexeyre.publicmaintenance.Activities.CreateInspectionsActivity">
+    tools:context=".Activities.CreateInspectionsActivity">
 
     <TextView
         android:layout_width="match_parent"

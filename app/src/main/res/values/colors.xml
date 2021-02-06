@@ -3,9 +3,10 @@
     <color name="colorPrimary">#34445e</color>
     <color name="colorPrimaryDark">#34445e</color>
     <color name="colorPrimaryLight">#1E88E5</color>
-    <color name="colorAccent">#1E88E5</color>
+    <color name="colorAccent">#FE6319</color>
     <color name="colorAccentDark">#1565C0</color>
     <color name="colorAccentLight">#1E88E5</color>
+
 
     <color name="overlay_dark_10">#1A000000</color>
     <color name="overlay_dark_20">#33000000</color>

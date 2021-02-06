@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_medium"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorPrimaryLight"
+            android:backgroundTint="@color/colorAccent"
             android:fontFamily="@font/nunito_bold"
             android:onClick="list_view_btn"
             android:text="List View"
