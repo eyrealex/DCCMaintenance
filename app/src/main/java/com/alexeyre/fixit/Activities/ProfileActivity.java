@@ -1,6 +1,7 @@
 package com.alexeyre.fixit.Activities;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,11 +31,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -49,11 +53,8 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private ImageView editBtn, updateBtn;
-    private CircleImageView circleImageView;
-    public static final int IMAGE_CODE = 1;
-
+    private CircleImageView profileImage;
     private UserProfileModel userModel;
-
     private View.OnClickListener listener;
 
 
@@ -61,6 +62,13 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        //init components for uploading profile picture
+        firebaseStorage = FirebaseStorage.getInstance();
+        storageReference = firebaseStorage.getReference();
+        profileImage = findViewById(R.id.profile_image);
+
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             userModel = (UserProfileModel) bundle.getBundle("bundle").getSerializable("object");
@@ -85,7 +93,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                     //Set a new on click
                     ProfileActivity.this.findViewById(R.id.editBtn).setOnClickListener((View view) -> ProfileActivity.this.updateUserData());
-                    ProfileActivity.this.findViewById(R.id.updateBtn).setOnClickListener((View view) -> ProfileActivity.this.updateProfilePicture());
+                    ProfileActivity.this.findViewById(R.id.updateBtn).setOnClickListener((View view) -> ProfileActivity.this.selectImage());
                 }
             };
         }
@@ -93,6 +101,50 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
+    private void selectImage() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            imageUri = data.getData();
+            profileImage.setImageURI(imageUri);
+            uploadImage();
+
+        }
+    }
+
+    private void uploadImage() {
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Uploading Image...");
+        progressDialog.show();
+        final String randomKey = UUID.randomUUID().toString();
+        StorageReference fileRef = storageReference.child("images/" + randomKey);
+        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                progressDialog.dismiss();
+                Snackbar.make(findViewById(android.R.id.content), "Image Uploaded", Snackbar.LENGTH_LONG).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                progressDialog.dismiss();
+                Toast.makeText(ProfileActivity.this, "Failed to Upload", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                double progressPercent = (100.00 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
+                progressDialog.setMessage("Percentage : " + (int) progressPercent + "%");
+            }
+        });
+    }
 
     private void setupUI() {
         //Check if != null && !.equals("")
@@ -182,46 +234,6 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void updateProfilePicture() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, IMAGE_CODE);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == IMAGE_CODE && requestCode == RESULT_OK && data != null && data.getData() != null) {
-            imageUri = data.getData();
-
-
-            uploadImageToFirebase(imageUri);
-        }
-    }
-
-    private void uploadImageToFirebase(Uri imageUri) {
-        //upload image to firebase storage
-        final StorageReference fileRef = storageReference.child("users/" + mAuth.getCurrentUser().getUid() + "/profile.jpg");
-        circleImageView = (CircleImageView) findViewById(R.id.profile_image);
-        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        Picasso.get().load(uri).into(circleImageView);
-                    }
-                });
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ProfileActivity.this, "Image Failed to Upload", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
     private void resetPassword(View v) {
         FirebaseAuth.getInstance().sendPasswordResetEmail(userModel.getemail()).addOnCompleteListener(new OnCompleteListener<Void>() {

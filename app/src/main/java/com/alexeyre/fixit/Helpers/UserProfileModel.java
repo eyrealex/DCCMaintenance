@@ -3,7 +3,7 @@ package com.alexeyre.fixit.Helpers;
 import java.io.Serializable;
 
 public class UserProfileModel implements Serializable {
-    String name, email, phone,  profile_photo_url, uid;
+    String name, email, phone, profile_photo_url, uid;
     private Boolean admin;
 
     public UserProfileModel() {
