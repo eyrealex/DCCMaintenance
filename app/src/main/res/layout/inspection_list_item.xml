@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/white"
                 android:fontFamily="@font/nunito_bold"/>
 
             <TextView
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Kevin St @ Grafton St"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/white"
                 android:fontFamily="@font/nunito_bold"/>
 
             <TextView
@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10/03/2021"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/white"
                 android:fontFamily="@font/nunito_bold"/>
         </LinearLayout>
 

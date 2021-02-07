@@ -133,51 +133,49 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/prev_inspections_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:layout_marginRight="@dimen/spacing_medium"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorAccent"
+                    android:fontFamily="@font/nunito_bold"
+                    android:onClick="prev_inspections"
+                    android:text="Previous Inspections"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+
+                <Button
                     android:id="@+id/all_inspections_btn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_marginTop="@dimen/spacing_large"
+
                     android:layout_weight="1"
-                    android:background="@drawable/rounded_btn_primary_light"
+                    android:backgroundTint="@color/colorAccent"
                     android:fontFamily="@font/nunito_bold"
                     android:onClick="all_inspections"
                     android:text="All Inspections"
                     android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
+                    android:textSize="10sp" />
 
-                <Button
-                    android:id="@+id/prev_inspections_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_btn_primary_light"
-                    android:fontFamily="@font/nunito_bold"
-                    android:onClick="prev_inspections"
-                    android:text="All Inspections"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
 
                 <Button
                     android:id="@+id/create_inspection_btn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:layout_marginLeft="@dimen/spacing_medium"
                     android:layout_marginTop="@dimen/spacing_large"
                     android:layout_weight="1"
-                    android:background="@drawable/rounded_btn_primary_light"
+                    android:backgroundTint="@color/colorAccent"
                     android:fontFamily="@font/nunito_bold"
                     android:onClick="create_inspection"
-                    android:text="Create Inspections"
+                    android:text="Create Inspection"
                     android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
+                    android:textSize="10sp" />
             </LinearLayout>
 
 

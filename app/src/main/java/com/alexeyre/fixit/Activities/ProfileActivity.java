@@ -2,6 +2,7 @@ package com.alexeyre.fixit.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,8 +18,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.alexeyre.fixit.Helpers.UserProfileModel;
 import com.alexeyre.fixit.R;
-import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,20 +28,29 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class ProfileActivity extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
     private FirebaseDatabase firebaseDatabase;
+    private StorageReference storageReference;
+    private FirebaseStorage firebaseStorage;
+    private Uri imageUri;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
-    private ImageView editBtn;
+    private ImageView editBtn, updateBtn;
+    private CircleImageView circleImageView;
+    public static final int IMAGE_CODE = 1;
 
     private UserProfileModel userModel;
 
@@ -63,19 +74,23 @@ public class ProfileActivity extends AppCompatActivity {
                     ProfileActivity.this.findViewById(R.id.profile_name_tv).setFocusableInTouchMode(true);
                     ProfileActivity.this.findViewById(R.id.profile_number_tv).setFocusableInTouchMode(true);
                     ProfileActivity.this.findViewById(R.id.sign_out_btn).setVisibility(View.GONE);
+                    ProfileActivity.this.findViewById(R.id.updateBtn).setVisibility(View.GONE);
 
                     //Show the save button
                     //We can reuse the edit button?
                     //Swap icon for check
                     ((ImageView) ProfileActivity.this.findViewById(R.id.editBtn)).setImageDrawable(ProfileActivity.this.getResources().getDrawable(R.drawable.save_icon));
+                    ProfileActivity.this.findViewById(R.id.updateBtn).setVisibility(View.VISIBLE);
                     Toast.makeText(ProfileActivity.this, "Update User Data", Toast.LENGTH_SHORT).show();
 
                     //Set a new on click
                     ProfileActivity.this.findViewById(R.id.editBtn).setOnClickListener((View view) -> ProfileActivity.this.updateUserData());
-                    ProfileActivity.this.findViewById(R.id.update_image_button).setOnClickListener((View view) -> ProfileActivity.this.updateProfilePicture());
+                    ProfileActivity.this.findViewById(R.id.updateBtn).setOnClickListener((View view) -> ProfileActivity.this.updateProfilePicture());
                 }
             };
         }
+
+
     }
 
 
@@ -144,6 +159,7 @@ public class ProfileActivity extends AppCompatActivity {
                     Toast.makeText(ProfileActivity.this, "Update Successful", Toast.LENGTH_SHORT).show();
                     //Swap icon back
                     ((ImageView) findViewById(R.id.editBtn)).setImageDrawable(ProfileActivity.this.getResources().getDrawable(R.drawable.ic_edit));
+                    ProfileActivity.this.findViewById(R.id.updateBtn).setVisibility(View.GONE);
                     findViewById(R.id.sign_out_btn).setVisibility(View.VISIBLE);
 
                     //Stop user editing data anymore
@@ -167,7 +183,44 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void updateProfilePicture() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, IMAGE_CODE);
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == IMAGE_CODE && requestCode == RESULT_OK && data != null && data.getData() != null) {
+            imageUri = data.getData();
+
+
+            uploadImageToFirebase(imageUri);
+        }
+    }
+
+    private void uploadImageToFirebase(Uri imageUri) {
+        //upload image to firebase storage
+        final StorageReference fileRef = storageReference.child("users/" + mAuth.getCurrentUser().getUid() + "/profile.jpg");
+        circleImageView = (CircleImageView) findViewById(R.id.profile_image);
+        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).into(circleImageView);
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(ProfileActivity.this, "Image Failed to Upload", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void resetPassword(View v) {

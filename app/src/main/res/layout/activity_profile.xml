@@ -35,7 +35,7 @@
             app:civ_border_width="2dp" />
 
         <ImageView
-            android:id="@+id/update_image_button"
+            android:id="@+id/updateBtn"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginLeft="65dp"

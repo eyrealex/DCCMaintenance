@@ -41,8 +41,11 @@ public class ControlsAdapter extends RecyclerView.Adapter<ControlsAdapter.Contro
 
         holder.icon.setImageDrawable(mContext.getResources().getDrawable(controls.get(position).getdrawable()));
         holder.title.setText(controls.get(position).gettitle());
-        holder.parent.setOnClickListener(v -> mContext.startActivity(new Intent(mContext, controls.get(position).getclassToOpen())));
+        holder.parent.setOnClickListener(v -> {
+            mContext.startActivity(new Intent(mContext, controls.get(position).getclassToOpen()));
+        });
     }
+
 
     @Override
     public int getItemCount() {

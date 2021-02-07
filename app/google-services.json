@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "270487720750",
-    "firebase_url": "https://publicmaintenance-bc8cb-default-rtdb.firebaseio.com",
-    "project_id": "publicmaintenance-bc8cb",
-    "storage_bucket": "publicmaintenance-bc8cb.appspot.com"
+    "project_number": "651362816374",
+    "project_id": "fixit-67b10",
+    "storage_bucket": "fixit-67b10.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:270487720750:android:4e2620e2e08bbb077160bf",
+        "mobilesdk_app_id": "1:651362816374:android:628dc4a0d50f36906a6a57",
         "android_client_info": {
-          "package_name": "com.alexeyre.publicmaintenance"
+          "package_name": "com.alexeyre.fixit"
         }
       },
       "oauth_client": [
         {
-          "client_id": "270487720750-h4p353p52volem4a8lofe7c9u26iog17.apps.googleusercontent.com",
+          "client_id": "651362816374-tfouvo8jgn90rj3o2f14nl5k17fm6arg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCgt_8U51ttYOk-loHL5PorNyIbwmFZbSg"
+          "current_key": "AIzaSyAI8G8aC8d0wehxVw6qxh5Ow-iBUjBFOSU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "270487720750-h4p353p52volem4a8lofe7c9u26iog17.apps.googleusercontent.com",
+              "client_id": "651362816374-tfouvo8jgn90rj3o2f14nl5k17fm6arg.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

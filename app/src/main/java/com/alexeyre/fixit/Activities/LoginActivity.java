@@ -46,7 +46,6 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
 
         //hooks
@@ -54,10 +53,10 @@ public class LoginActivity extends AppCompatActivity {
         mPassword = findViewById(R.id.login_password);
         mImage = findViewById(R.id.login_image);
         mLogo = findViewById(R.id.login_text);
-        mDesc = findViewById(R.id.login_desc);
         mLoginBtn = findViewById(R.id.login_btn);
-        mAccountBtn = findViewById(R.id.login_reg_btn);
+        mDesc = findViewById(R.id.login_desc);
         mResetBtn = findViewById(R.id.login_forgot_btn);
+        mAccountBtn = findViewById(R.id.login_reg_btn);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -72,11 +71,11 @@ public class LoginActivity extends AppCompatActivity {
                 Pair[] pairs = new Pair[7];
                 pairs[0] = new Pair<View, String>(mImage, "app_image");
                 pairs[1] = new Pair<View, String>(mLogo, "app_text");
-                pairs[2] = new Pair<View, String>(mDesc, "desc_tran");
-                pairs[3] = new Pair<View, String>(mEmail, "username_tran");
-                pairs[4] = new Pair<View, String>(mPassword, "password_tran");
-                pairs[5] = new Pair<View, String>(mLoginBtn, "btn_tran");
-                pairs[6] = new Pair<View, String>(mAccountBtn, "account_tran");
+                pairs[2] = new Pair<View, String>(mEmail, "username_tran");
+                pairs[3] = new Pair<View, String>(mPassword, "password_tran");
+                pairs[4] = new Pair<View, String>(mLoginBtn, "btn_tran");
+                pairs[5] = new Pair<View, String>(mAccountBtn, "account_tran");
+                pairs[6] = new Pair<View, String>(mDesc, "desc_tran");
 
                 //Call next activity by attaching the animation with it.
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
@@ -90,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });
 

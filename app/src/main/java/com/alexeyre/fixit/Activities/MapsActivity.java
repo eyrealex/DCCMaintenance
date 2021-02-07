@@ -1,12 +1,12 @@
 package com.alexeyre.fixit.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 
 import com.alexeyre.fixit.Constants.Constants;
 import com.alexeyre.fixit.Helpers.TrafficLightModel;
@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
+    GoogleMap mMap;
     private float MAP_ZOOM = 12;
     private ArrayList<TrafficLightModel> allTrafficLightsList = new ArrayList<>();
 
@@ -115,7 +115,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        startActivity(new Intent(MapsActivity.this, MainActivity.class));
+        finish();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 

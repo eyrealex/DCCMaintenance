@@ -68,7 +68,8 @@ public class TrafficLightLocationsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        startActivity(new Intent(TrafficLightLocationsActivity.this, MapsActivity.class));
+        finish();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
