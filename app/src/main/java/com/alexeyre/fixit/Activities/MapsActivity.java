@@ -115,7 +115,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(MapsActivity.this, MainActivity.class));
+        startActivity(new Intent(MapsActivity.this, TrafficLightLocationsActivity.class));
         finish();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }

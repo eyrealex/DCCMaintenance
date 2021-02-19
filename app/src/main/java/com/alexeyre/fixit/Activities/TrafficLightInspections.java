@@ -1,13 +1,13 @@
 package com.alexeyre.fixit.Activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alexeyre.fixit.Adapters.InspectionAdapter;
@@ -21,23 +21,21 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class TrafficLightLocationsActivity extends AppCompatActivity {
+public class TrafficLightInspections extends AppCompatActivity {
 
     //variables
     private ArrayList<TrafficLightModel> mInspectionTemplateList;
     InspectionAdapter mInspectionAdapter;
     RecyclerView mRecyclerView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.taffic_light_locations);
+        setContentView(R.layout.activity_traffic_light_inspections);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.job_inspections_recycler_view);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(TrafficLightLocationsActivity.this, 1);
-        mRecyclerView.setLayoutManager(gridLayoutManager);
-
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(TrafficLightInspections.this);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
 
         //reference the database path for the coordinates
         FirebaseDatabase.getInstance().getReference().child(Constants.COORDINATES).addValueEventListener(new ValueEventListener() {
@@ -50,13 +48,11 @@ public class TrafficLightLocationsActivity extends AppCompatActivity {
                         TrafficLightModel trafficLightModel = trafficLightDataSnapshot.getValue(TrafficLightModel.class);
                         trafficLightModel.setkey(trafficLightDataSnapshot.getKey());//We can assume all data is present
                         mInspectionTemplateList.add(trafficLightModel);
-
-
                     }
                 }
-                mInspectionAdapter = new InspectionAdapter(TrafficLightLocationsActivity.this, mInspectionTemplateList);
-                mRecyclerView.setAdapter(mInspectionAdapter);
 
+                mInspectionAdapter = new InspectionAdapter(TrafficLightInspections.this, mInspectionTemplateList);
+                mRecyclerView.setAdapter(mInspectionAdapter);
             }
 
             @Override
@@ -68,14 +64,5 @@ public class TrafficLightLocationsActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        startActivity(new Intent(TrafficLightLocationsActivity.this, MainActivity.class));
-        finish();
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-    }
 
-    public void map_view_btn(View view) {
-        startActivity(new Intent(TrafficLightLocationsActivity.this, MapsActivity.class));
-    }
-}//end JobInspectionActivity
+}

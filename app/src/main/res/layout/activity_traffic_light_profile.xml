@@ -127,61 +127,21 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+
+            <Button
+                android:id="@+id/create_inspection_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/prev_inspections_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:layout_marginRight="@dimen/spacing_medium"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/colorAccent"
-                    android:fontFamily="@font/nunito_bold"
-                    android:onClick="prev_inspections"
-                    android:text="Previous Inspections"
-                    android:textColor="@color/white"
-                    android:textSize="10sp" />
-
-                <Button
-                    android:id="@+id/all_inspections_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginTop="@dimen/spacing_large"
-
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/colorAccent"
-                    android:fontFamily="@font/nunito_bold"
-                    android:onClick="all_inspections"
-                    android:text="All Inspections"
-                    android:textColor="@color/white"
-                    android:textSize="10sp" />
-
-
-                <Button
-                    android:id="@+id/create_inspection_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginLeft="@dimen/spacing_medium"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/colorAccent"
-                    android:fontFamily="@font/nunito_bold"
-                    android:onClick="create_inspection"
-                    android:text="Create Inspection"
-                    android:textColor="@color/white"
-                    android:textSize="10sp" />
-            </LinearLayout>
-
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="@dimen/spacing_medium"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorAccent"
+                android:fontFamily="@font/nunito_bold"
+                android:text="Create Inspection"
+                android:textColor="@color/white"
+                android:textSize="10sp" />
 
         </LinearLayout>
-
-
     </ScrollView>
-
 </LinearLayout>

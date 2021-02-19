@@ -3,10 +3,13 @@ package com.alexeyre.fixit.Activities;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
@@ -31,13 +34,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
-import java.util.UUID;
+import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -53,9 +57,11 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private ImageView editBtn, updateBtn;
+    private String imageUrl, currentUserID;
     private CircleImageView profileImage;
     private UserProfileModel userModel;
     private View.OnClickListener listener;
+    private String downloadURL;
 
 
     @Override
@@ -89,7 +95,7 @@ public class ProfileActivity extends AppCompatActivity {
                     //Swap icon for check
                     ((ImageView) ProfileActivity.this.findViewById(R.id.editBtn)).setImageDrawable(ProfileActivity.this.getResources().getDrawable(R.drawable.save_icon));
                     ProfileActivity.this.findViewById(R.id.updateBtn).setVisibility(View.VISIBLE);
-                    Toast.makeText(ProfileActivity.this, "Update User Data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this, "Update Profile", Toast.LENGTH_SHORT).show();
 
                     //Set a new on click
                     ProfileActivity.this.findViewById(R.id.editBtn).setOnClickListener((View view) -> ProfileActivity.this.updateUserData());
@@ -113,36 +119,51 @@ public class ProfileActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
-            profileImage.setImageURI(imageUri);
-            uploadImage();
+
+            //convert URI file to Bitmap for uploading
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+
+                if (bitmap != null) {
+                    uploadImage(bitmap);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                Log.d("TAG", "onActivityResult: Failed to convert to Bitmap");
+            }
+
+
+//            profileImage.setImageURI(imageUri);
+//            uploadImage();
 
         }
     }
 
-    private void uploadImage() {
+    private void uploadImage(Bitmap bitmap) {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Uploading Image...");
         progressDialog.show();
-        final String randomKey = UUID.randomUUID().toString();
-        StorageReference fileRef = storageReference.child("images/" + randomKey);
-        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                progressDialog.dismiss();
-                Snackbar.make(findViewById(android.R.id.content), "Image Uploaded", Snackbar.LENGTH_LONG).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
+        StorageReference fileRef = storageReference.child("profile_images/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/profile");
+
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream(); //Make empty byteStreams
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);//Compress bitmap to 50% of quality and also to jpeg
+        byte[] data = baos.toByteArray();//Convert to byte array because firebase likes this
+
+        UploadTask uploadTask = fileRef.putBytes(data); //Make upload task object ready to execute
+        uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                Log.d("TAG", "onFailure: ");
+            }
+        }).addOnSuccessListener(taskSnapshot -> {
+            //Get download url
+            taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(uri -> {
+                downloadURL = uri.toString();
                 progressDialog.dismiss();
-                Toast.makeText(ProfileActivity.this, "Failed to Upload", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                double progressPercent = (100.00 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                progressDialog.setMessage("Percentage : " + (int) progressPercent + "%");
-            }
+
+                Picasso.get().load(downloadURL).placeholder(R.drawable.progress_animation).into(((ImageView) findViewById(R.id.profile_image)));
+            });
         });
     }
 
@@ -199,6 +220,9 @@ public class ProfileActivity extends AppCompatActivity {
         HashMap<String, Object> updateMap = new HashMap<>();
         updateMap.put("name", ((TextInputEditText) findViewById(R.id.profile_name_tv)).getText().toString().trim());
         updateMap.put("phone", ((TextInputEditText) findViewById(R.id.profile_number_tv)).getText().toString().trim());
+        if (downloadURL != null) {
+            updateMap.put("profile_photo_url", downloadURL);
+        }
 
 
         FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).updateChildren(updateMap, new DatabaseReference.CompletionListener() {
@@ -208,7 +232,7 @@ public class ProfileActivity extends AppCompatActivity {
                 //Check if it was succesful first
                 if (error == null) {
                     //All good!
-                    Toast.makeText(ProfileActivity.this, "Update Successful", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(android.R.id.content), "Profile Updated Successfully", Snackbar.LENGTH_LONG).show();
                     //Swap icon back
                     ((ImageView) findViewById(R.id.editBtn)).setImageDrawable(ProfileActivity.this.getResources().getDrawable(R.drawable.ic_edit));
                     ProfileActivity.this.findViewById(R.id.updateBtn).setVisibility(View.GONE);

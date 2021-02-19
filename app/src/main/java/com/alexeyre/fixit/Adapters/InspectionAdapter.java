@@ -1,6 +1,8 @@
 package com.alexeyre.fixit.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +11,10 @@ import android.view.animation.ScaleAnimation;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alexeyre.fixit.Activities.TrafficLightProfileActivity;
 import com.alexeyre.fixit.Helpers.TrafficLightModel;
 import com.alexeyre.fixit.R;
 
@@ -21,7 +25,7 @@ public class InspectionAdapter extends RecyclerView.Adapter<InspectionViewHolder
 
     //variables
     private Context mContext;
-    private ArrayList<TrafficLightModel> trafficLightModelList = new ArrayList<>();
+    ArrayList<TrafficLightModel> trafficLightModelList = new ArrayList<>();
     private int lastPosition = -1;
 
     public InspectionAdapter(Context mContext, ArrayList<TrafficLightModel> trafficLightModelList) {
@@ -43,6 +47,23 @@ public class InspectionAdapter extends RecyclerView.Adapter<InspectionViewHolder
         inspectionViewHolder.location_tv.setText(String.format(Locale.ENGLISH, "Location: %s", trafficLightModelList.get(position).getname()).trim());
         inspectionViewHolder.next_inspec_tv.setText(String.format(Locale.ENGLISH, "Due: %s", trafficLightModelList.get(position).getname()).trim());
 
+        //On Click for each item
+        inspectionViewHolder.parent.setOnClickListener(v -> {
+            //Create bundle
+            Bundle bundle = new Bundle();
+
+            //Add traffic light ID to bundle
+            bundle.putString("traffic_light_id", trafficLightModelList.get(position).getkey()); //get id from object at the current position
+
+            //Create intent
+            Intent trafficLightIntent = new Intent(mContext, TrafficLightProfileActivity.class);
+
+            //Add bundle to intent
+            trafficLightIntent.putExtra("bundle", bundle);
+
+            //Start Traffic Light Profile Activity
+            mContext.startActivity(trafficLightIntent);
+        });
     }
 
 
@@ -70,6 +91,7 @@ public class InspectionAdapter extends RecyclerView.Adapter<InspectionViewHolder
 class InspectionViewHolder extends RecyclerView.ViewHolder {
 
     TextView id_tv, location_tv, next_inspec_tv;
+    CardView parent;
 
 
     public InspectionViewHolder(@NonNull View itemView) {
@@ -78,7 +100,7 @@ class InspectionViewHolder extends RecyclerView.ViewHolder {
         id_tv = itemView.findViewById(R.id.id_tv);
         location_tv = itemView.findViewById(R.id.location_tv);
         next_inspec_tv = itemView.findViewById(R.id.next_inspec_tv);
-
+        parent = itemView.findViewById(R.id.parent_cv);
     }
 }
 

@@ -15,9 +15,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="@dimen/spacing_medium">
-
+        android:layout_gravity="center"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -31,7 +30,7 @@
                 android:id="@+id/id_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
+                tools:text="0"
                 android:textColor="@color/white"
                 android:fontFamily="@font/nunito_bold"/>
 
@@ -44,7 +43,7 @@
                 android:fontFamily="@font/nunito_bold"/>
 
             <TextView
-                android:id="@+id/next_inspec_tv"
+                android:id="@+id/next_inspec_tvv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10/03/2021"
@@ -57,9 +56,9 @@
             android:id="@+id/profile_image_iv"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center"
             android:scaleType="centerCrop"
-            android:layout_margin="@dimen/spacing_medium"
+            android:layout_margin="@dimen/spacing_large"
             android:src="@drawable/ic_userprofile_placeholder"
             tools:srcCompat="@tools:sample/avatars" />
 

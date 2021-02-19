@@ -16,6 +16,7 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Activities.TrafficLightInspections"></activity>
         <activity android:name=".Activities.CreateInspectionsActivity" />
         <activity android:name=".Activities.PrevInspectionsActivity" />
         <activity android:name=".Activities.TrafficLightLocationsActivity" />
