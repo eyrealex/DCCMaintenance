@@ -26,7 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class LoginActivity extends AppCompatActivity {
+public class UserLoginActivity extends AppCompatActivity {
 
     //variables
     private Button mLoginBtn, mAccountBtn, mResetBtn;
@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //To call next activity
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                Intent intent = new Intent(UserLoginActivity.this, UserRegisterActivity.class);
 
                 //create pairs for animation
                 Pair[] pairs = new Pair[7];
@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 //Call next activity by attaching the animation with it.
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this, pairs);
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(UserLoginActivity.this, pairs);
                     startActivity(intent, options.toBundle());
                 }
             }
@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
         mResetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+                startActivity(new Intent(UserLoginActivity.this, UserForgotPasswordActivity.class));
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });
@@ -160,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
                             //check for email verification before logging in
                             if (user.isEmailVerified()) {
                                 //loading animations
-                                SweetAlertDialog loadingDialog = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.PROGRESS_TYPE);
+                                SweetAlertDialog loadingDialog = new SweetAlertDialog(UserLoginActivity.this, SweetAlertDialog.PROGRESS_TYPE);
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                                     loadingDialog.getProgressHelper().setBarColor(getColor(R.color.colorPrimary));
                                 }
@@ -172,15 +172,15 @@ public class LoginActivity extends AppCompatActivity {
 
 
                                 //redirect user to dashboard
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                startActivity(new Intent(UserLoginActivity.this, MainActivity.class));
 
                             } else {
                                 user.sendEmailVerification();
-                                Toast.makeText(LoginActivity.this, "Check your email to verify account", Toast.LENGTH_LONG).show();
+                                Toast.makeText(UserLoginActivity.this, "Check your email to verify account", Toast.LENGTH_LONG).show();
                             }
 
                         } else {
-                            Toast.makeText(LoginActivity.this, "Failed to login! Try again", Toast.LENGTH_LONG).show();
+                            Toast.makeText(UserLoginActivity.this, "Failed to login! Try again", Toast.LENGTH_LONG).show();
                         }
                     }
                 });

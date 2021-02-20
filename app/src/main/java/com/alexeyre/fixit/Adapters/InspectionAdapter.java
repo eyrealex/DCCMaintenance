@@ -15,6 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alexeyre.fixit.Activities.TrafficLightProfileActivity;
+import com.alexeyre.fixit.Helpers.TrafficLightInspectionModel;
 import com.alexeyre.fixit.Helpers.TrafficLightModel;
 import com.alexeyre.fixit.R;
 
@@ -25,7 +26,7 @@ public class InspectionAdapter extends RecyclerView.Adapter<InspectionViewHolder
 
     //variables
     private Context mContext;
-    ArrayList<TrafficLightModel> trafficLightModelList = new ArrayList<>();
+    private ArrayList<TrafficLightModel> trafficLightModelList = new ArrayList<>();
     private int lastPosition = -1;
 
     public InspectionAdapter(Context mContext, ArrayList<TrafficLightModel> trafficLightModelList) {
@@ -45,7 +46,6 @@ public class InspectionAdapter extends RecyclerView.Adapter<InspectionViewHolder
     public void onBindViewHolder(@NonNull InspectionViewHolder inspectionViewHolder, int position) {
         inspectionViewHolder.id_tv.setText(String.format(Locale.ENGLISH, "ID: %s", trafficLightModelList.get(position).getkey()).trim());
         inspectionViewHolder.location_tv.setText(String.format(Locale.ENGLISH, "Location: %s", trafficLightModelList.get(position).getname()).trim());
-        inspectionViewHolder.next_inspec_tv.setText(String.format(Locale.ENGLISH, "Due: %s", trafficLightModelList.get(position).getname()).trim());
 
         //On Click for each item
         inspectionViewHolder.parent.setOnClickListener(v -> {

@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class LocationsMapActivity extends FragmentActivity implements OnMapReadyCallback {
 
     GoogleMap mMap;
     private float MAP_ZOOM = 12;
@@ -110,12 +110,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void list_view_btn(View view) {
-        startActivity(new Intent(MapsActivity.this, TrafficLightLocationsActivity.class));
+        startActivity(new Intent(LocationsMapActivity.this, LocationsListActivity.class));
     }
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(MapsActivity.this, TrafficLightLocationsActivity.class));
+        startActivity(new Intent(LocationsMapActivity.this, LocationsListActivity.class));
         finish();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }

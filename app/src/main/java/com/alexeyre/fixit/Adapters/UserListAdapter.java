@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alexeyre.fixit.Activities.ProfileActivity;
+import com.alexeyre.fixit.Activities.UserProfileActivity;
 import com.alexeyre.fixit.Helpers.UserProfileModel;
 import com.alexeyre.fixit.R;
 import com.squareup.picasso.Picasso;
@@ -54,7 +54,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserLi
         holder.parent.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putSerializable("object", UserList.get(position));
-            mContext.startActivity(new Intent(mContext, ProfileActivity.class).putExtra("bundle", bundle));
+            mContext.startActivity(new Intent(mContext, UserProfileActivity.class).putExtra("bundle", bundle));
         });
     }
 

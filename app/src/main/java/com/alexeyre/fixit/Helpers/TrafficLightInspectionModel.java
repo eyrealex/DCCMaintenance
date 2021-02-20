@@ -9,43 +9,43 @@ public class TrafficLightInspectionModel implements Serializable {
     public TrafficLightInspectionModel() {
     }
 
-    public String getinspection_by() {
+    public String getInspection_by() {
         return inspection_by;
     }
 
-    public void setinspection_by(String inspection_by) {
+    public void setInspection_by(String inspection_by) {
         this.inspection_by = inspection_by;
     }
 
-    public String getlast_inspection() {
+    public String getLast_inspection() {
         return last_inspection;
     }
 
-    public void setlast_inspection(String last_inspection) {
+    public void setLast_inspection(String last_inspection) {
         this.last_inspection = last_inspection;
     }
 
-    public String getnext_due_inpection() {
+    public String getNext_due_inpection() {
         return next_due_inpection;
     }
 
-    public void setnext_due_inpection(String next_due_inpection) {
+    public void setNext_due_inpection(String next_due_inpection) {
         this.next_due_inpection = next_due_inpection;
     }
 
-    public String getstatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setstatus(String status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public String gettimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
-    public void settimestamp(String timestamp) {
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 }

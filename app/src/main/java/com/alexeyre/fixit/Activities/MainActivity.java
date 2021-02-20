@@ -70,14 +70,14 @@ public class MainActivity extends AppCompatActivity {
 
         //Admin ONLY
         if (currentUser.getadmin() != null && currentUser.getadmin()) {
-            controls.add(new HomePageWidgetModel(R.drawable.icon_employees, "Employees", EmployeeActivity.class));
+            controls.add(new HomePageWidgetModel(R.drawable.icon_employees, "Employees", EmployeeListActivity.class));
         }
 
         //Added for everyone
-        controls.add(new HomePageWidgetModel(R.drawable.icon_inspections, "Inspections", TrafficLightInspections.class));
-        controls.add(new HomePageWidgetModel(R.drawable.icon_chart, "Metrics", MetricActivity.class));
-        controls.add(new HomePageWidgetModel(R.drawable.icon_locations, "Traffic Lights", TrafficLightLocationsActivity.class));
-        controls.add(new HomePageWidgetModel(R.drawable.icon_settings, "Settings", SettingActivity.class));
+        controls.add(new HomePageWidgetModel(R.drawable.icon_inspections, "Inspections", InspectionsAllActivity.class));
+        controls.add(new HomePageWidgetModel(R.drawable.icon_chart, "Metrics", MetricsActivity.class));
+        controls.add(new HomePageWidgetModel(R.drawable.icon_locations, "Locations", LocationsListActivity.class));
+        controls.add(new HomePageWidgetModel(R.drawable.icon_settings, "Settings", SettingsActivity.class));
 
         setAdapter(controls);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     public void Profile(View view) {
         Bundle bundle = new Bundle();
         bundle.putSerializable("object", currentUser);
-        startActivity(new Intent(MainActivity.this, ProfileActivity.class).putExtra("bundle", bundle));
+        startActivity(new Intent(MainActivity.this, UserProfileActivity.class).putExtra("bundle", bundle));
     }
 
 

@@ -3,7 +3,7 @@ package com.alexeyre.fixit.Helpers;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TrafficLightModel implements Serializable {
+public class TrafficLightModel extends TrafficLightInspectionModel implements Serializable {
 
     private String name, latitude , longitude, key;
     private ArrayList<TrafficLightInspectionModel> inspection;

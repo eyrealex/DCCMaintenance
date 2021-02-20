@@ -24,7 +24,6 @@ import com.alexeyre.fixit.Helpers.UserProfileModel;
 import com.alexeyre.fixit.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -41,13 +40,12 @@ import com.squareup.picasso.Picasso;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class ProfileActivity extends AppCompatActivity {
+public class UserProfileActivity extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
     private FirebaseDatabase firebaseDatabase;
@@ -85,21 +83,21 @@ public class ProfileActivity extends AppCompatActivity {
             listener = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ProfileActivity.this.findViewById(R.id.profile_name_tv).setFocusableInTouchMode(true);
-                    ProfileActivity.this.findViewById(R.id.profile_number_tv).setFocusableInTouchMode(true);
-                    ProfileActivity.this.findViewById(R.id.sign_out_btn).setVisibility(View.GONE);
-                    ProfileActivity.this.findViewById(R.id.updateBtn).setVisibility(View.GONE);
+                    UserProfileActivity.this.findViewById(R.id.profile_name_tv).setFocusableInTouchMode(true);
+                    UserProfileActivity.this.findViewById(R.id.profile_number_tv).setFocusableInTouchMode(true);
+                    UserProfileActivity.this.findViewById(R.id.sign_out_btn).setVisibility(View.GONE);
+                    UserProfileActivity.this.findViewById(R.id.updateBtn).setVisibility(View.GONE);
 
                     //Show the save button
                     //We can reuse the edit button?
                     //Swap icon for check
-                    ((ImageView) ProfileActivity.this.findViewById(R.id.editBtn)).setImageDrawable(ProfileActivity.this.getResources().getDrawable(R.drawable.save_icon));
-                    ProfileActivity.this.findViewById(R.id.updateBtn).setVisibility(View.VISIBLE);
-                    Toast.makeText(ProfileActivity.this, "Update Profile", Toast.LENGTH_SHORT).show();
+                    ((ImageView) UserProfileActivity.this.findViewById(R.id.editBtn)).setImageDrawable(UserProfileActivity.this.getResources().getDrawable(R.drawable.save_icon));
+                    UserProfileActivity.this.findViewById(R.id.updateBtn).setVisibility(View.VISIBLE);
+                    Toast.makeText(UserProfileActivity.this, "Update Profile", Toast.LENGTH_SHORT).show();
 
                     //Set a new on click
-                    ProfileActivity.this.findViewById(R.id.editBtn).setOnClickListener((View view) -> ProfileActivity.this.updateUserData());
-                    ProfileActivity.this.findViewById(R.id.updateBtn).setOnClickListener((View view) -> ProfileActivity.this.selectImage());
+                    UserProfileActivity.this.findViewById(R.id.editBtn).setOnClickListener((View view) -> UserProfileActivity.this.updateUserData());
+                    UserProfileActivity.this.findViewById(R.id.updateBtn).setOnClickListener((View view) -> UserProfileActivity.this.selectImage());
                 }
             };
         }
@@ -234,8 +232,8 @@ public class ProfileActivity extends AppCompatActivity {
                     //All good!
                     Snackbar.make(findViewById(android.R.id.content), "Profile Updated Successfully", Snackbar.LENGTH_LONG).show();
                     //Swap icon back
-                    ((ImageView) findViewById(R.id.editBtn)).setImageDrawable(ProfileActivity.this.getResources().getDrawable(R.drawable.ic_edit));
-                    ProfileActivity.this.findViewById(R.id.updateBtn).setVisibility(View.GONE);
+                    ((ImageView) findViewById(R.id.editBtn)).setImageDrawable(UserProfileActivity.this.getResources().getDrawable(R.drawable.ic_edit));
+                    UserProfileActivity.this.findViewById(R.id.updateBtn).setVisibility(View.GONE);
                     findViewById(R.id.sign_out_btn).setVisibility(View.VISIBLE);
 
                     //Stop user editing data anymore
@@ -247,7 +245,7 @@ public class ProfileActivity extends AppCompatActivity {
                     findViewById(R.id.editBtn).setOnClickListener(listener);
 
                     //Hide Keyboard
-                    InputMethodManager imm = (InputMethodManager) ProfileActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    InputMethodManager imm = (InputMethodManager) UserProfileActivity.this.getSystemService(Activity.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(findViewById(R.id.profile_name_tv).getWindowToken(), 0);
 
                     //Clear focus so cursor isn#t showing after update
@@ -290,7 +288,7 @@ public class ProfileActivity extends AppCompatActivity {
                         }
 
                         FirebaseAuth.getInstance().signOut();
-                        startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
+                        startActivity(new Intent(UserProfileActivity.this, UserLoginActivity.class));
 
 
                     }

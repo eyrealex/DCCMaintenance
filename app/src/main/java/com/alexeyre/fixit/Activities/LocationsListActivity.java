@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class TrafficLightLocationsActivity extends AppCompatActivity {
+public class LocationsListActivity extends AppCompatActivity {
 
     //variables
     private ArrayList<TrafficLightModel> mInspectionTemplateList;
@@ -35,7 +35,7 @@ public class TrafficLightLocationsActivity extends AppCompatActivity {
         setContentView(R.layout.taffic_light_locations);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.job_inspections_recycler_view);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(TrafficLightLocationsActivity.this, 1);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(LocationsListActivity.this, 1);
         mRecyclerView.setLayoutManager(gridLayoutManager);
 
 
@@ -54,7 +54,7 @@ public class TrafficLightLocationsActivity extends AppCompatActivity {
 
                     }
                 }
-                mInspectionAdapter = new InspectionAdapter(TrafficLightLocationsActivity.this, mInspectionTemplateList);
+                mInspectionAdapter = new InspectionAdapter(LocationsListActivity.this, mInspectionTemplateList);
                 mRecyclerView.setAdapter(mInspectionAdapter);
 
             }
@@ -70,12 +70,12 @@ public class TrafficLightLocationsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(TrafficLightLocationsActivity.this, MainActivity.class));
+        startActivity(new Intent(LocationsListActivity.this, MainActivity.class));
         finish();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     public void map_view_btn(View view) {
-        startActivity(new Intent(TrafficLightLocationsActivity.this, MapsActivity.class));
+        startActivity(new Intent(LocationsListActivity.this, LocationsMapActivity.class));
     }
 }//end JobInspectionActivity

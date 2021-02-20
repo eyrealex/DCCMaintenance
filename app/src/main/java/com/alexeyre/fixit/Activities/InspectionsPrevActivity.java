@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.alexeyre.fixit.R;
 
-public class PrevInspectionsActivity extends AppCompatActivity {
+public class InspectionsPrevActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

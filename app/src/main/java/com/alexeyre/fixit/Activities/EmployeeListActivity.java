@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-public class EmployeeActivity extends AppCompatActivity {
+public class EmployeeListActivity extends AppCompatActivity {
 
     private ArrayList<UserProfileModel> allUsersList = new ArrayList<>();
     private ValueEventListener userListListener;
@@ -48,7 +48,7 @@ public class EmployeeActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(EmployeeActivity.this, "Oops, Something went wrong " + error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(EmployeeListActivity.this, "Oops, Something went wrong " + error.toString(), Toast.LENGTH_SHORT).show();
             }
         };
 

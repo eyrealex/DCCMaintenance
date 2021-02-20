@@ -16,10 +16,10 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.TrafficLightInspections"></activity>
-        <activity android:name=".Activities.CreateInspectionsActivity" />
-        <activity android:name=".Activities.PrevInspectionsActivity" />
-        <activity android:name=".Activities.TrafficLightLocationsActivity" />
+        <activity android:name=".Activities.InspectionsAllActivity"></activity>
+        <activity android:name=".Activities.InspectionsCreateActivity" />
+        <activity android:name=".Activities.InspectionsPrevActivity" />
+        <activity android:name=".Activities.LocationsListActivity" />
         <activity android:name=".Activities.TrafficLightProfileActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -34,15 +34,15 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".Activities.MapsActivity"
+            android:name=".Activities.LocationsMapActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".Activities.ProfileActivity" />
-        <activity android:name=".Activities.ForgotPasswordActivity" />
-        <activity android:name=".Activities.SettingActivity" />
-        <activity android:name=".Activities.MetricActivity" />
-        <activity android:name=".Activities.EmployeeActivity" />
-        <activity android:name=".Activities.RegisterActivity" />
-        <activity android:name=".Activities.LoginActivity" />
+        <activity android:name=".Activities.UserProfileActivity" />
+        <activity android:name=".Activities.UserForgotPasswordActivity" />
+        <activity android:name=".Activities.SettingsActivity" />
+        <activity android:name=".Activities.MetricsActivity" />
+        <activity android:name=".Activities.EmployeeListActivity" />
+        <activity android:name=".Activities.UserRegisterActivity" />
+        <activity android:name=".Activities.UserLoginActivity" />
         <activity android:name=".Activities.MainActivity" />
         <activity
             android:name=".Activities.SplashActivity"

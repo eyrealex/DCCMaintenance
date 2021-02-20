@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Pair;
 import android.util.Patterns;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -25,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class RegisterActivity extends AppCompatActivity {
+public class UserRegisterActivity extends AppCompatActivity {
 
     //variables
     private TextInputLayout mName, mEmail, mPhone, mPassword;
@@ -50,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
         mAccountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                Intent intent = new Intent(UserRegisterActivity.this, UserLoginActivity.class);
                 //create pairs for animation
                 Pair[] pairs = new Pair[3];
                 pairs[0] = new Pair<View, String>(mEmail, "username_tran");
@@ -59,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 //Call next activity by attaching the animation with it.
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegisterActivity.this, pairs);
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(UserRegisterActivity.this, pairs);
                     startActivity(intent, options.toBundle());
                 }
             }
@@ -153,7 +152,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 //sweet dialog animations
                 //TODO: Create a custom dialog using the https://github.com/pedant/sweet-alert-dialog github library
-                SweetAlertDialog loadingDialog = new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.PROGRESS_TYPE);
+                SweetAlertDialog loadingDialog = new SweetAlertDialog(UserRegisterActivity.this, SweetAlertDialog.PROGRESS_TYPE);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     loadingDialog.getProgressHelper().setBarColor(getColor(R.color.colorPrimary));
                 }
@@ -182,19 +181,19 @@ public class RegisterActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(RegisterActivity.this, "User registered successfully", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(UserRegisterActivity.this, "User registered successfully", Toast.LENGTH_LONG).show();
                                         loadingDialog.dismissWithAnimation();
                                         //redirect user to dashboard
-                                        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                                        startActivity(new Intent(UserRegisterActivity.this, MainActivity.class));
 
                                     } else {
-                                        Toast.makeText(RegisterActivity.this, "Failed to register! Try again", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(UserRegisterActivity.this, "Failed to register! Try again", Toast.LENGTH_LONG).show();
                                         loadingDialog.dismissWithAnimation();
                                     }
                                 }
                             });
                         } else {
-                            Toast.makeText(RegisterActivity.this, "Failed to register! Try again", Toast.LENGTH_LONG).show();
+                            Toast.makeText(UserRegisterActivity.this, "Failed to register! Try again", Toast.LENGTH_LONG).show();
                             loadingDialog.dismissWithAnimation();
                         }
                     }
@@ -208,7 +207,7 @@ public class RegisterActivity extends AppCompatActivity {
     //when the back button is pressed
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+        startActivity(new Intent(UserRegisterActivity.this, UserLoginActivity.class));
         finish();
     }
 

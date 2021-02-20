@@ -1,7 +1,5 @@
 package com.alexeyre.fixit.Activities;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -18,7 +16,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 
-public class ForgotPasswordActivity extends AppCompatActivity {
+public class UserForgotPasswordActivity extends AppCompatActivity {
 
     private TextInputLayout mEmail;
     private Button mResetBtn;
@@ -74,9 +72,9 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(ForgotPasswordActivity.this, "Check your email to reset your account", Toast.LENGTH_LONG).show();
+                    Toast.makeText(UserForgotPasswordActivity.this, "Check your email to reset your account", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(ForgotPasswordActivity.this, "Failed to reset password! Try again", Toast.LENGTH_LONG).show();
+                    Toast.makeText(UserForgotPasswordActivity.this, "Failed to reset password! Try again", Toast.LENGTH_LONG).show();
                 }
             }
         });
