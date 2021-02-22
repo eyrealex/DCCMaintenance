@@ -8,6 +8,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alexeyre.fixit.Adapters.InspectionAdapter;
@@ -32,11 +33,11 @@ public class LocationsListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.taffic_light_locations);
+        setContentView(R.layout.activity_locations_list);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.job_inspections_recycler_view);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(LocationsListActivity.this, 1);
-        mRecyclerView.setLayoutManager(gridLayoutManager);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(LocationsListActivity.this);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
 
 
         //reference the database path for the coordinates

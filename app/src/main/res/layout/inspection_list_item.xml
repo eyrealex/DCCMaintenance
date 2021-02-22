@@ -43,7 +43,7 @@
                 android:fontFamily="@font/nunito_bold"/>
 
             <TextView
-                android:id="@+id/next_inspec_tvv"
+                android:id="@+id/next_inspec_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10/03/2021"

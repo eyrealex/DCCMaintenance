@@ -46,7 +46,7 @@ public class UserLoginActivity extends AppCompatActivity {
             return;
         }
 
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_user_login);
 
         //hooks
         mEmail = findViewById(R.id.login_email);

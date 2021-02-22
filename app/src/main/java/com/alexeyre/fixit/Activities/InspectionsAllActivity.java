@@ -29,7 +29,7 @@ public class InspectionsAllActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_traffic_light_inspections);
+        setContentView(R.layout.activity_inspections_all);
 
         //initialize variables to be used
         mRecyclerView = (RecyclerView) findViewById(R.id.job_inspections_recycler_view);

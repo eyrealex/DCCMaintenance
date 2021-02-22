@@ -2,6 +2,7 @@ package com.alexeyre.fixit.Activities;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class TrafficLightProfileActivity extends AppCompatActivity {
 
-    private TrafficLightModel trafficLightProfile;
+    private TrafficLightModel trafficLightModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +69,13 @@ public class TrafficLightProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Data acquired
-                trafficLightProfile = snapshot.getValue(TrafficLightModel.class);
-                trafficLightProfile.setkey(snapshot.getKey());
+                trafficLightModel = snapshot.getValue(TrafficLightModel.class);
+                trafficLightModel.setkey(snapshot.getKey());
 
                 //Convert into object (class level variable)
 
                 //if object != null update the UI with the data acquired
-                if (trafficLightProfile != null)
+                if (trafficLightModel != null)
                     updateUI();
             }
 
@@ -93,10 +94,10 @@ public class TrafficLightProfileActivity extends AppCompatActivity {
      * Render the object data into the view
      */
     private void updateUI() {
-        ((TextInputEditText) findViewById(R.id.id_tv)).setText(trafficLightProfile.getkey());
-        ((TextInputEditText) findViewById(R.id.location_tv)).setText(trafficLightProfile.getname()); //Actually the location
+        ((TextInputEditText) findViewById(R.id.id_tv)).setText(trafficLightModel.getkey());
+        ((TextInputEditText) findViewById(R.id.location_tv)).setText(trafficLightModel.getname()); //Actually the location
 
-        if (trafficLightProfile.getinspection() == null) {
+        if (trafficLightModel.getinspection() == null) {
             ((TextInputEditText) findViewById(R.id.next_inspec_tv)).setText("N/A");
             ((TextInputEditText) findViewById(R.id.last_inspec_tv)).setText("N/A");
             ((TextInputEditText) findViewById(R.id.last_employee_tv)).setText("N/A");
@@ -110,5 +111,11 @@ public class TrafficLightProfileActivity extends AppCompatActivity {
 
         //If there are no inspections
         //Set next, last and who to "N/A"
+    }
+
+    public void create_inspection(View view) {
+    }
+
+    public void previous_inspections(View view) {
     }
 }

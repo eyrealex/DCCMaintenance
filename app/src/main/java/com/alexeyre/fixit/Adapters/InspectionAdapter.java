@@ -18,6 +18,7 @@ import com.alexeyre.fixit.Activities.TrafficLightProfileActivity;
 import com.alexeyre.fixit.Helpers.TrafficLightInspectionModel;
 import com.alexeyre.fixit.Helpers.TrafficLightModel;
 import com.alexeyre.fixit.R;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -26,12 +27,12 @@ public class InspectionAdapter extends RecyclerView.Adapter<InspectionViewHolder
 
     //variables
     private Context mContext;
-    private ArrayList<TrafficLightModel> trafficLightModelList = new ArrayList<>();
+    private ArrayList<TrafficLightModel> trafficLightModels = new ArrayList<>();
     private int lastPosition = -1;
 
-    public InspectionAdapter(Context mContext, ArrayList<TrafficLightModel> trafficLightModelList) {
+    public InspectionAdapter(Context mContext, ArrayList<TrafficLightModel> trafficLightModels) {
         this.mContext = mContext;
-        this.trafficLightModelList = trafficLightModelList;
+        this.trafficLightModels = trafficLightModels;
     }
 
     //create a template for the recycler
@@ -44,8 +45,18 @@ public class InspectionAdapter extends RecyclerView.Adapter<InspectionViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull InspectionViewHolder inspectionViewHolder, int position) {
-        inspectionViewHolder.id_tv.setText(String.format(Locale.ENGLISH, "ID: %s", trafficLightModelList.get(position).getkey()).trim());
-        inspectionViewHolder.location_tv.setText(String.format(Locale.ENGLISH, "Location: %s", trafficLightModelList.get(position).getname()).trim());
+
+        //set the template lists with data using ID, location and Next Due
+        inspectionViewHolder.id_tv.setText(String.format(Locale.ENGLISH, "ID: %s", trafficLightModels.get(position).getkey()).trim());
+        inspectionViewHolder.location_tv.setText(String.format(Locale.ENGLISH, "Location: %s", trafficLightModels.get(position).getname()).trim());
+
+        //if there is no data relating to next due, set it to N/A
+        if(trafficLightModels.get(position).getNext_due_inpection() == null){
+            inspectionViewHolder.next_inspec_tv.setText(String.format(Locale.ENGLISH, "Due: N/A"));
+        }else{
+            inspectionViewHolder.next_inspec_tv.setText(String.format(Locale.ENGLISH, "Due: %s", trafficLightModels.get(position).getinspection().get(position).getNext_due_inpection()));
+        }
+
 
         //On Click for each item
         inspectionViewHolder.parent.setOnClickListener(v -> {
@@ -53,7 +64,7 @@ public class InspectionAdapter extends RecyclerView.Adapter<InspectionViewHolder
             Bundle bundle = new Bundle();
 
             //Add traffic light ID to bundle
-            bundle.putString("traffic_light_id", trafficLightModelList.get(position).getkey()); //get id from object at the current position
+            bundle.putString("traffic_light_id", trafficLightModels.get(position).getkey()); //get id from object at the current position
 
             //Create intent
             Intent trafficLightIntent = new Intent(mContext, TrafficLightProfileActivity.class);
@@ -84,12 +95,11 @@ public class InspectionAdapter extends RecyclerView.Adapter<InspectionViewHolder
 
     @Override
     public int getItemCount() {
-        return trafficLightModelList.size();
+        return trafficLightModels.size();
     }
 }
 
 class InspectionViewHolder extends RecyclerView.ViewHolder {
-
     TextView id_tv, location_tv, next_inspec_tv;
     CardView parent;
 
@@ -101,6 +111,9 @@ class InspectionViewHolder extends RecyclerView.ViewHolder {
         location_tv = itemView.findViewById(R.id.location_tv);
         next_inspec_tv = itemView.findViewById(R.id.next_inspec_tv);
         parent = itemView.findViewById(R.id.parent_cv);
+
+
+
     }
 }
 

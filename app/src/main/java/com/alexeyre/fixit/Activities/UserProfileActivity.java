@@ -65,7 +65,7 @@ public class UserProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_user_profile);
 
         //init components for uploading profile picture
         firebaseStorage = FirebaseStorage.getInstance();
@@ -141,7 +141,7 @@ public class UserProfileActivity extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Uploading Image...");
         progressDialog.show();
-        StorageReference fileRef = storageReference.child("profile_images/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/profile");
+        StorageReference fileRef = storageReference.child("profile_images/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/profile_picture");
 
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream(); //Make empty byteStreams

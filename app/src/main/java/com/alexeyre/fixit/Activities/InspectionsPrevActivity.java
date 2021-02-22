@@ -11,6 +11,6 @@ public class InspectionsPrevActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_prev_inspections);
+        setContentView(R.layout.activity_inspections_prev);
     }
 }

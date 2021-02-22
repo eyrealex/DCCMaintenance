@@ -13,9 +13,10 @@
         android:background="@drawable/header_background"
         android:gravity="center"
         android:padding="@dimen/spacing_large"
-        android:text="Traffic Light Profile "
+        android:text="Traffic Light Profile"
         android:textColor="@color/white"
-        android:textSize="27sp" />
+        android:textSize="27sp"
+        android:fontFamily="@font/nunito_regular"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -131,7 +132,7 @@
             <Button
                 android:id="@+id/create_inspection_btn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/spacing_xxxxlarge"
                 android:layout_alignParentEnd="true"
                 android:layout_marginLeft="@dimen/spacing_medium"
                 android:layout_marginTop="@dimen/spacing_large"
@@ -139,8 +140,24 @@
                 android:backgroundTint="@color/colorAccent"
                 android:fontFamily="@font/nunito_bold"
                 android:text="Create Inspection"
+                android:onClick="create_inspection"
                 android:textColor="@color/white"
-                android:textSize="10sp" />
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/prev_inspection_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_xxxxlarge"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="@dimen/spacing_medium"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorAccent"
+                android:fontFamily="@font/nunito_bold"
+                android:text="Previous Inspections"
+                android:onClick="previous_inspections"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
 
         </LinearLayout>
     </ScrollView>

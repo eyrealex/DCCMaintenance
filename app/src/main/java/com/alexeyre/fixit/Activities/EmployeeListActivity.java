@@ -29,7 +29,7 @@ public class EmployeeListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_employee);
+        setContentView(R.layout.activity_employee_list);
 
         //Get a list of all employee from Firebase
         userListReference = FirebaseDatabase.getInstance().getReference().child("users");
