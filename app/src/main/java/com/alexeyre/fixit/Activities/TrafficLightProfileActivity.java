@@ -1,7 +1,8 @@
 package com.alexeyre.fixit.Activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,9 +17,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class TrafficLightProfileActivity extends AppCompatActivity {
 
+    private Context mContext;
     private TrafficLightModel trafficLightModel;
+    private ArrayList<TrafficLightModel> trafficLightModels = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,6 @@ public class TrafficLightProfileActivity extends AppCompatActivity {
             if (trafficLightID != null) {
                 //Fetch the profile data from Firebase
                 getTrafficLightProfile(trafficLightID);
-
                 //Init the components like onClicks etc
                 initComponents();
 
@@ -55,8 +59,8 @@ public class TrafficLightProfileActivity extends AppCompatActivity {
     }
 
     private void initComponents() {
-
     }
+
 
     /**
      * Get the traffic light object from Firebase
@@ -113,9 +117,25 @@ public class TrafficLightProfileActivity extends AppCompatActivity {
         //Set next, last and who to "N/A"
     }
 
-    public void create_inspection(View view) {
-    }
 
     public void previous_inspections(View view) {
+    }
+
+    public void create_inspection(View view) {
+        Bundle bundle = new Bundle();
+
+        //get the data from the model using the key
+        bundle.putString("traffic_light_data", trafficLightModel.getkey());
+
+        //create the intent for the bundle
+        Intent bundleIntent = new Intent(this, InspectionsCreateActivity.class);
+
+        //add the extras from the key to the bundle
+        bundleIntent.putExtra("bundle", bundle);
+
+        //start the activity using the bundle
+        this.startActivity(bundleIntent);
+
+
     }
 }

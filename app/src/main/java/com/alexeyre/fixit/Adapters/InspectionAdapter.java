@@ -15,10 +15,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alexeyre.fixit.Activities.TrafficLightProfileActivity;
-import com.alexeyre.fixit.Helpers.TrafficLightInspectionModel;
 import com.alexeyre.fixit.Helpers.TrafficLightModel;
 import com.alexeyre.fixit.R;
-import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -51,30 +49,35 @@ public class InspectionAdapter extends RecyclerView.Adapter<InspectionViewHolder
         inspectionViewHolder.location_tv.setText(String.format(Locale.ENGLISH, "Location: %s", trafficLightModels.get(position).getname()).trim());
 
         //if there is no data relating to next due, set it to N/A
-        if(trafficLightModels.get(position).getNext_due_inpection() == null){
+        if (trafficLightModels.get(position).getNext_due_inpection() == null) {
             inspectionViewHolder.next_inspec_tv.setText(String.format(Locale.ENGLISH, "Due: N/A"));
-        }else{
+        } else {
             inspectionViewHolder.next_inspec_tv.setText(String.format(Locale.ENGLISH, "Due: %s", trafficLightModels.get(position).getinspection().get(position).getNext_due_inpection()));
         }
 
 
         //On Click for each item
-        inspectionViewHolder.parent.setOnClickListener(v -> {
-            //Create bundle
-            Bundle bundle = new Bundle();
+        inspectionViewHolder.parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Create bundle
+                Bundle bundle = new Bundle();
 
-            //Add traffic light ID to bundle
-            bundle.putString("traffic_light_id", trafficLightModels.get(position).getkey()); //get id from object at the current position
+                //Add traffic light ID to bundle
+                bundle.putString("traffic_light_id", trafficLightModels.get(position).getkey()); //get id from object at the current position
 
-            //Create intent
-            Intent trafficLightIntent = new Intent(mContext, TrafficLightProfileActivity.class);
+                //Create intent
+                Intent trafficLightIntent = new Intent(mContext, TrafficLightProfileActivity.class);
 
-            //Add bundle to intent
-            trafficLightIntent.putExtra("bundle", bundle);
+                //Add bundle to intent
+                trafficLightIntent.putExtra("bundle", bundle);
 
-            //Start Traffic Light Profile Activity
-            mContext.startActivity(trafficLightIntent);
+                //Start Traffic Light Profile Activity
+                mContext.startActivity(trafficLightIntent);
+            }
+
         });
+
     }
 
 
@@ -111,10 +114,10 @@ class InspectionViewHolder extends RecyclerView.ViewHolder {
         location_tv = itemView.findViewById(R.id.location_tv);
         next_inspec_tv = itemView.findViewById(R.id.next_inspec_tv);
         parent = itemView.findViewById(R.id.parent_cv);
-
-
-
     }
+
+
 }
+
 
 

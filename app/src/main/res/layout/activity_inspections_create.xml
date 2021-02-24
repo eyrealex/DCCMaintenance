@@ -29,6 +29,65 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:text="Traffic Light Details"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="20sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="ID"
+                    android:textColorHint="@color/colorAccent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/create_id_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_xlarge"
+                        android:layout_marginRight="@dimen/spacing_xlarge"
+                        android:background="@color/trans"
+                        android:drawableStart="@drawable/ic_user"
+                        android:drawablePadding="10dp"
+                        android:focusableInTouchMode="false"
+                        android:fontFamily="@font/nunito_regular"
+                        tools:text="0" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Location"
+                    android:textColorHint="@color/colorAccent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/create_location_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_xlarge"
+                        android:layout_marginRight="@dimen/spacing_xlarge"
+                        android:background="@color/trans"
+                        android:drawableStart="@drawable/ic_location"
+                        android:drawablePadding="10dp"
+                        android:focusableInTouchMode="false"
+                        android:fontFamily="@font/nunito_regular"
+                        tools:text="Henry St"/>
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -36,7 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/spacing_middle"
+                    android:layout_marginTop="@dimen/spacing_large"
                     android:text="Report Details"
                     android:textColor="@color/colorAccent"
                     android:textSize="20sp" />
@@ -145,7 +204,7 @@
                     android:layout_marginLeft="@dimen/spacing_xlarge"
                     android:layout_marginTop="@dimen/spacing_large"
                     android:layout_weight="0.85"
-                    android:text="Are Bulbs working: "
+                    android:text="All bulbs ok: "
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
@@ -177,7 +236,71 @@
                     android:layout_marginLeft="@dimen/spacing_xlarge"
                     android:layout_marginTop="@dimen/spacing_large"
                     android:layout_weight="0.85"
-                    android:text="Are sounds working: "
+                    android:text="Pedestrian light ok: "
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
+
+                <CheckBox
+                    android:id="@+id/pedestrian_light_yes_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:id="@+id/pedestrian_light_no_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_xlarge"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:layout_weight="0.85"
+                    android:text="Pedestian button ok: "
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
+
+                <CheckBox
+                    android:id="@+id/pedestrian_button_yes_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:id="@+id/pedestrian_button_no_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_xlarge"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:layout_weight="0.85"
+                    android:text="All sounds ok: "
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
@@ -209,7 +332,7 @@
                     android:layout_marginLeft="@dimen/spacing_xlarge"
                     android:layout_marginTop="@dimen/spacing_large"
                     android:layout_weight="0.85"
-                    android:text="Correct sequence: "
+                    android:text="Correct sequence ok: "
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
