@@ -118,17 +118,17 @@ public class TrafficLightProfileActivity extends AppCompatActivity {
     }
 
 
-    public void previous_inspections(View view) {
+    public void previous_reports(View view) {
     }
 
-    public void create_inspection(View view) {
+    public void create_report(View view) {
         Bundle bundle = new Bundle();
 
         //get the data from the model using the key
         bundle.putString("traffic_light_data", trafficLightModel.getkey());
 
         //create the intent for the bundle
-        Intent bundleIntent = new Intent(this, InspectionsCreateActivity.class);
+        Intent bundleIntent = new Intent(this, ReportActivity.class);
 
         //add the extras from the key to the bundle
         bundleIntent.putExtra("bundle", bundle);

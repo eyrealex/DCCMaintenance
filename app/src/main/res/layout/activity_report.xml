@@ -5,15 +5,16 @@
     android:layout_height="match_parent"
     android:background="@color/grey_300"
     android:orientation="vertical"
-    tools:context=".Activities.InspectionsCreateActivity">
+    tools:context=".Activities.ReportActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/header_background"
         android:gravity="center"
+        android:fontFamily="@font/nunito_regular"
         android:padding="@dimen/spacing_large"
-        android:text="Create Inspection"
+        android:text="Report"
         android:textColor="@color/white"
         android:textSize="27sp" />
 

@@ -16,9 +16,9 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.InspectionsAllActivity"></activity>
-        <activity android:name=".Activities.InspectionsCreateActivity" />
-        <activity android:name=".Activities.InspectionsPrevActivity" />
+        <activity android:name=".Activities.InspectionsActivity"></activity>
+        <activity android:name=".Activities.ReportActivity" />
+        <activity android:name=".Activities.ReportsPrevActivity" />
         <activity android:name=".Activities.LocationsListActivity" />
         <activity android:name=".Activities.TrafficLightProfileActivity" />
         <!--

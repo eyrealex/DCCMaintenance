@@ -13,7 +13,7 @@
         android:background="@drawable/header_background"
         android:gravity="center"
         android:padding="@dimen/spacing_large"
-        android:text="Traffic Light Profile"
+        android:text="Profile"
         android:textColor="@color/white"
         android:textSize="27sp"
         android:fontFamily="@font/nunito_regular"/>
@@ -130,7 +130,7 @@
 
 
             <Button
-                android:id="@+id/create_inspection_btn"
+                android:id="@+id/create_report_btn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/spacing_xxxxlarge"
                 android:layout_alignParentEnd="true"
@@ -139,13 +139,13 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/colorAccent"
                 android:fontFamily="@font/nunito_bold"
-                android:text="Create Inspection"
-                android:onClick="create_inspection"
+                android:text="Create Report"
+                android:onClick="create_report"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
             <Button
-                android:id="@+id/prev_inspection_btn"
+                android:id="@+id/prev_reports_btn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/spacing_xxxxlarge"
                 android:layout_alignParentEnd="true"
@@ -154,8 +154,8 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/colorAccent"
                 android:fontFamily="@font/nunito_bold"
-                android:text="Previous Inspections"
-                android:onClick="previous_inspections"
+                android:text="Previous Reports"
+                android:onClick="previous_reports"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 

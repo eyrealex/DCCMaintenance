@@ -7,11 +7,10 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alexeyre.fixit.Adapters.InspectionAdapter;
+import com.alexeyre.fixit.Adapters.LocationsListAdapter;
 import com.alexeyre.fixit.Constants.Constants;
 import com.alexeyre.fixit.Helpers.TrafficLightModel;
 import com.alexeyre.fixit.R;
@@ -26,7 +25,7 @@ public class LocationsListActivity extends AppCompatActivity {
 
     //variables
     private ArrayList<TrafficLightModel> mInspectionTemplateList;
-    InspectionAdapter mInspectionAdapter;
+    LocationsListAdapter locationsListAdapter;
     RecyclerView mRecyclerView;
 
 
@@ -55,8 +54,8 @@ public class LocationsListActivity extends AppCompatActivity {
 
                     }
                 }
-                mInspectionAdapter = new InspectionAdapter(LocationsListActivity.this, mInspectionTemplateList);
-                mRecyclerView.setAdapter(mInspectionAdapter);
+                locationsListAdapter = new LocationsListAdapter(LocationsListActivity.this, mInspectionTemplateList);
+                mRecyclerView.setAdapter(locationsListAdapter);
 
             }
 

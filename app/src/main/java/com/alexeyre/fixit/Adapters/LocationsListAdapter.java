@@ -21,14 +21,14 @@ import com.alexeyre.fixit.R;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class InspectionAdapter extends RecyclerView.Adapter<InspectionViewHolder> {
+public class LocationsListAdapter extends RecyclerView.Adapter<LocationsListViewHolder> {
 
     //variables
     private Context mContext;
     private ArrayList<TrafficLightModel> trafficLightModels = new ArrayList<>();
     private int lastPosition = -1;
 
-    public InspectionAdapter(Context mContext, ArrayList<TrafficLightModel> trafficLightModels) {
+    public LocationsListAdapter(Context mContext, ArrayList<TrafficLightModel> trafficLightModels) {
         this.mContext = mContext;
         this.trafficLightModels = trafficLightModels;
     }
@@ -36,28 +36,28 @@ public class InspectionAdapter extends RecyclerView.Adapter<InspectionViewHolder
     //create a template for the recycler
     @NonNull
     @Override
-    public InspectionViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public LocationsListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View mView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.inspection_list_item, viewGroup, false);
-        return new InspectionViewHolder(mView);
+        return new LocationsListViewHolder(mView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull InspectionViewHolder inspectionViewHolder, int position) {
+    public void onBindViewHolder(@NonNull LocationsListViewHolder locationsListViewHolder, int position) {
 
         //set the template lists with data using ID, location and Next Due
-        inspectionViewHolder.id_tv.setText(String.format(Locale.ENGLISH, "ID: %s", trafficLightModels.get(position).getkey()).trim());
-        inspectionViewHolder.location_tv.setText(String.format(Locale.ENGLISH, "Location: %s", trafficLightModels.get(position).getname()).trim());
+        locationsListViewHolder.id_tv.setText(String.format(Locale.ENGLISH, "ID: %s", trafficLightModels.get(position).getkey()).trim());
+        locationsListViewHolder.location_tv.setText(String.format(Locale.ENGLISH, "Location: %s", trafficLightModels.get(position).getname()).trim());
 
         //if there is no data relating to next due, set it to N/A
-        if (trafficLightModels.get(position).getNext_due_inpection() == null) {
-            inspectionViewHolder.next_inspec_tv.setText(String.format(Locale.ENGLISH, "Due: N/A"));
+        if (trafficLightModels.get(position).getnext_due_inpection() == null) {
+            locationsListViewHolder.next_inspec_tv.setText(String.format(Locale.ENGLISH, "Due: N/A"));
         } else {
-            inspectionViewHolder.next_inspec_tv.setText(String.format(Locale.ENGLISH, "Due: %s", trafficLightModels.get(position).getinspection().get(position).getNext_due_inpection()));
+            locationsListViewHolder.next_inspec_tv.setText(String.format(Locale.ENGLISH, "Due: %s", trafficLightModels.get(position).getinspection().get(position).getnext_due_inpection()));
         }
 
 
         //On Click for each item
-        inspectionViewHolder.parent.setOnClickListener(new View.OnClickListener() {
+        locationsListViewHolder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Create bundle
@@ -102,12 +102,12 @@ public class InspectionAdapter extends RecyclerView.Adapter<InspectionViewHolder
     }
 }
 
-class InspectionViewHolder extends RecyclerView.ViewHolder {
+class LocationsListViewHolder extends RecyclerView.ViewHolder {
     TextView id_tv, location_tv, next_inspec_tv;
     CardView parent;
 
 
-    public InspectionViewHolder(@NonNull View itemView) {
+    public LocationsListViewHolder(@NonNull View itemView) {
         super(itemView);
 
         id_tv = itemView.findViewById(R.id.id_tv);

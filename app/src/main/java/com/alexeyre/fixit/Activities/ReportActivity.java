@@ -15,14 +15,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class InspectionsCreateActivity extends AppCompatActivity {
+public class ReportActivity extends AppCompatActivity {
 
     private TrafficLightModel trafficLightModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inspections_create);
+        setContentView(R.layout.activity_report);
 
         Bundle bundle = getIntent().getExtras();
 

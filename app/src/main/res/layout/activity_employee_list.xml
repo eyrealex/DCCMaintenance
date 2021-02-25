@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/header_background"
-        android:fontFamily="@font/nunito_bold"
+        android:fontFamily="@font/nunito_regular"
         android:gravity="center_horizontal"
         android:padding="@dimen/spacing_medium"
         android:text="Employees"
