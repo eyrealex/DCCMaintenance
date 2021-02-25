@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/header_background"
-        android:gravity="center"
         android:fontFamily="@font/nunito_regular"
+        android:gravity="center"
         android:padding="@dimen/spacing_large"
         android:text="Report"
         android:textColor="@color/white"
@@ -81,7 +81,7 @@
                         android:drawablePadding="10dp"
                         android:focusableInTouchMode="false"
                         android:fontFamily="@font/nunito_regular"
-                        tools:text="Henry St"/>
+                        tools:text="Henry St" />
 
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -109,20 +109,11 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="215dp"
                     android:layout_marginTop="@dimen/spacing_large"
-                    android:text="Yes"
-                    android:textColor="@color/black"
-                    android:textSize="17sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="65dp"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:text="No"
+                    android:text="Checkbox if Yes: "
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
@@ -146,14 +137,7 @@
                     android:textSize="17sp" />
 
                 <CheckBox
-                    android:id="@+id/physical_damage_yes_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:layout_weight="1" />
-
-                <CheckBox
-                    android:id="@+id/physical_damage_no_cb"
+                    android:id="@+id/physical_damage_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_large"
@@ -178,14 +162,7 @@
                     android:textSize="17sp" />
 
                 <CheckBox
-                    android:id="@+id/electrical_issue_yes_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:layout_weight="1" />
-
-                <CheckBox
-                    android:id="@+id/electrical_issue_no_cb"
+                    android:id="@+id/electrical_issue_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_large"
@@ -205,19 +182,12 @@
                     android:layout_marginLeft="@dimen/spacing_xlarge"
                     android:layout_marginTop="@dimen/spacing_large"
                     android:layout_weight="0.85"
-                    android:text="All bulbs ok: "
+                    android:text="All lights ok: "
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
                 <CheckBox
-                    android:id="@+id/bulb_working_yes_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:layout_weight="1" />
-
-                <CheckBox
-                    android:id="@+id/bulb_working_no_cb"
+                    android:id="@+id/lights_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_large"
@@ -242,14 +212,7 @@
                     android:textSize="17sp" />
 
                 <CheckBox
-                    android:id="@+id/pedestrian_light_yes_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:layout_weight="1" />
-
-                <CheckBox
-                    android:id="@+id/pedestrian_light_no_cb"
+                    android:id="@+id/pedestrian_light_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_large"
@@ -274,14 +237,7 @@
                     android:textSize="17sp" />
 
                 <CheckBox
-                    android:id="@+id/pedestrian_button_yes_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:layout_weight="1" />
-
-                <CheckBox
-                    android:id="@+id/pedestrian_button_no_cb"
+                    android:id="@+id/pedestrian_button_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_large"
@@ -306,14 +262,7 @@
                     android:textSize="17sp" />
 
                 <CheckBox
-                    android:id="@+id/sound_working_yes_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:layout_weight="1" />
-
-                <CheckBox
-                    android:id="@+id/sound_working_no_cb"
+                    android:id="@+id/sounds_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_large"
@@ -333,51 +282,12 @@
                     android:layout_marginLeft="@dimen/spacing_xlarge"
                     android:layout_marginTop="@dimen/spacing_large"
                     android:layout_weight="0.85"
-                    android:text="Correct sequence ok: "
+                    android:text="Correct sequence: "
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
                 <CheckBox
-                    android:id="@+id/sequence_working_yes_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:layout_weight="1" />
-
-                <CheckBox
-                    android:id="@+id/sequence_working_no_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:layout_weight="1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-20dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/spacing_xlarge"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:layout_weight="0.85"
-                    android:text="Vandalism present: "
-                    android:textColor="@color/black"
-                    android:textSize="17sp" />
-
-                <CheckBox
-                    android:id="@+id/vandalism_yes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:layout_weight="1" />
-
-                <CheckBox
-                    android:id="@+id/vandalism_no"
+                    android:id="@+id/sequence_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_large"
@@ -402,14 +312,7 @@
                     android:textSize="17sp" />
 
                 <CheckBox
-                    android:id="@+id/repairs_needed_yes_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:layout_weight="1" />
-
-                <CheckBox
-                    android:id="@+id/repairs_needed_no_cb"
+                    android:id="@+id/repairs_needed_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_large"

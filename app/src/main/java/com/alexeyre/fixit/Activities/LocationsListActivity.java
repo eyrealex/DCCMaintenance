@@ -25,8 +25,8 @@ public class LocationsListActivity extends AppCompatActivity {
 
     //variables
     private ArrayList<TrafficLightModel> mInspectionTemplateList;
-    LocationsListAdapter locationsListAdapter;
-    RecyclerView mRecyclerView;
+    private LocationsListAdapter locationsListAdapter;
+    private RecyclerView mRecyclerView;
 
 
     @Override
