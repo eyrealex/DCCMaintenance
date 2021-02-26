@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_cv"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/list_view_height"
+    android:layout_margin="@dimen/spacing_large"
+    android:backgroundTint="@color/colorPrimaryDark"
+    android:clickable="true"
+    android:elevation="@dimen/spacing_medium"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="@dimen/spacing_large">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_medium">
+
+            <TextView
+                android:id="@+id/id_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="0"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito_bold"/>
+
+            <TextView
+                android:id="@+id/location_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kevin St @ Grafton St"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito_bold"/>
+
+            <TextView
+                android:id="@+id/reported_on_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10 Jan 2021, 13:00:00 PM"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito_bold"/>
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/profile_image_iv"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:layout_margin="@dimen/spacing_large"
+            android:src="@drawable/ic_userprofile_placeholder"
+            tools:srcCompat="@tools:sample/avatars" />
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

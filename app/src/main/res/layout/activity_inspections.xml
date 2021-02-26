@@ -23,11 +23,11 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/job_inspections_recycler_view"
+            android:id="@+id/inspection_report_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="vertical"
-            tools:listitem="@layout/inspection_list_item">
+            tools:listitem="@layout/report_list_item">
 
         </androidx.recyclerview.widget.RecyclerView>
 
