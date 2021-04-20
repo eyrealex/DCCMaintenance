@@ -55,15 +55,21 @@ public class LocationsMapActivity extends FragmentActivity implements OnMapReady
      * This will render all locations on the map each time it is called
      */
     private void createMapMarkers() {
-        if (mMap != null) {
-            mMap.clear(); // Clear any old markers
-            for (TrafficLightModel trafficLightModel : allTrafficLightsList) {
-                mMap.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(trafficLightModel.getlatitude()),
-                        Double.parseDouble(trafficLightModel.getlongitude()))).title(trafficLightModel.getname()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
+
+        try {
+            if (mMap != null) {
+                mMap.clear(); // Clear any old markers
+                for (TrafficLightModel trafficLightModel : allTrafficLightsList) {
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(trafficLightModel.getlatitude()),
+                            Double.parseDouble(trafficLightModel.getlongitude()))).title(trafficLightModel.getname()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
+                }
+
+
             }
-
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
     private void getData() {
