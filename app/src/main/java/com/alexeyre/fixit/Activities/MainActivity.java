@@ -13,8 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alexeyre.fixit.Adapters.ControlsAdapter;
-import com.alexeyre.fixit.Helpers.HomePageWidgetModel;
-import com.alexeyre.fixit.Helpers.UserProfileModel;
+import com.alexeyre.fixit.Models.HomePageWidgetModel;
+import com.alexeyre.fixit.Models.UserProfileModel;
+import com.alexeyre.fixit.Models.UserSingletonModel;
 import com.alexeyre.fixit.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -42,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
                 if (snapshot.getValue() != null && snapshot.hasChildren()) {
                     currentUser = snapshot.getValue(UserProfileModel.class);
                     if (currentUser != null) {
+
+                        //Setup User Singleton
+                        UserSingletonModel.getInstance().setuser_name(currentUser.getname());
+                        UserSingletonModel.getInstance().setuser_uid(currentUser.getuid());
+
                         setupControls();
                         setupUI();
                     }

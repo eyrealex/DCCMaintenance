@@ -20,7 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.alexeyre.fixit.Helpers.UserProfileModel;
+import com.alexeyre.fixit.Models.UserProfileModel;
 import com.alexeyre.fixit.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;

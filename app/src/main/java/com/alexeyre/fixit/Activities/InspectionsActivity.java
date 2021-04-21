@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alexeyre.fixit.Adapters.ReportListAdapter;
 import com.alexeyre.fixit.Constants.Constants;
-import com.alexeyre.fixit.Helpers.TrafficLightModel;
+import com.alexeyre.fixit.Models.TrafficLightModel;
 import com.alexeyre.fixit.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

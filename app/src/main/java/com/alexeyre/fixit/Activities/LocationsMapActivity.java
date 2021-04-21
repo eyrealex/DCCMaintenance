@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import com.alexeyre.fixit.Constants.Constants;
-import com.alexeyre.fixit.Helpers.TrafficLightModel;
+import com.alexeyre.fixit.Models.TrafficLightModel;
 import com.alexeyre.fixit.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;

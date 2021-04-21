@@ -1,4 +1,4 @@
-package com.alexeyre.fixit.Helpers;
+package com.alexeyre.fixit.Models;
 
 import java.io.Serializable;
 import java.util.ArrayList;

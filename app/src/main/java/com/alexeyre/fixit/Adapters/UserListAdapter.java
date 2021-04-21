@@ -14,7 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alexeyre.fixit.Activities.UserProfileActivity;
-import com.alexeyre.fixit.Helpers.UserProfileModel;
+import com.alexeyre.fixit.Models.UserProfileModel;
 import com.alexeyre.fixit.R;
 import com.squareup.picasso.Picasso;
 

@@ -13,9 +13,9 @@
         android:background="@drawable/header_background"
         android:gravity="center"
         android:padding="@dimen/spacing_large"
-        android:text="Profile"
+        android:text="Traffic Light Profile"
         android:textColor="@color/white"
-        android:textSize="27sp"
+        android:textSize="30sp"
         android:fontFamily="@font/nunito_regular"/>
 
     <ScrollView

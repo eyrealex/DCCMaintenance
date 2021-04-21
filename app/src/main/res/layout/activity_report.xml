@@ -16,7 +16,7 @@
         android:padding="@dimen/spacing_large"
         android:text="Report"
         android:textColor="@color/white"
-        android:textSize="27sp" />
+        android:textSize="30sp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -132,12 +132,12 @@
                     android:layout_marginLeft="@dimen/spacing_xlarge"
                     android:layout_marginTop="@dimen/spacing_large"
                     android:layout_weight="0.85"
-                    android:text="Physical Damage: "
+                    android:text="Physical issues: "
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
                 <CheckBox
-                    android:id="@+id/physical_damage_cb"
+                    android:id="@+id/physical_issue_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_large"
@@ -182,7 +182,7 @@
                     android:layout_marginLeft="@dimen/spacing_xlarge"
                     android:layout_marginTop="@dimen/spacing_large"
                     android:layout_weight="0.85"
-                    android:text="All lights ok: "
+                    android:text="Light issues: "
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
@@ -195,6 +195,7 @@
 
             </LinearLayout>
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -207,12 +208,12 @@
                     android:layout_marginLeft="@dimen/spacing_xlarge"
                     android:layout_marginTop="@dimen/spacing_large"
                     android:layout_weight="0.85"
-                    android:text="Pedestrian light ok: "
+                    android:text="Button issues: "
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
                 <CheckBox
-                    android:id="@+id/pedestrian_light_cb"
+                    android:id="@+id/buttons_cb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_large"
@@ -232,32 +233,7 @@
                     android:layout_marginLeft="@dimen/spacing_xlarge"
                     android:layout_marginTop="@dimen/spacing_large"
                     android:layout_weight="0.85"
-                    android:text="Pedestian button ok: "
-                    android:textColor="@color/black"
-                    android:textSize="17sp" />
-
-                <CheckBox
-                    android:id="@+id/pedestrian_button_cb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:layout_weight="1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-20dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/spacing_xlarge"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:layout_weight="0.85"
-                    android:text="All sounds ok: "
+                    android:text="Sound issues: "
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
@@ -282,7 +258,7 @@
                     android:layout_marginLeft="@dimen/spacing_xlarge"
                     android:layout_marginTop="@dimen/spacing_large"
                     android:layout_weight="0.85"
-                    android:text="Correct sequence: "
+                    android:text="Sequence issues: "
                     android:textColor="@color/black"
                     android:textSize="17sp" />
 
@@ -335,6 +311,7 @@
                     android:textSize="17sp" />
 
                 <EditText
+                    android:id="@+id/notes_box"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/spacing_xlarge"
@@ -349,35 +326,55 @@
             </LinearLayout>
 
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/spacing_xxxxlarge"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/add_signature_tv"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/spacing_xlarge"
                     android:layout_marginTop="@dimen/spacing_middle"
-                    android:text="Signature: "
+                    android:text="Add Signature"
                     android:textColor="@color/colorAccent"
                     android:textSize="17sp" />
-            </LinearLayout>
 
-            <LinearLayout
+                <ImageView
+                    android:id="@+id/signatureBtn"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="@dimen/spacing_xlarge"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:layout_toRightOf="@id/add_signature_tv"
+                    android:src="@drawable/ic_signature" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/spacing_xxxxlarge"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/add_photo_tv"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/spacing_xlarge"
-                    android:layout_marginTop="@dimen/spacing_middle"
-                    android:text="Photo: "
+                    android:layout_marginTop="40dp"
+                    android:text="Add Photo"
                     android:textColor="@color/colorAccent"
                     android:textSize="17sp" />
-            </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imageBtn"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="@dimen/spacing_xlarge"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:layout_toRightOf="@+id/add_photo_tv"
+                    android:src="@drawable/placeholder" />
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -385,7 +382,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/submitBtn"
+                    android:onClick="btnSubmit"
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
                     android:layout_gravity="center"

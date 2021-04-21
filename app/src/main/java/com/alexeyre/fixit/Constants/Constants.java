@@ -6,4 +6,9 @@ public class Constants {
     public static String COORDINATES = "coordinates";
     public static String INSPECTIONS = "inspections";
     public static String REPORTS = "reports";
+
+
+
+    public static final String SUCCESS = "Success";
+    public static final String FAIL = "Fail";
 }

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alexeyre.fixit.Adapters.UserListAdapter;
-import com.alexeyre.fixit.Helpers.UserProfileModel;
+import com.alexeyre.fixit.Models.UserProfileModel;
 import com.alexeyre.fixit.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

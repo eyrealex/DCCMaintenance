@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.alexeyre.fixit.Helpers.TrafficLightModel;
+import com.alexeyre.fixit.Models.TrafficLightModel;
 import com.alexeyre.fixit.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
@@ -136,6 +136,12 @@ public class TrafficLightProfileActivity extends AppCompatActivity {
         //start the activity using the bundle
         this.startActivity(bundleIntent);
 
+    }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(TrafficLightProfileActivity.this, LocationsListActivity.class));
+        finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

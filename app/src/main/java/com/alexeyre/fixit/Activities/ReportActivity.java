@@ -1,28 +1,38 @@
 package com.alexeyre.fixit.Activities;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.alexeyre.fixit.Constants.Constants;
-import com.alexeyre.fixit.Helpers.TrafficLightModel;
-import com.alexeyre.fixit.Helpers.TrafficLightReportModel;
+import com.alexeyre.fixit.Models.InspectionReceiptModel;
+import com.alexeyre.fixit.Models.TrafficLightModel;
+import com.alexeyre.fixit.Models.TrafficLightReportModel;
+import com.alexeyre.fixit.Models.UserProfileModel;
+import com.alexeyre.fixit.Models.UserSingletonModel;
 import com.alexeyre.fixit.R;
+import com.alexeyre.fixit.Repositories.InspectionRepository;
+import com.alexeyre.fixit.Repositories.impl.InspectionRepositoryImpl;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+
+import static com.alexeyre.fixit.Constants.Constants.COORDINATES;
+import static com.alexeyre.fixit.Constants.Constants.INSPECTIONS;
 
 
 public class ReportActivity extends AppCompatActivity {
@@ -30,12 +40,15 @@ public class ReportActivity extends AppCompatActivity {
     private TrafficLightReportModel trafficLightReportModel;
     ArrayList<TrafficLightReportModel> reportModelArrayList = new ArrayList<>();
     private DatabaseReference databaseReference;
-    private CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7, cb8;
+    private CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7;
+    private EditText notes;
     private Button btnSubmit;
+    private ImageView btnImage, btnSignature;
     private String key;
     private String bundleInfo;
-    int i = 0;
-    private String Yes = "Yes", No = "No";
+    String imageUrl;
+    private Uri uri;
+
 
 
     @Override
@@ -64,23 +77,19 @@ public class ReportActivity extends AppCompatActivity {
             //Quit the activity
             finish();
         }
-
-
-        String myCurrentDateTime = DateFormat.getDateTimeInstance()
-                .format(Calendar.getInstance().getTime());
-
         //create hooks
-        databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.COORDINATES).child(key).child(Constants.INSPECTIONS).child(myCurrentDateTime);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child(COORDINATES).child(key).child(INSPECTIONS);
         trafficLightReportModel = new TrafficLightReportModel();
-        btnSubmit = findViewById(R.id.submitBtn);
-        cb1 = findViewById(R.id.physical_damage_cb);
+        btnImage = findViewById(R.id.imageBtn);
+        btnSignature = findViewById(R.id.signatureBtn);
+        cb1 = findViewById(R.id.physical_issue_cb);
         cb2 = findViewById(R.id.electrical_issue_cb);
         cb3 = findViewById(R.id.lights_cb);
-        cb4 = findViewById(R.id.pedestrian_light_cb);
-        cb5 = findViewById(R.id.pedestrian_button_cb);
-        cb6 = findViewById(R.id.sounds_cb);
-        cb7 = findViewById(R.id.sequence_cb);
-        cb8 = findViewById(R.id.repairs_needed_cb);
+        cb4 = findViewById(R.id.buttons_cb);
+        cb5 = findViewById(R.id.sounds_cb);
+        cb6 = findViewById(R.id.sequence_cb);
+        cb7 = findViewById(R.id.repairs_needed_cb);
+        notes = findViewById(R.id.notes_box);
 
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -105,81 +114,21 @@ public class ReportActivity extends AppCompatActivity {
             }
         });
 
-
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
+        //adding the signature to the report
+        btnSignature.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //check for physical damage
-                if (cb1.isChecked()) {
-                    trafficLightReportModel.setphysical_damage(Yes);
-                    databaseReference.child(String.valueOf(i + 1)).setValue(trafficLightReportModel);
-                } else {
-                    trafficLightReportModel.setphysical_damage(No);
-                    databaseReference.child(String.valueOf(i + 1)).setValue(trafficLightReportModel);
-                }
 
-                //check for electrical issues
-                if (cb2.isChecked()) {
-                    trafficLightReportModel.setelectrical_damage(Yes);
-                    databaseReference.child(String.valueOf(i + 1)).setValue(trafficLightReportModel);
-                } else {
-                    trafficLightReportModel.setelectrical_damage(No);
-                    databaseReference.child(String.valueOf(i + 1)).setValue(trafficLightReportModel);
-                }
+            }
+        });
 
-                //check for lights
-                if (cb3.isChecked()) {
-                    trafficLightReportModel.setlights_ok(Yes);
-                    databaseReference.child(String.valueOf(i + 1)).setValue(trafficLightReportModel);
-                } else {
-                    trafficLightReportModel.setlights_ok(No);
-                    databaseReference.child(String.valueOf(i + 1)).setValue(trafficLightReportModel);
-                }
-
-                //check for pedestrian lights
-                if (cb4.isChecked()) {
-                    trafficLightReportModel.setpedestrian_lights_ok(Yes);
-                    databaseReference.child(String.valueOf(i + 1)).setValue(trafficLightReportModel);
-                } else {
-                    trafficLightReportModel.setpedestrian_lights_ok(No);
-                    databaseReference.child(String.valueOf(i + 1)).setValue(trafficLightReportModel);
-                }
-
-                //check for pedestrian button
-                if (cb5.isChecked()) {
-                    trafficLightReportModel.setpedestrian_button_ok(Yes);
-                    databaseReference.child(String.valueOf(i + 1)).setValue(trafficLightReportModel);
-                } else {
-                    trafficLightReportModel.setpedestrian_button_ok(No);
-                    databaseReference.child(String.valueOf(i + 1)).setValue(trafficLightReportModel);
-                }
-
-                //check for sounds
-                if (cb6.isChecked()) {
-                    trafficLightReportModel.setsounds_ok(Yes);
-                    databaseReference.child(String.valueOf(i + 1)).setValue(trafficLightReportModel);
-                } else {
-                    trafficLightReportModel.setsounds_ok(No);
-                    databaseReference.child(String.valueOf(i + 1)).setValue(trafficLightReportModel);
-                }
-
-                //check for sequence
-                if (cb7.isChecked()) {
-                    trafficLightReportModel.setsequence_ok(Yes);
-                    databaseReference.child(String.valueOf(i + 1)).setValue(trafficLightReportModel);
-                } else {
-                    trafficLightReportModel.setsequence_ok(No);
-                    databaseReference.child(String.valueOf(i + 1)).setValue(trafficLightReportModel);
-                }
-
-                //check for repairs
-                if (cb8.isChecked()) {
-                    trafficLightReportModel.setrepairs_needed(Yes);
-                    databaseReference.child(String.valueOf(i + 1)).setValue(trafficLightReportModel);
-                } else {
-                    trafficLightReportModel.setrepairs_needed(No);
-                    databaseReference.child(String.valueOf(i + 1)).setValue(trafficLightReportModel);
-                }
+        //adding photo evidence of the inspection to the report
+        btnImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent imageSelect = new Intent(Intent.ACTION_PICK);
+                imageSelect.setType("image/*"); //used for selecting jpegs, pngs etc
+                startActivityForResult(imageSelect, 1);
             }
         });
 
@@ -213,4 +162,49 @@ public class ReportActivity extends AppCompatActivity {
         ((TextInputEditText) findViewById(R.id.create_location_tv)).setText(trafficLightModel.getname()); //Actually the location
     }
 
+
+    public void btnSubmit(View view) {
+        //Check here
+        //Show progress dialog here
+        //check for physical damage
+
+        //turnary operator for checklists
+        trafficLightReportModel.setphysical_issues(cb1.isChecked() ? "Yes" : "No");
+        trafficLightReportModel.setelectrical_issues(cb2.isChecked() ? "Yes" : "No");
+        trafficLightReportModel.setlight_issues(cb3.isChecked() ? "Yes" : "No");
+        trafficLightReportModel.setbutton_issues(cb4.isChecked() ? "Yes" : "No");
+        trafficLightReportModel.setsound_issues(cb5.isChecked() ? "Yes" : "No");
+        trafficLightReportModel.setsequence_issues(cb6.isChecked() ? "Yes" : "No");
+        trafficLightReportModel.setrepairs_needed(cb7.isChecked() ? "Yes" : "No");
+
+        //for writing notes to the database
+        trafficLightReportModel.setnotes(notes.getText().toString());//Returns "" if nothing in the input field
+
+        //Write to database
+        String timestamp = String.valueOf(System.currentTimeMillis());
+        databaseReference.child(timestamp).setValue(trafficLightReportModel).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                //Create the receipt object/ model
+                InspectionReceiptModel receipt = new InspectionReceiptModel();
+                receipt.settimestamp(timestamp);
+                receipt.setcreated_by(UserSingletonModel.getInstance().getuser_name()); //get the current users name and put it in here
+                String path = String.format("%s/%s/%s/%s", COORDINATES, key, INSPECTIONS, timestamp); //create a path for an inspection
+                receipt.setpath(path);
+
+                //Build the path to the users node /reports
+                FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(INSPECTIONS).child(receipt.gettimestamp())
+                        .setValue(receipt).addOnCompleteListener(task1 -> {
+                    if (task.isSuccessful()) {
+                        finish();
+                        startActivity(new Intent(ReportActivity.this, TrafficLightProfileActivity.class));
+                    }
+
+                });
+            } else {
+                //Tell the user there was an error
+                Toast.makeText(this, "Error when creating report", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+    }
 }

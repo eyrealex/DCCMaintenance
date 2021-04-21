@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alexeyre.fixit.Adapters.LocationsListAdapter;
 import com.alexeyre.fixit.Constants.Constants;
-import com.alexeyre.fixit.Helpers.TrafficLightModel;
+import com.alexeyre.fixit.Models.TrafficLightModel;
 import com.alexeyre.fixit.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -77,7 +77,7 @@ public class LocationsListActivity extends AppCompatActivity {
     public void onBackPressed() {
         startActivity(new Intent(LocationsListActivity.this, MainActivity.class));
         finish();
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     public void map_view_btn(View view) {
