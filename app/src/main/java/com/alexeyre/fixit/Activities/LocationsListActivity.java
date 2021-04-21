@@ -46,13 +46,18 @@ public class LocationsListActivity extends AppCompatActivity {
                 mInspectionTemplateList = new ArrayList<>();
 
                 for (DataSnapshot trafficLightDataSnapshot : snapshot.getChildren()) {
-                    if (trafficLightDataSnapshot != null && trafficLightDataSnapshot.hasChildren()) {
-                        TrafficLightModel trafficLightModel = trafficLightDataSnapshot.getValue(TrafficLightModel.class);
-                        trafficLightModel.setkey(trafficLightDataSnapshot.getKey());//We can assume all data is present
-                        mInspectionTemplateList.add(trafficLightModel);
+                    try{
+                        if (trafficLightDataSnapshot != null && trafficLightDataSnapshot.hasChildren()) {
+                            TrafficLightModel trafficLightModel = trafficLightDataSnapshot.getValue(TrafficLightModel.class);
+                            trafficLightModel.setkey(trafficLightDataSnapshot.getKey());//We can assume all data is present
+                            mInspectionTemplateList.add(trafficLightModel);
 
+
+                        }
+                    }catch (Exception e){
 
                     }
+
                 }
                 locationsListAdapter = new LocationsListAdapter(LocationsListActivity.this, mInspectionTemplateList);
                 mRecyclerView.setAdapter(locationsListAdapter);

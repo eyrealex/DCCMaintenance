@@ -81,8 +81,13 @@ public class LocationsMapActivity extends FragmentActivity implements OnMapReady
                 allTrafficLightsList.clear();
 
                 for (DataSnapshot trafficLightDataSnapshot : snapshot.getChildren()) {
-                    TrafficLightModel newTrafficLightObject = trafficLightDataSnapshot.getValue(TrafficLightModel.class);
-                    allTrafficLightsList.add(newTrafficLightObject);
+                    try{
+                        TrafficLightModel newTrafficLightObject = trafficLightDataSnapshot.getValue(TrafficLightModel.class);
+                        allTrafficLightsList.add(newTrafficLightObject);
+                    }catch(Exception e){
+
+                    }
+
                 }
 
                 createMapMarkers();

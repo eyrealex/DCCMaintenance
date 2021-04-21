@@ -48,11 +48,16 @@ public class InspectionsActivity extends AppCompatActivity {
                 trafficLightModels = new ArrayList<>();
 
                 for (DataSnapshot trafficLightDataSnapthot : snapshot.getChildren()) {
-                    if (trafficLightDataSnapthot != null && trafficLightDataSnapthot.hasChildren()) {
-                        TrafficLightModel trafficLightModel = trafficLightDataSnapthot.getValue(TrafficLightModel.class);
-                        trafficLightModel.setkey(trafficLightDataSnapthot.getKey());
-                        trafficLightModels.add(trafficLightModel);
+                    try {
+                        if (trafficLightDataSnapthot != null && trafficLightDataSnapthot.hasChildren()) {
+                            TrafficLightModel trafficLightModel = trafficLightDataSnapthot.getValue(TrafficLightModel.class);
+                            trafficLightModel.setkey(trafficLightDataSnapthot.getKey());
+                            trafficLightModels.add(trafficLightModel);
+                        }
+                    } catch (Exception e) {
+
                     }
+
                 }
                 reportListAdapter = new ReportListAdapter(InspectionsActivity.this, trafficLightModels);
                 recyclerView.setAdapter(reportListAdapter);
