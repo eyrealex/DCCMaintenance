@@ -145,7 +145,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream(); //Make empty byteStreams
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);//Compress bitmap to 50% of quality and also to jpeg
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, baos);//Compress bitmap to 50% of quality and also to jpeg
         byte[] data = baos.toByteArray();//Convert to byte array because firebase likes this
 
         UploadTask uploadTask = fileRef.putBytes(data); //Make upload task object ready to execute

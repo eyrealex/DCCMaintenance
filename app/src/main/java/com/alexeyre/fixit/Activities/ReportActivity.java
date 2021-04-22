@@ -1,8 +1,14 @@
 package com.alexeyre.fixit.Activities;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -11,16 +17,19 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import com.alexeyre.fixit.Models.InspectionReceiptModel;
 import com.alexeyre.fixit.Models.TrafficLightModel;
 import com.alexeyre.fixit.Models.TrafficLightReportModel;
-import com.alexeyre.fixit.Models.UserProfileModel;
 import com.alexeyre.fixit.Models.UserSingletonModel;
 import com.alexeyre.fixit.R;
-import com.alexeyre.fixit.Repositories.InspectionRepository;
-import com.alexeyre.fixit.Repositories.impl.InspectionRepositoryImpl;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -28,27 +37,41 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import static com.alexeyre.fixit.Constants.Constants.COORDINATES;
 import static com.alexeyre.fixit.Constants.Constants.INSPECTIONS;
 
 
 public class ReportActivity extends AppCompatActivity {
+    private static final int CAMERA_PERMISSION_CODE = 1;
+    public static final int CAMERA_REQUEST_CODE = 2;
     private TrafficLightModel trafficLightModel;
     private TrafficLightReportModel trafficLightReportModel;
     ArrayList<TrafficLightReportModel> reportModelArrayList = new ArrayList<>();
     private DatabaseReference databaseReference;
+    StorageReference storageReference;
+    private static String downloadURL;
     private CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7;
     private EditText notes;
     private Button btnSubmit;
     private ImageView btnImage, btnSignature;
     private String key;
     private String bundleInfo;
-    String imageUrl;
-    private Uri uri;
-
+    private String timestamp = String.valueOf(System.currentTimeMillis());
+    private String currentPhotoPath;
+    private String myCurrentDateTime = DateFormat.getDateTimeInstance()
+            .format(Calendar.getInstance().getTime());
 
 
     @Override
@@ -79,6 +102,7 @@ public class ReportActivity extends AppCompatActivity {
         }
         //create hooks
         databaseReference = FirebaseDatabase.getInstance().getReference().child(COORDINATES).child(key).child(INSPECTIONS);
+        storageReference = FirebaseStorage.getInstance().getReference();
         trafficLightReportModel = new TrafficLightReportModel();
         btnImage = findViewById(R.id.imageBtn);
         btnSignature = findViewById(R.id.signatureBtn);
@@ -126,14 +150,107 @@ public class ReportActivity extends AppCompatActivity {
         btnImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent imageSelect = new Intent(Intent.ACTION_PICK);
-                imageSelect.setType("image/*"); //used for selecting jpegs, pngs etc
-                startActivityForResult(imageSelect, 1);
+                askCameraPermission();
             }
         });
 
 
     }//end onCreate
+
+    private void askCameraPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) { //check if the user has given permission to camera to be used
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
+        } else {
+            dispatchTakePictureIntent(); //if user grants permission open camera
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == CAMERA_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) { //if the user has granted camera permissions
+                dispatchTakePictureIntent();
+            } else {
+                Toast.makeText(this, "Camera Permission Required", Toast.LENGTH_SHORT).show(); //else the user has denied permissions
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CAMERA_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            File imageFile = new File(currentPhotoPath);
+            btnImage.setImageURI(Uri.fromFile(imageFile));
+            Uri contentUri = Uri.fromFile(imageFile);
+
+            uploadImage(imageFile.getName(), contentUri);
+        }
+    }
+
+    private void uploadImage(String name, Uri contentUri) {
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Uploading Image...");
+        progressDialog.show();
+        StorageReference image = storageReference.child("inspection_images/").child(key).child(myCurrentDateTime).child(name);
+        image.putFile(contentUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                image.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        downloadURL = uri.toString();
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(ReportActivity.this, "Failed to upload image", Toast.LENGTH_SHORT).show();
+            }
+        });
+        progressDialog.dismiss();
+    }
+
+    //method to store get and store photo url from android developers documentation
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        currentPhotoPath = image.getAbsolutePath();
+        return image;
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) { //check if camera is present in the device
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "com.alexeyre.android.fileprovider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE);
+            }
+        }
+    }
+
 
     private void getBundleInfo(String bundleInfo) {
 
@@ -164,9 +281,13 @@ public class ReportActivity extends AppCompatActivity {
 
 
     public void btnSubmit(View view) {
-        //Check here
-        //Show progress dialog here
-        //check for physical damage
+        //writing image to database
+        if (downloadURL != null) {
+            trafficLightReportModel.setimage_url(downloadURL);
+        } else {
+            Toast.makeText(this, "Please add a photo to the report", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         //turnary operator for checklists
         trafficLightReportModel.setphysical_issues(cb1.isChecked() ? "Yes" : "No");
@@ -181,7 +302,6 @@ public class ReportActivity extends AppCompatActivity {
         trafficLightReportModel.setnotes(notes.getText().toString());//Returns "" if nothing in the input field
 
         //Write to database
-        String timestamp = String.valueOf(System.currentTimeMillis());
         databaseReference.child(timestamp).setValue(trafficLightReportModel).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 //Create the receipt object/ model
@@ -207,4 +327,5 @@ public class ReportActivity extends AppCompatActivity {
 
         });
     }
+
 }

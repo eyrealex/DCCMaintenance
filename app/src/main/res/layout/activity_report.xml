@@ -328,7 +328,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/spacing_xxxxlarge"
+                android:layout_height="80dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -353,7 +353,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="220dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -361,17 +361,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/spacing_xlarge"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="60dp"
                     android:text="Add Photo"
                     android:textColor="@color/colorAccent"
                     android:textSize="17sp" />
 
                 <ImageView
                     android:id="@+id/imageBtn"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="@dimen/spacing_xlarge"
+                    android:layout_width="185dp"
+                    android:layout_height="200dp"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:layout_marginRight="@dimen/spacing_xlarge"
                     android:layout_marginTop="@dimen/spacing_medium"
+                    android:scaleType="centerCrop"
                     android:layout_toRightOf="@+id/add_photo_tv"
                     android:src="@drawable/placeholder" />
             </RelativeLayout>
