@@ -5,10 +5,13 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -40,8 +43,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -62,10 +68,12 @@ public class ReportActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     StorageReference storageReference;
     private static String downloadURL;
+    Bitmap bitmap;
+    int path;
     private CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7;
     private EditText notes;
     private Button btnSubmit;
-    private ImageView btnImage, btnSignature;
+    private ImageView btnImage, signatureBtn;
     private String key;
     private String bundleInfo;
     private String timestamp = String.valueOf(System.currentTimeMillis());
@@ -105,7 +113,7 @@ public class ReportActivity extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
         trafficLightReportModel = new TrafficLightReportModel();
         btnImage = findViewById(R.id.imageBtn);
-        btnSignature = findViewById(R.id.signatureBtn);
+        signatureBtn = findViewById(R.id.add_signature_btn);
         cb1 = findViewById(R.id.physical_issue_cb);
         cb2 = findViewById(R.id.electrical_issue_cb);
         cb3 = findViewById(R.id.lights_cb);
@@ -138,13 +146,13 @@ public class ReportActivity extends AppCompatActivity {
             }
         });
 
-        //adding the signature to the report
-        btnSignature.setOnClickListener(new View.OnClickListener() {
+        signatureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(ReportActivity.this, SignatureActivity.class));
             }
         });
+
 
         //adding photo evidence of the inspection to the report
         btnImage.setOnClickListener(new View.OnClickListener() {
@@ -154,8 +162,11 @@ public class ReportActivity extends AppCompatActivity {
             }
         });
 
-
     }//end onCreate
+
+
+
+
 
     private void askCameraPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) { //check if the user has given permission to camera to be used
@@ -181,7 +192,7 @@ public class ReportActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAMERA_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             File imageFile = new File(currentPhotoPath);
-            btnImage.setImageURI(Uri.fromFile(imageFile));
+            ;
             Uri contentUri = Uri.fromFile(imageFile);
 
             uploadImage(imageFile.getName(), contentUri);
@@ -189,16 +200,14 @@ public class ReportActivity extends AppCompatActivity {
     }
 
     private void uploadImage(String name, Uri contentUri) {
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Uploading Image...");
-        progressDialog.show();
-        StorageReference image = storageReference.child("inspection_images/").child(key).child(myCurrentDateTime).child(name);
-        image.putFile(contentUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        StorageReference imageRef = storageReference.child("inspection_images/").child(key).child(myCurrentDateTime).child(name);
+        imageRef.putFile(contentUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                image.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).into(btnImage);
                         downloadURL = uri.toString();
                     }
                 });
@@ -209,7 +218,7 @@ public class ReportActivity extends AppCompatActivity {
                 Toast.makeText(ReportActivity.this, "Failed to upload image", Toast.LENGTH_SHORT).show();
             }
         });
-        progressDialog.dismiss();
+
     }
 
     //method to store get and store photo url from android developers documentation
@@ -289,6 +298,11 @@ public class ReportActivity extends AppCompatActivity {
             return;
         }
 
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Uploading Report...");
+        progressDialog.show();
+
+
         //turnary operator for checklists
         trafficLightReportModel.setphysical_issues(cb1.isChecked() ? "Yes" : "No");
         trafficLightReportModel.setelectrical_issues(cb2.isChecked() ? "Yes" : "No");
@@ -315,6 +329,7 @@ public class ReportActivity extends AppCompatActivity {
                 FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(INSPECTIONS).child(receipt.gettimestamp())
                         .setValue(receipt).addOnCompleteListener(task1 -> {
                     if (task.isSuccessful()) {
+                        progressDialog.dismiss();
                         finish();
                         startActivity(new Intent(ReportActivity.this, TrafficLightProfileActivity.class));
                     }

@@ -336,25 +336,28 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/spacing_xlarge"
-                    android:layout_marginTop="@dimen/spacing_middle"
+                    android:layout_marginTop="25dp"
                     android:text="Add Signature"
                     android:textColor="@color/colorAccent"
                     android:textSize="17sp" />
 
                 <ImageView
-                    android:id="@+id/signatureBtn"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:id="@+id/add_signature_btn"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:layout_marginLeft="@dimen/spacing_xlarge"
-                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:layout_marginTop="@dimen/spacing_large"
                     android:layout_toRightOf="@id/add_signature_tv"
-                    android:src="@drawable/ic_signature" />
+                    android:src="@drawable/ic_signature"
+                    android:text="Add" />
+
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="25dp">
 
                 <TextView
                     android:id="@+id/add_photo_tv"
@@ -371,10 +374,10 @@
                     android:layout_width="185dp"
                     android:layout_height="200dp"
                     android:layout_marginLeft="@dimen/spacing_large"
-                    android:layout_marginRight="@dimen/spacing_xlarge"
                     android:layout_marginTop="@dimen/spacing_medium"
-                    android:scaleType="centerCrop"
+                    android:layout_marginRight="@dimen/spacing_xlarge"
                     android:layout_toRightOf="@+id/add_photo_tv"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/placeholder" />
             </RelativeLayout>
 
@@ -384,12 +387,12 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:onClick="btnSubmit"
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/spacing_middle"
                     android:layout_marginBottom="@dimen/spacing_middle"
+                    android:onClick="btnSubmit"
                     android:text="Submit Report"
                     android:textSize="17sp" />
 
