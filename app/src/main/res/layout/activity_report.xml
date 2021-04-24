@@ -328,29 +328,30 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:orientation="horizontal">
+                android:layout_height="220dp"
+                android:orientation="vertical"
+                android:layout_marginTop="25dp">
 
                 <TextView
                     android:id="@+id/add_signature_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/spacing_xlarge"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="60dp"
                     android:text="Add Signature"
                     android:textColor="@color/colorAccent"
                     android:textSize="17sp" />
 
                 <ImageView
                     android:id="@+id/add_signature_btn"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="@dimen/spacing_xlarge"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:layout_toRightOf="@id/add_signature_tv"
-                    android:src="@drawable/ic_signature"
-                    android:text="Add" />
-
+                    android:layout_width="185dp"
+                    android:layout_height="200dp"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:layout_marginRight="@dimen/spacing_xlarge"
+                    android:layout_toRightOf="@+id/add_signature_tv"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/placeholder" />
             </RelativeLayout>
 
             <RelativeLayout

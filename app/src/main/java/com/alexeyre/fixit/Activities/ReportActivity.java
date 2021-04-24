@@ -6,14 +6,11 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -45,9 +42,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -59,7 +54,7 @@ import static com.alexeyre.fixit.Constants.Constants.COORDINATES;
 import static com.alexeyre.fixit.Constants.Constants.INSPECTIONS;
 
 
-public class ReportActivity extends AppCompatActivity {
+public class ReportActivity extends AppCompatActivity implements SignatureDialog.Signature_DialogInterface {
     private static final int CAMERA_PERMISSION_CODE = 1;
     public static final int CAMERA_REQUEST_CODE = 2;
     private TrafficLightModel trafficLightModel;
@@ -68,11 +63,10 @@ public class ReportActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     StorageReference storageReference;
     private static String downloadURL;
+    String value;
     Bitmap bitmap;
-    int path;
     private CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7;
     private EditText notes;
-    private Button btnSubmit;
     private ImageView btnImage, signatureBtn;
     private String key;
     private String bundleInfo;
@@ -149,7 +143,7 @@ public class ReportActivity extends AppCompatActivity {
         signatureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ReportActivity.this, SignatureActivity.class));
+                openDialog();
             }
         });
 
@@ -162,10 +156,13 @@ public class ReportActivity extends AppCompatActivity {
             }
         });
 
+
     }//end onCreate
 
-
-
+    private void openDialog() {
+        SignatureDialog signatureDialog = new SignatureDialog();
+        signatureDialog.show(getSupportFragmentManager(), "signature dialog");
+    }
 
 
     private void askCameraPermission() {
@@ -290,6 +287,12 @@ public class ReportActivity extends AppCompatActivity {
 
 
     public void btnSubmit(View view) {
+        if (value != null) {
+            trafficLightReportModel.setsignature_url(value);
+        } else {
+            Toast.makeText(this, "Please add a signature to the report", Toast.LENGTH_SHORT).show();
+            return;
+        }
         //writing image to database
         if (downloadURL != null) {
             trafficLightReportModel.setimage_url(downloadURL);
@@ -343,4 +346,8 @@ public class ReportActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void applyBitmap(Bitmap bitmap) {
+        signatureBtn.setImageBitmap(bitmap);
+    }
 }
