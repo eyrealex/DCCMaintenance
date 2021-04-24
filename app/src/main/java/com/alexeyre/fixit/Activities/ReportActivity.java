@@ -42,6 +42,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -62,9 +63,10 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
     ArrayList<TrafficLightReportModel> reportModelArrayList = new ArrayList<>();
     private DatabaseReference databaseReference;
     StorageReference storageReference;
-    private static String downloadURL;
+    private static String downloadURL, signatureURL;
     String value;
-    Bitmap bitmap;
+    Bitmap bitmapclone;
+    Uri contentSignatureUri;
     private CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7;
     private EditText notes;
     private ImageView btnImage, signatureBtn;
@@ -189,9 +191,7 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAMERA_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             File imageFile = new File(currentPhotoPath);
-            ;
             Uri contentUri = Uri.fromFile(imageFile);
-
             uploadImage(imageFile.getName(), contentUri);
         }
     }
@@ -287,8 +287,9 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
 
 
     public void btnSubmit(View view) {
-        if (value != null) {
-            trafficLightReportModel.setsignature_url(value);
+        if (signatureURL != null) {
+            trafficLightReportModel.setsignature_url(signatureURL);
+
         } else {
             Toast.makeText(this, "Please add a signature to the report", Toast.LENGTH_SHORT).show();
             return;
@@ -348,6 +349,30 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
 
     @Override
     public void applyBitmap(Bitmap bitmap) {
-        signatureBtn.setImageBitmap(bitmap);
+        bitmapclone = bitmap;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmapclone.compress(Bitmap.CompressFormat.PNG, 90, baos);
+        byte[] data = baos.toByteArray();
+        StorageReference bitmapRef = storageReference.child("signature_images/").child(key).child(myCurrentDateTime);
+        UploadTask uploadTask = bitmapRef.putBytes(data);
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        contentSignatureUri = uri;
+                        signatureURL = uri.toString();
+                        Picasso.get().load(signatureURL).placeholder(R.drawable.progress_animation).into(((ImageView) findViewById(R.id.add_signature_btn)));
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(ReportActivity.this, "Failed to get signature url", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
 }

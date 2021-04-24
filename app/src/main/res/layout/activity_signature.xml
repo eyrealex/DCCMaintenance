@@ -4,22 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_800"
     tools:context=".Activities.SignatureDialog">
 
-    <RelativeLayout
+
+    <com.kyanogen.signatureview.SignatureView
+        android:id="@+id/signature_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        sign:backgroundColor="#ffffff"
+        sign:enableSignature="true"
+        sign:penColor="#000000"
+        sign:penSize="3dp" />
 
-        <com.kyanogen.signatureview.SignatureView
-            android:id="@+id/signature_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            sign:backgroundColor="#ffffff"
-            sign:enableSignature="true"
-            sign:penColor="#000000"
-            sign:penSize="5dp" />
-
-
-    </RelativeLayout>
 
 </RelativeLayout>

@@ -31,9 +31,8 @@ public class SignatureDialog extends AppCompatDialogFragment {
     Signature_DialogInterface dialogInterface;
     Bitmap bitmap;
     SignatureView signatureView;
-    Button clearBtn, saveBtn;
     String path;
-    private static final String IMAGE_DIRECTORY = "/signdemo";
+    private static final String IMAGE_DIRECTORY = "/signatures";
 
     @NonNull
     @Override
@@ -77,16 +76,16 @@ public class SignatureDialog extends AppCompatDialogFragment {
     private String saveImage(Bitmap myBitmap) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-        File wallpaperDirectory = new File(
+        File signatureDirectory = new File(
                 Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY /*iDyme folder*/);
         // have the object build the directory structure, if needed.
-        if (!wallpaperDirectory.exists()) {
-            wallpaperDirectory.mkdirs();
-            Log.d("hhhhh",wallpaperDirectory.toString());
+        if (!signatureDirectory.exists()) {
+            signatureDirectory.mkdirs();
+            Log.d("TAG",signatureDirectory.toString());
         }
 
         try {
-            File f = new File(wallpaperDirectory, Calendar.getInstance()
+            File f = new File(signatureDirectory, Calendar.getInstance()
                     .getTimeInMillis() + ".jpg");
             f.createNewFile();
             FileOutputStream fo = new FileOutputStream(f);
