@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -23,6 +24,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+import com.alexeyre.fixit.Constants.Constants;
 import com.alexeyre.fixit.Models.InspectionReceiptModel;
 import com.alexeyre.fixit.Models.TrafficLightModel;
 import com.alexeyre.fixit.Models.TrafficLightReportModel;
@@ -319,15 +321,23 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
         //for writing notes to the database
         trafficLightReportModel.setnotes(notes.getText().toString());//Returns "" if nothing in the input field
 
+
+
         //Write to database
         databaseReference.child(timestamp).setValue(trafficLightReportModel).addOnCompleteListener(task -> {
+
             if (task.isSuccessful()) {
+
                 //Create the receipt object/ model
                 InspectionReceiptModel receipt = new InspectionReceiptModel();
                 receipt.settimestamp(timestamp);
+                receipt.setlocation(trafficLightModel.getname());
+                receipt.setid(trafficLightModel.getkey());
                 receipt.setcreated_by(UserSingletonModel.getInstance().getuser_name()); //get the current users name and put it in here
                 String path = String.format("%s/%s/%s/%s", COORDINATES, key, INSPECTIONS, timestamp); //create a path for an inspection
+
                 receipt.setpath(path);
+
 
                 //Build the path to the users node /reports
                 FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(INSPECTIONS).child(receipt.gettimestamp())

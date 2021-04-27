@@ -54,6 +54,8 @@ public class ReportListAdapter extends RecyclerView.Adapter<ReportListViewHolder
            reportListViewHolder.reported_on_tv.setText(String.format(Locale.ENGLISH, "Reported on: %s", trafficLightModels.get(position).gettimestamp()).trim());
         }
 
+        reportListViewHolder.created_by.setText(String.format(Locale.ENGLISH, "Created by: %s", trafficLightModels.get(position).getinspection_by()).trim());
+
         //create onclick for each list item
         //pass bundle info from list item to the next activity
 
@@ -80,7 +82,7 @@ public class ReportListAdapter extends RecyclerView.Adapter<ReportListViewHolder
 }
 
 class ReportListViewHolder extends RecyclerView.ViewHolder {
-    TextView id_tv, location_tv, reported_on_tv;
+    TextView id_tv, location_tv, reported_on_tv, created_by;
     CardView parent;
 
 
@@ -90,6 +92,7 @@ class ReportListViewHolder extends RecyclerView.ViewHolder {
         id_tv = itemView.findViewById(R.id.id_tv);
         location_tv = itemView.findViewById(R.id.location_tv);
         reported_on_tv = itemView.findViewById(R.id.reported_on_tv);
+        created_by = itemView.findViewById(R.id.created_by_tv);
         parent = itemView.findViewById(R.id.parent_cv);
     }
 

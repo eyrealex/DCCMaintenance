@@ -7,6 +7,8 @@ public class InspectionReceiptModel implements Serializable {
     private String timestamp;
     private String path;
     private String created_by;
+    private String id;
+    private String location;
 
     public InspectionReceiptModel() {
     }
@@ -33,5 +35,21 @@ public class InspectionReceiptModel implements Serializable {
 
     public void setcreated_by(String created_by) {
         this.created_by = created_by;
+    }
+
+    public String getid() {
+        return id;
+    }
+
+    public void setid(String id) {
+        this.id = id;
+    }
+
+    public String getlocation() {
+        return location;
+    }
+
+    public void setlocation(String location) {
+        this.location = location;
     }
 }

@@ -49,6 +49,13 @@
                 android:fontFamily="@font/nunito_bold"
                 android:text="10 Jan 2021, 13:00:00 PM"
                 android:textColor="@color/white" />
+            <TextView
+                android:id="@+id/created_by_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_bold"
+                android:text="Alex Eyre"
+                android:textColor="@color/white" />
         </LinearLayout>
 
 

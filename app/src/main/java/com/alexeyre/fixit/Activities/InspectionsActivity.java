@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.alexeyre.fixit.Adapters.ReportListAdapter;
 import com.alexeyre.fixit.Constants.Constants;
 import com.alexeyre.fixit.Models.TrafficLightModel;
-import com.alexeyre.fixit.Models.TrafficLightReportModel;
 import com.alexeyre.fixit.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,7 +29,9 @@ public class InspectionsActivity extends AppCompatActivity {
     private ArrayList<TrafficLightModel> reportModelList;
     private ReportListAdapter reportListAdapter;
     private RecyclerView recyclerView;
-    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.COORDINATES);
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.USERS)
+            .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(Constants.INSPECTIONS);
+    private DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child(Constants.COORDINATES);
 
 
     @Override
@@ -43,47 +45,35 @@ public class InspectionsActivity extends AppCompatActivity {
         //set recycle view of list in a linear fashion
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(InspectionsActivity.this);
         recyclerView.setLayoutManager(linearLayoutManager);
-
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 reportModelList = new ArrayList<>();
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     String key = ds.getKey();
-                    databaseReference.child(key).child(Constants.INSPECTIONS).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                                try {
-                                    if(dataSnapshot != null && dataSnapshot.hasChildren()){
-                                        TrafficLightModel trafficLightReportModel = dataSnapshot.getValue(TrafficLightModel.class);
-                                        trafficLightReportModel.setkey(dataSnapshot.getKey());
-                                        reportModelList.add(trafficLightReportModel);
-                                    }
-                                }catch (Exception e){
-                                    e.printStackTrace();
-                                }
-
-                            }
-                            reportListAdapter = new ReportListAdapter(InspectionsActivity.this, reportModelList);
-                            recyclerView.setAdapter(reportListAdapter);
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
+                    String created_by = snapshot.child(key).child("created_by").getValue(String.class);
+                    String location = snapshot.child(key).child("location").getValue(String.class);
+                    String id = snapshot.child(key).child("id").getValue(String.class);
+                    if (snapshot != null && snapshot.hasChildren()) {
+                        TrafficLightModel trafficLightReportModel = snapshot.getValue(TrafficLightModel.class);
+                        trafficLightReportModel.setname(location);
+                        trafficLightReportModel.setkey(id);
+                        trafficLightReportModel.setinspection_by(created_by);
+                        trafficLightReportModel.settimestamp(key);
+                        reportModelList.add(trafficLightReportModel);
+                    }
                 }
+                reportListAdapter = new ReportListAdapter(InspectionsActivity.this, reportModelList);
+                recyclerView.setAdapter(reportListAdapter);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+    }
 
-
-    }//end on create
 
     @Override
     public void onBackPressed() {
