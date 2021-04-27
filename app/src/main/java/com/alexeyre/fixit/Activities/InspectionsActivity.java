@@ -55,12 +55,12 @@ public class InspectionsActivity extends AppCompatActivity {
                     String location = snapshot.child(key).child("location").getValue(String.class);
                     String id = snapshot.child(key).child("id").getValue(String.class);
                     if (snapshot != null && snapshot.hasChildren()) {
-                        TrafficLightModel trafficLightReportModel = snapshot.getValue(TrafficLightModel.class);
-                        trafficLightReportModel.setname(location);
-                        trafficLightReportModel.setkey(id);
-                        trafficLightReportModel.setinspection_by(created_by);
-                        trafficLightReportModel.settimestamp(key);
-                        reportModelList.add(trafficLightReportModel);
+                        TrafficLightModel trafficLightModel = snapshot.getValue(TrafficLightModel.class);
+                        trafficLightModel.setname(location);
+                        trafficLightModel.setkey(id);
+                        trafficLightModel.setinspection_by(created_by);
+                        trafficLightModel.settimestamp(key);
+                        reportModelList.add(trafficLightModel);
                     }
                 }
                 reportListAdapter = new ReportListAdapter(InspectionsActivity.this, reportModelList);

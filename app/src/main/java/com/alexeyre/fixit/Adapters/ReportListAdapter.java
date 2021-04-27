@@ -1,6 +1,8 @@
 package com.alexeyre.fixit.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alexeyre.fixit.Activities.InspectionViewActivity;
 import com.alexeyre.fixit.Models.TrafficLightModel;
 import com.alexeyre.fixit.R;
 
@@ -57,6 +60,17 @@ public class ReportListAdapter extends RecyclerView.Adapter<ReportListViewHolder
         reportListViewHolder.created_by.setText(String.format(Locale.ENGLISH, "Created by: %s", trafficLightModels.get(position).getinspection_by()).trim());
 
         //create onclick for each list item
+        reportListViewHolder.parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle ();
+                bundle.putString("inspection_key", trafficLightModels.get(position).getkey());
+                bundle.putString("inspection_timestamp", trafficLightModels.get(position).gettimestamp());
+                Intent inspectionIntent = new Intent(context, InspectionViewActivity.class);
+                inspectionIntent.putExtra("bundle", bundle);
+                context.startActivity(inspectionIntent);
+            }
+        });
         //pass bundle info from list item to the next activity
 
     }
