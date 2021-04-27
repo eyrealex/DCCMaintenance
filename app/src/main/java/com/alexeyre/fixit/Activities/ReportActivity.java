@@ -334,9 +334,9 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
                 receipt.setlocation(trafficLightModel.getname());
                 receipt.setid(trafficLightModel.getkey());
                 receipt.setcreated_by(UserSingletonModel.getInstance().getuser_name()); //get the current users name and put it in here
-                String path = String.format("%s/%s/%s/%s", COORDINATES, key, INSPECTIONS, timestamp); //create a path for an inspection
-
-                receipt.setpath(path);
+                String pathURL = "https://fixit-d41f4-default-rtdb.firebaseio.com/coordinates";
+                //String path = String.format("%s/%s/%s/%s", COORDINATES, key, INSPECTIONS, timestamp); //create a path for an inspection
+                receipt.setpath(pathURL);
 
 
                 //Build the path to the users node /reports

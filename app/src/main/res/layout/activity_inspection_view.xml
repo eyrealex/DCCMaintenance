@@ -353,7 +353,7 @@
                     android:textSize="17sp" />
 
                 <EditText
-                    android:id="@+id/notes_box"
+                    android:id="@+id/notes_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/spacing_xlarge"
