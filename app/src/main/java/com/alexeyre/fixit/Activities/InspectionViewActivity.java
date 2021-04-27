@@ -72,6 +72,20 @@ public class InspectionViewActivity extends AppCompatActivity {
 
             }
         });
+
+        FirebaseDatabase.getInstance().getReference().child(Constants.USERS).child(FirebaseAuth.getInstance().getCurrentUser()
+                .getUid()).child(Constants.INSPECTIONS).child(timestamp).child("path").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        })
+
     }
 
     private void updateUI() {
