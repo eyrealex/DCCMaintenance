@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,9 +48,6 @@ public class TrafficLightProfileActivity extends AppCompatActivity {
             }
 
         } else {
-            //Display error to user
-            Toast.makeText(this, "The data was not passed in correctly", Toast.LENGTH_SHORT).show();
-
             //Quit the activity
             finish();
         }

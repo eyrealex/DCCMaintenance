@@ -386,7 +386,7 @@
                     android:textSize="17sp" />
 
                 <ImageView
-                    android:id="@+id/add_signature_btn"
+                    android:id="@+id/add_signature_iv"
                     android:layout_width="185dp"
                     android:layout_height="200dp"
                     android:layout_marginLeft="@dimen/spacing_large"
@@ -415,7 +415,7 @@
                     android:textSize="17sp" />
 
                 <ImageView
-                    android:id="@+id/imageBtn"
+                    android:id="@+id/photo_iv"
                     android:layout_width="185dp"
                     android:layout_height="200dp"
                     android:layout_marginLeft="@dimen/spacing_large"

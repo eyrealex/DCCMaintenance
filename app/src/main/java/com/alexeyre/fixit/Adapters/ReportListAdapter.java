@@ -15,6 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alexeyre.fixit.Activities.InspectionViewActivity;
+import com.alexeyre.fixit.Models.InspectionReceiptModel;
 import com.alexeyre.fixit.Models.TrafficLightModel;
 import com.alexeyre.fixit.R;
 
@@ -66,6 +67,7 @@ public class ReportListAdapter extends RecyclerView.Adapter<ReportListViewHolder
                 Bundle bundle = new Bundle ();
                 bundle.putString("inspection_key", trafficLightModels.get(position).getkey());
                 bundle.putString("inspection_timestamp", trafficLightModels.get(position).gettimestamp());
+                bundle.putString("inspection_path", trafficLightModels.get(position).getpath());
                 Intent inspectionIntent = new Intent(context, InspectionViewActivity.class);
                 inspectionIntent.putExtra("bundle", bundle);
                 context.startActivity(inspectionIntent);

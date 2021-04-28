@@ -1,10 +1,12 @@
 package com.alexeyre.fixit.Models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
-public class TrafficLightInspectionModel implements Serializable {
+public class TrafficLightInspectionModel extends InspectionReceiptModel implements Serializable {
 
     private String inspection_by, last_inspection, next_due_inpection, status, timestamp;
+    private ArrayList<InspectionReceiptModel> receipt;
 
     public TrafficLightInspectionModel() {
     }
@@ -47,5 +49,13 @@ public class TrafficLightInspectionModel implements Serializable {
 
     public void settimestamp(String timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public ArrayList<InspectionReceiptModel> getreceipt() {
+        return receipt;
+    }
+
+    public void setreceipt(ArrayList<InspectionReceiptModel> receipt) {
+        this.receipt = receipt;
     }
 }
