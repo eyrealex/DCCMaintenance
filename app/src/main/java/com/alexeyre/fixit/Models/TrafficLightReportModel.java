@@ -3,7 +3,7 @@ package com.alexeyre.fixit.Models;
 import java.io.Serializable;
 
 public class TrafficLightReportModel implements Serializable {
-    String physical_issues, electrical_issues, light_issues, button_issues, sound_issues, sequence_issues, repairs_needed, notes, image_url, signature_url, report_key;
+    String physical_issues, electrical_issues, light_issues, button_issues, sound_issues, sequence_issues, repairs_needed, notes, image_url, signature_url, report_key, created_by;
 
     public TrafficLightReportModel() {
     }
@@ -95,5 +95,13 @@ public class TrafficLightReportModel implements Serializable {
 
     public void setreport_key(String report_key) {
         this.report_key = report_key;
+    }
+
+    public String getcreated_by() {
+        return created_by;
+    }
+
+    public void setcreated_by(String created_by) {
+        this.created_by = created_by;
     }
 }

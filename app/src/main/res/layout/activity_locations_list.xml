@@ -53,7 +53,7 @@
         android:layout_below="@+id/view_btn"
         android:layout_marginTop="@dimen/spacing_xmedium"
         android:scrollbars="vertical"
-        tools:listitem="@layout/inspection_list_item">
+        tools:listitem="@layout/locations_list_item">
 
     </androidx.recyclerview.widget.RecyclerView>
 

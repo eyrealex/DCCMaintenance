@@ -37,7 +37,7 @@ public class LocationsListAdapter extends RecyclerView.Adapter<LocationsListView
     @NonNull
     @Override
     public LocationsListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View mView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.inspection_list_item, viewGroup, false);
+        View mView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.locations_list_item, viewGroup, false);
         return new LocationsListViewHolder(mView);
     }
 

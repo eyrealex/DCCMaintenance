@@ -11,9 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/header_background"
+        android:fontFamily="@font/nunito_regular"
         android:gravity="center"
         android:padding="@dimen/spacing_large"
-        android:text="Previous Inspection"
+        android:text="Previous Reports"
         android:textColor="@color/white"
         android:textSize="27sp" />
 
@@ -21,124 +22,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/prev_report_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:scrollbars="vertical"
+            tools:listitem="@layout/prev_report_list_item">
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.AppTheme.TextInputLayoutList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        </androidx.recyclerview.widget.RecyclerView>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/prev_id_tf"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:focusableInTouchMode="false"
-                    android:hint="ID"
-                    android:textColor="@color/black" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.AppTheme.TextInputLayoutList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/prev_location_tf"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:focusableInTouchMode="false"
-                    android:hint="Location"
-                    android:textColor="@color/black" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.AppTheme.TextInputLayoutList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/prev_inspection_tf"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:focusableInTouchMode="false"
-                    android:hint="Last Inspection"
-                    android:textColor="@color/black" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.AppTheme.TextInputLayoutList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/prev_employee_tf"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:focusableInTouchMode="false"
-                    android:hint="Last Assigned Employee"
-                    android:textColor="@color/black" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/prev_photo_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_btn_primary_light"
-                    android:text="Photo"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-                <Button
-                    android:id="@+id/prev_signature_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_btn_primary_light"
-                    android:text="Signature"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-                <Button
-                    android:id="@+id/prev_report_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_btn_primary_light"
-                    android:text="Report"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-            <com.google.android.gms.maps.MapView
-                android:id="@+id/prev_inspection_map"
-                android:layout_width="match_parent"
-                android:layout_height="400dp" />
-
-        </LinearLayout>
 
     </ScrollView>
 

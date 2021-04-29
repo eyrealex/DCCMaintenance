@@ -40,8 +40,6 @@ public class TrafficLightProfileActivity extends AppCompatActivity {
             if (trafficLightID != null) {
                 //Fetch the profile data from Firebase
                 getTrafficLightProfile(trafficLightID);
-                //Init the components like onClicks etc
-                initComponents();
 
             } else {
                 //Quit activity as there is no ID
@@ -53,10 +51,6 @@ public class TrafficLightProfileActivity extends AppCompatActivity {
         }
 
     }
-
-    private void initComponents() {
-    }
-
 
     /**
      * Get the traffic light object from Firebase
@@ -115,6 +109,16 @@ public class TrafficLightProfileActivity extends AppCompatActivity {
 
 
     public void previous_reports(View view) {
+        Bundle bundle = new Bundle();
+        //get the data from the model using the key
+        bundle.putString("traffic_light_id", trafficLightModel.getkey());
+        bundle.putString("traffic_light_location", trafficLightModel.getname());
+        //create the intent for the bundle
+        Intent bundleIntent = new Intent(this, ReportsPrevActivity.class);
+        //add the extras from the key to the bundle
+        bundleIntent.putExtra("bundle", bundle);
+        //start the activity using the bundle
+        this.startActivity(bundleIntent);
     }
 
     public void create_report(View view) {

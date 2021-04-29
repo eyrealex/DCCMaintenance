@@ -15,7 +15,6 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alexeyre.fixit.Activities.InspectionViewActivity;
-import com.alexeyre.fixit.Models.InspectionReceiptModel;
 import com.alexeyre.fixit.Models.TrafficLightModel;
 import com.alexeyre.fixit.R;
 
@@ -38,7 +37,7 @@ public class ReportListAdapter extends RecyclerView.Adapter<ReportListViewHolder
     @NonNull
     @Override
     public ReportListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.report_list_item, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.inspections_list_item, viewGroup, false);
         return new ReportListViewHolder(view);
     }
 
@@ -86,8 +85,6 @@ public class ReportListAdapter extends RecyclerView.Adapter<ReportListViewHolder
             animation.setDuration(1500);
             viewToAnimate.startAnimation(animation);
             lastPosition = position;
-
-
         }
     }
 

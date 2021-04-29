@@ -34,6 +34,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -317,6 +318,7 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
         trafficLightReportModel.setsound_issues(cb5.isChecked() ? "Yes" : "No");
         trafficLightReportModel.setsequence_issues(cb6.isChecked() ? "Yes" : "No");
         trafficLightReportModel.setrepairs_needed(cb7.isChecked() ? "Yes" : "No");
+        trafficLightReportModel.setcreated_by(UserSingletonModel.getInstance().getuser_name() );
 
         //for writing notes to the database
         trafficLightReportModel.setnotes(notes.getText().toString());//Returns "" if nothing in the input field
