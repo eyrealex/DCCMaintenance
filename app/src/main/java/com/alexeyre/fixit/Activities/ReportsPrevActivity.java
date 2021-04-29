@@ -10,11 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alexeyre.fixit.Adapters.PrevReportsAdapter;
-import com.alexeyre.fixit.Adapters.ReportListAdapter;
 import com.alexeyre.fixit.Constants.Constants;
+import com.alexeyre.fixit.Models.TrafficLightInspectionModel;
 import com.alexeyre.fixit.Models.TrafficLightModel;
 import com.alexeyre.fixit.R;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +24,9 @@ import java.util.ArrayList;
 
 public class ReportsPrevActivity extends AppCompatActivity {
     private ArrayList<TrafficLightModel> reportModelList;
-    PrevReportsAdapter prevReportsAdapter;
+    private TrafficLightModel trafficLightModel;
+    private TrafficLightInspectionModel trafficLightInspectionModel;
+    private PrevReportsAdapter prevReportsAdapter;
     private RecyclerView recyclerView;
     private DatabaseReference databaseReference;
     private String id, location;
@@ -40,7 +41,6 @@ public class ReportsPrevActivity extends AppCompatActivity {
         if (bundle != null) {
             id = bundle.getBundle("bundle").getString("traffic_light_id");
             location = bundle.getBundle("bundle").getString("traffic_light_location");
-            System.out.println("******************** this us bundle id " + id + "***************************** this is bundle location " + location );
             //if the bundle is not empty, pass the instance of the bundle to a method to get the data
             if (id != null) {
                 getBundleInfo(id);
@@ -58,8 +58,10 @@ public class ReportsPrevActivity extends AppCompatActivity {
             finish();
         }
 
-       recyclerView = (RecyclerView) findViewById(R.id.prev_report_recycler_view);
-        databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.COORDINATES).child(id);
+        recyclerView = (RecyclerView) findViewById(R.id.prev_report_recycler_view);
+
+
+        databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.COORDINATES).child(id).child(Constants.INSPECTIONS);
         //set recycle view of list in a linear fashion
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ReportsPrevActivity.this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -68,16 +70,13 @@ public class ReportsPrevActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 reportModelList = new ArrayList<>();
                 for (DataSnapshot ds : snapshot.getChildren()) {
-                    String key = ds.getKey();
-                    String created_by = snapshot.child(key).child("created_by").getValue(String.class);
-                    String path = snapshot.child(key).child("path").getValue(String.class);
+                    String timestamp = ds.getKey();
                     if (snapshot != null && snapshot.hasChildren()) {
-                        TrafficLightModel trafficLightModel = snapshot.getValue(TrafficLightModel.class);
+                        trafficLightModel = snapshot.getValue(TrafficLightModel.class);
                         trafficLightModel.setname(location);
                         trafficLightModel.setkey(id);
-                        trafficLightModel.setinspection_by(created_by);
-                        trafficLightModel.settimestamp(key);
-                        trafficLightModel.setpath(path);
+                        trafficLightModel.setcreated_by(ds.child("created_by").getValue(String.class));
+                        trafficLightModel.settimestamp(timestamp);
                         reportModelList.add(trafficLightModel);
                     }
                 }
@@ -90,6 +89,7 @@ public class ReportsPrevActivity extends AppCompatActivity {
 
             }
         });
+
 
 
     }

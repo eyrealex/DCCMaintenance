@@ -55,7 +55,7 @@ public class PrevReportsAdapter extends RecyclerView.Adapter<PrevReportsViewHold
             prevReportsViewHolder.prev_timestamp.setText(String.format(Locale.ENGLISH, "Reported on: %s", trafficLightModels.get(position).gettimestamp()).trim());
         }
 
-        prevReportsViewHolder.prev_created_by.setText(String.format(Locale.ENGLISH, "Created by: %s", trafficLightModels.get(position).getinspection_by()).trim());
+        prevReportsViewHolder.prev_created_by.setText(String.format(Locale.ENGLISH, "Created by: %s", trafficLightModels.get(position).getcreated_by()).trim());
     }
 
     private void setAnimation(View viewToAnimate, int position) {
