@@ -1,6 +1,9 @@
 package com.alexeyre.fixit.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alexeyre.fixit.Activities.InspectionViewActivity;
+import com.alexeyre.fixit.Activities.ReportsPrevViewActivity;
 import com.alexeyre.fixit.Models.TrafficLightModel;
 import com.alexeyre.fixit.R;
 
@@ -56,6 +61,21 @@ public class PrevReportsAdapter extends RecyclerView.Adapter<PrevReportsViewHold
         }
 
         prevReportsViewHolder.prev_created_by.setText(String.format(Locale.ENGLISH, "Created by: %s", trafficLightModels.get(position).getcreated_by()).trim());
+
+        //create on click for each of the items in the list
+        prevReportsViewHolder.parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle ();
+                bundle.putString("prev_key", trafficLightModels.get(position).getkey());
+                bundle.putString("prev_name", trafficLightModels.get(position).getname());
+                bundle.putString("prev_timestamp", trafficLightModels.get(position).gettimestamp());
+                bundle.putString("prev_created", trafficLightModels.get(position).getcreated_by());
+                Intent inspectionIntent = new Intent(context, ReportsPrevViewActivity.class);
+                inspectionIntent.putExtra("bundle", bundle);
+                context.startActivity(inspectionIntent);
+            }
+        });
     }
 
     private void setAnimation(View viewToAnimate, int position) {
@@ -88,6 +108,7 @@ class PrevReportsViewHolder extends RecyclerView.ViewHolder {
         prev_location = itemView.findViewById(R.id.prev_report_location_tv);
         prev_timestamp = itemView.findViewById(R.id.prev_report_reported_on_tv);
         prev_created_by = itemView.findViewById(R.id.prev_report_created_by_tv);
+        parent = itemView.findViewById(R.id.parent_cv);
 
     }
 

@@ -119,6 +119,8 @@ public class TrafficLightProfileActivity extends AppCompatActivity {
         bundleIntent.putExtra("bundle", bundle);
         //start the activity using the bundle
         this.startActivity(bundleIntent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
     }
 
     public void create_report(View view) {
@@ -131,13 +133,13 @@ public class TrafficLightProfileActivity extends AppCompatActivity {
         bundleIntent.putExtra("bundle", bundle);
         //start the activity using the bundle
         this.startActivity(bundleIntent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     }
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(TrafficLightProfileActivity.this, LocationsListActivity.class));
-        finish();
+        super.onBackPressed();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

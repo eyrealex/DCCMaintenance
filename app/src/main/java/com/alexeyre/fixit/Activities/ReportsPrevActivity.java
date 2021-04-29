@@ -110,8 +110,7 @@ public class ReportsPrevActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(ReportsPrevActivity.this, TrafficLightProfileActivity.class));
-        finish();
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

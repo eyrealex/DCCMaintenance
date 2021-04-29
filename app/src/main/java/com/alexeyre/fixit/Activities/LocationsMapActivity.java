@@ -122,13 +122,15 @@ public class LocationsMapActivity extends FragmentActivity implements OnMapReady
 
     public void list_view_btn(View view) {
         startActivity(new Intent(LocationsMapActivity.this, LocationsListActivity.class));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     @Override
     public void onBackPressed() {
         startActivity(new Intent(LocationsMapActivity.this, LocationsListActivity.class));
         finish();
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
 }

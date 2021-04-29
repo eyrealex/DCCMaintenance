@@ -28,6 +28,8 @@ public class UserRegisterActivity extends AppCompatActivity {
 
     //variables
     private TextInputLayout mName, mEmail, mPhone, mPassword;
+    private Button mAccountBtn;
+    private Button mRegisterBtn;
     private FirebaseAuth mAuth;
 
     @Override
@@ -36,8 +38,8 @@ public class UserRegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_register);
 
         //hooks
-        Button mRegisterBtn = findViewById(R.id.reg_btn);
-        Button mAccountBtn = findViewById(R.id.reg_login_btn);
+        mRegisterBtn = findViewById(R.id.reg_btn);
+        mAccountBtn = findViewById(R.id.reg_login_btn);
         mName = findViewById(R.id.reg_name);
         mEmail = findViewById(R.id.reg_email);
         mPhone = findViewById(R.id.reg_phone_number);
@@ -207,8 +209,18 @@ public class UserRegisterActivity extends AppCompatActivity {
     //when the back button is pressed
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(UserRegisterActivity.this, UserLoginActivity.class));
-        finish();
+        Intent intent = new Intent(UserRegisterActivity.this, UserLoginActivity.class);
+        //create pairs for animation
+        Pair[] pairs = new Pair[3];
+        pairs[0] = new Pair<View, String>(mEmail, "username_tran");
+        pairs[1] = new Pair<View, String>(mPassword, "password_tran");
+        pairs[2] = new Pair<View, String>(mAccountBtn, "account_tran");
+
+        //Call next activity by attaching the animation with it.
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(UserRegisterActivity.this, pairs);
+            startActivity(intent, options.toBundle());
+        }
     }
 
 

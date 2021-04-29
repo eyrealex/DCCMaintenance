@@ -75,12 +75,12 @@ public class LocationsListActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(LocationsListActivity.this, MainActivity.class));
-        finish();
+        super.onBackPressed();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     public void map_view_btn(View view) {
         startActivity(new Intent(LocationsListActivity.this, LocationsMapActivity.class));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 }//end JobInspectionActivity

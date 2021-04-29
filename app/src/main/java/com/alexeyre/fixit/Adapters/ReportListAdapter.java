@@ -72,7 +72,6 @@ public class ReportListAdapter extends RecyclerView.Adapter<ReportListViewHolder
                 context.startActivity(inspectionIntent);
             }
         });
-        //pass bundle info from list item to the next activity
 
     }
 

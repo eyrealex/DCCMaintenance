@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -24,7 +23,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
-import com.alexeyre.fixit.Constants.Constants;
 import com.alexeyre.fixit.Models.InspectionReceiptModel;
 import com.alexeyre.fixit.Models.TrafficLightModel;
 import com.alexeyre.fixit.Models.TrafficLightReportModel;
@@ -34,7 +32,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -318,11 +315,10 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
         trafficLightReportModel.setsound_issues(cb5.isChecked() ? "Yes" : "No");
         trafficLightReportModel.setsequence_issues(cb6.isChecked() ? "Yes" : "No");
         trafficLightReportModel.setrepairs_needed(cb7.isChecked() ? "Yes" : "No");
-        trafficLightReportModel.setcreated_by(UserSingletonModel.getInstance().getuser_name() );
+        trafficLightReportModel.setcreated_by(UserSingletonModel.getInstance().getuser_name());
 
         //for writing notes to the database
         trafficLightReportModel.setnotes(notes.getText().toString());//Returns "" if nothing in the input field
-
 
 
         //Write to database
@@ -346,8 +342,8 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
                         .setValue(receipt).addOnCompleteListener(task1 -> {
                     if (task.isSuccessful()) {
                         progressDialog.dismiss();
-                        finish();
                         startActivity(new Intent(ReportActivity.this, TrafficLightProfileActivity.class));
+                        finish();
                     }
 
                 });
@@ -385,6 +381,12 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
                 Toast.makeText(ReportActivity.this, "Failed to get signature url", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
 }

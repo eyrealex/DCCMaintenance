@@ -86,12 +86,12 @@ public class MainActivity extends AppCompatActivity {
         controls.add(new HomePageWidgetModel(R.drawable.icon_settings, "Settings", SettingsActivity.class));
 
         setAdapter(controls);
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     private void setAdapter(ArrayList<HomePageWidgetModel> controls) {
         RecyclerView controls_rv = findViewById(R.id.widget_rv);
         controls_rv.setAdapter(new ControlsAdapter(this, controls));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
     }
 

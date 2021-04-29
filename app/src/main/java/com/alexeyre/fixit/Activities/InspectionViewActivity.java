@@ -1,5 +1,6 @@
 package com.alexeyre.fixit.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -185,8 +186,11 @@ public class InspectionViewActivity extends AppCompatActivity {
         ((TextInputEditText) findViewById(R.id.inspection_location_tv)).setText(inspectionReceiptModel.getlocation()); //Actually the location
         ((TextInputEditText) findViewById(R.id.inspection_reported_tv)).setText(inspectionReceiptModel.gettimestamp()); //Actually the location
         ((TextInputEditText) findViewById(R.id.inspection_created_by_tv)).setText(inspectionReceiptModel.getcreated_by()); //Actually the location
+    }
 
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

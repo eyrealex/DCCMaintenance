@@ -89,7 +89,7 @@ public class UserLoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(UserLoginActivity.this, UserForgotPasswordActivity.class));
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
 
@@ -173,6 +173,7 @@ public class UserLoginActivity extends AppCompatActivity {
 
                                 //redirect user to dashboard
                                 startActivity(new Intent(UserLoginActivity.this, MainActivity.class));
+                                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
                             } else {
                                 user.sendEmailVerification();

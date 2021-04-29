@@ -2,6 +2,7 @@ package com.alexeyre.fixit.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -74,14 +75,14 @@ public class InspectionsActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(InspectionsActivity.this, MainActivity.class));
-        finish();
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
 

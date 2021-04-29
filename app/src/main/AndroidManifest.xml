@@ -20,7 +20,8 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.InspectionViewActivity"></activity>
+        <activity android:name=".Activities.ReportsPrevViewActivity"></activity>
+        <activity android:name=".Activities.InspectionViewActivity" />
         <activity android:name=".Activities.InspectionsActivity" />
         <activity android:name=".Activities.ReportActivity" />
         <activity android:name=".Activities.ReportsPrevActivity" />
