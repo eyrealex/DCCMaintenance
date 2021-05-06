@@ -91,20 +91,6 @@ public class TrafficLightProfileActivity extends AppCompatActivity {
         ((TextInputEditText) findViewById(R.id.id_tv)).setText(trafficLightModel.getkey());
         ((TextInputEditText) findViewById(R.id.location_tv)).setText(trafficLightModel.getname()); //Actually the location
 
-        if (trafficLightModel.getinspection() == null) {
-            ((TextInputEditText) findViewById(R.id.next_inspec_tv)).setText("N/A");
-            ((TextInputEditText) findViewById(R.id.last_inspec_tv)).setText("N/A");
-            ((TextInputEditText) findViewById(R.id.last_employee_tv)).setText("N/A");
-        } else {
-            //If you have inspection
-
-            //Get the timestamp of the last,
-            //For the next, add 6 months to last
-            //For person, get the most recent one and get the name from it
-        }
-
-        //If there are no inspections
-        //Set next, last and who to "N/A"
     }
 
 

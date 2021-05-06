@@ -13,7 +13,7 @@
         android:background="@drawable/header_background"
         android:fontFamily="@font/nunito_regular"
         android:gravity="center"
-        android:padding="@dimen/spacing_large"
+        android:padding="@dimen/spacing_medium"
         android:text="Report"
         android:textColor="@color/white"
         android:textSize="30sp" />
@@ -106,19 +106,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="215dp"
-                    android:layout_marginTop="@dimen/spacing_large"
-                    android:text="Checkbox if Yes: "
-                    android:textColor="@color/black"
-                    android:textSize="17sp" />
-
-
-            </LinearLayout>
+                android:orientation="horizontal"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

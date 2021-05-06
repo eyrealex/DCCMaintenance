@@ -59,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Database Error " + error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        loadSetting();
+    }
+
+    private void loadSetting() {
+
     }
 
     private void setupUI() {

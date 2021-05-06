@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/header_background"
         android:gravity="center"
-        android:padding="@dimen/spacing_large"
+        android:padding="@dimen/spacing_medium"
         android:text="Traffic Light Profile"
         android:textColor="@color/white"
         android:textSize="30sp"
@@ -72,61 +72,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Next Inspection"
-                android:textColorHint="@color/colorAccent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/next_inspec_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/trans"
-                    android:drawableStart="@drawable/ic_forward"
-                    android:drawablePadding="10dp"
-                    android:focusableInTouchMode="false"
-                    android:fontFamily="@font/nunito_regular"
-                    tools:text="01/01/2020" />
-
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:textColorHint="@color/colorAccent"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Last Inspection"
-                android:textColorHint="@color/colorAccent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/last_inspec_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/trans"
-                    android:drawableStart="@drawable/ic_back"
-                    android:drawablePadding="10dp"
-                    android:focusableInTouchMode="false"
-                    android:fontFamily="@font/nunito_regular"
-                    tools:text="01/01/2020" />
-
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:textColorHint="@color/colorAccent"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Last Assigned Employee"
-                android:textColorHint="@color/colorAccent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/last_employee_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/trans"
-                    android:drawableStart="@drawable/ic_employee"
-                    android:drawablePadding="10dp"
-                    android:focusableInTouchMode="false"
-                    android:fontFamily="@font/nunito_regular"
-                    tools:text="Alex Eyre" />
-
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:textColorHint="@color/colorAccent"/>
 
 
             <Button

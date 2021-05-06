@@ -20,7 +20,7 @@
             android:fontFamily="@font/nunito_regular"
             android:text="Locations Map"
             android:textColor="#FFFFFF"
-            android:textSize="27sp" />
+            android:textSize="30sp" />
 
     </RelativeLayout>
 

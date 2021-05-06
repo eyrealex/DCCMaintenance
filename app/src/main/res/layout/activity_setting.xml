@@ -1,9 +1,406 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_300"
+    android:orientation="vertical"
     tools:context=".Activities.SettingsActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/header_background"
+                android:fontFamily="@font/nunito_regular"
+                android:gravity="center"
+                android:padding="@dimen/spacing_medium"
+                android:text="Settings"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/spacing_xlarge"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:text="General"
+                android:textColor="@color/colorAccent"
+                android:textSize="17sp" />
+
+            <RelativeLayout
+                android:id="@+id/about_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/about_ic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_xlarge"
+                    android:layout_marginTop="25dp"
+                    android:src="@drawable/ic_about" />
+
+                <TextView
+                    android:id="@+id/about_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_xlarge"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:layout_toRightOf="@id/about_ic"
+                    android:text="About"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/about_tv"
+                    android:layout_marginLeft="@dimen/spacing_xlarge"
+                    android:layout_marginBottom="@dimen/spacing_large"
+                    android:layout_toRightOf="@id/about_ic"
+                    android:text="Read more about FixIt" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/dark_mode_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/dark_ic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_xlarge"
+                    android:layout_marginTop="25dp"
+                    android:src="@drawable/ic_dark" />
+
+                <TextView
+                    android:id="@+id/dark_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_xlarge"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:layout_toRightOf="@id/dark_ic"
+                    android:text="Dark Mode"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/dark_tv"
+                    android:layout_marginLeft="@dimen/spacing_xlarge"
+                    android:layout_marginBottom="@dimen/spacing_large"
+                    android:layout_toRightOf="@id/dark_ic"
+                    android:text="Enable dark mode" />
+
+                <Switch
+                    android:id="@+id/dark_mode_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_toRightOf="@id/dark_tv"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/language_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/language_ic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_xlarge"
+                    android:layout_marginTop="25dp"
+                    android:src="@drawable/ic_language" />
+
+                <TextView
+                    android:id="@+id/language_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_xlarge"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:layout_toRightOf="@id/language_ic"
+                    android:text="Language"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/language_tv"
+                    android:layout_marginLeft="@dimen/spacing_xlarge"
+                    android:layout_marginBottom="@dimen/spacing_large"
+                    android:layout_toRightOf="@id/language_ic"
+                    android:text="Choose language preference" />
+
+            </RelativeLayout>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_xlarge"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:text="FixIt Application"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="17sp" />
+
+                <RelativeLayout
+                    android:id="@+id/like_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/like_ic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_xlarge"
+                        android:layout_marginTop="25dp"
+                        android:src="@drawable/ic_like" />
+
+                    <TextView
+                        android:id="@+id/like_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_xlarge"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:layout_toRightOf="@id/like_ic"
+                        android:text="Like the app?"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/like_tv"
+                        android:layout_marginLeft="@dimen/spacing_xlarge"
+                        android:layout_marginBottom="@dimen/spacing_large"
+                        android:layout_toRightOf="@id/like_ic"
+                        android:text="Give us feedback via Email" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/bug_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/bug_ic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_xlarge"
+                        android:layout_marginTop="25dp"
+                        android:src="@drawable/ic_bug" />
+
+                    <TextView
+                        android:id="@+id/bug_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_xlarge"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:layout_toRightOf="@id/bug_ic"
+                        android:text="Report a bug"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/bug_tv"
+                        android:layout_marginLeft="@dimen/spacing_xlarge"
+                        android:layout_marginBottom="@dimen/spacing_large"
+                        android:layout_toRightOf="@id/bug_ic"
+                        android:text="Report a bug via Email" />
+
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/copyright_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/copyright_ic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_xlarge"
+                        android:layout_marginTop="25dp"
+                        android:src="@drawable/ic_copyright" />
+
+                    <TextView
+                        android:id="@+id/copyright_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_xlarge"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:layout_toRightOf="@id/copyright_ic"
+                        android:text="Copyright 2021"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/copyright_tv"
+                        android:layout_marginLeft="@dimen/spacing_xlarge"
+                        android:layout_marginBottom="@dimen/spacing_large"
+                        android:layout_toRightOf="@id/copyright_ic"
+                        android:text="Our copyright can be found here" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_xlarge"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:text="Developer Section"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="17sp" />
+
+                <RelativeLayout
+                    android:id="@+id/contact_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/contact_ic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_xlarge"
+                        android:layout_marginTop="25dp"
+                        android:src="@drawable/ic_email" />
+
+                    <TextView
+                        android:id="@+id/contact_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_xlarge"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:layout_toRightOf="@id/contact_ic"
+                        android:text="Contact Us"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/contact_tv"
+                        android:layout_marginLeft="@dimen/spacing_xlarge"
+                        android:layout_marginBottom="@dimen/spacing_large"
+                        android:layout_toRightOf="@id/contact_ic"
+                        android:text="Get in touch via Email" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/terms_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/terms_ic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_xlarge"
+                        android:layout_marginTop="25dp"
+                        android:src="@drawable/ic_terms" />
+
+                    <TextView
+                        android:id="@+id/terms_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_xlarge"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:layout_toRightOf="@id/terms_ic"
+                        android:text="Terms &amp; Conditions"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/terms_tv"
+                        android:layout_marginLeft="@dimen/spacing_xlarge"
+                        android:layout_marginBottom="@dimen/spacing_large"
+                        android:layout_toRightOf="@id/terms_ic"
+                        android:text="Our T&amp;C's can be found here" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/policy_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/policy_ic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_xlarge"
+                        android:layout_marginTop="25dp"
+                        android:src="@drawable/ic_policy" />
+
+                    <TextView
+                        android:id="@+id/policy_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/spacing_xlarge"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:layout_toRightOf="@id/policy_ic"
+                        android:text="Private Policy"
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/policy_tv"
+                        android:layout_marginLeft="@dimen/spacing_xlarge"
+                        android:layout_marginBottom="@dimen/spacing_large"
+                        android:layout_toRightOf="@id/policy_ic"
+                        android:text="Our policy can be found here" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

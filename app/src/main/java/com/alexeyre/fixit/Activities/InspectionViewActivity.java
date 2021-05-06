@@ -75,7 +75,6 @@ public class InspectionViewActivity extends AppCompatActivity {
             finish();
         }
 
-
     }
 
     /**

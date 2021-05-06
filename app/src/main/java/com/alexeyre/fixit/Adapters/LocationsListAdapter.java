@@ -48,13 +48,6 @@ public class LocationsListAdapter extends RecyclerView.Adapter<LocationsListView
         locationsListViewHolder.id_tv.setText(String.format(Locale.ENGLISH, "ID: %s", trafficLightModels.get(position).getkey()).trim());
         locationsListViewHolder.location_tv.setText(String.format(Locale.ENGLISH, "Location: %s", trafficLightModels.get(position).getname()).trim());
 
-        //if there is no data relating to next due, set it to N/A
-        if (trafficLightModels.get(position).getnext_due_inpection() == null) {
-            locationsListViewHolder.next_inspec_tv.setText(String.format(Locale.ENGLISH, "Due: N/A"));
-        } else {
-            locationsListViewHolder.next_inspec_tv.setText(String.format(Locale.ENGLISH, "Due: %s", trafficLightModels.get(position).getinspection().get(position).getnext_due_inpection()));
-        }
-
 
         //On Click for each item
         locationsListViewHolder.parent.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +105,6 @@ class LocationsListViewHolder extends RecyclerView.ViewHolder {
 
         id_tv = itemView.findViewById(R.id.id_tv);
         location_tv = itemView.findViewById(R.id.location_tv);
-        next_inspec_tv = itemView.findViewById(R.id.next_inspec_tv);
         parent = itemView.findViewById(R.id.parent_cv);
     }
 

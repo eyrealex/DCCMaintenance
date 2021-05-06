@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/list_view_height"
     android:layout_margin="@dimen/spacing_large"
-    android:backgroundTint="@color/light_blue_500"
+    android:backgroundTint="@color/light_blue_900"
     android:clickable="true"
     android:elevation="@dimen/spacing_medium"
     android:foreground="?attr/selectableItemBackground"

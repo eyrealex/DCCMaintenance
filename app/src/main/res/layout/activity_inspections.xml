@@ -12,11 +12,11 @@
         android:layout_height="wrap_content"
         android:background="@drawable/header_background"
         android:gravity="center"
-        android:padding="@dimen/spacing_large"
+        android:padding="@dimen/spacing_medium"
         android:fontFamily="@font/nunito_regular"
         android:text="All Inspections"
         android:textColor="@color/white"
-        android:textSize="27sp" />
+        android:textSize="30sp" />
 
     <ScrollView
         android:layout_width="match_parent"

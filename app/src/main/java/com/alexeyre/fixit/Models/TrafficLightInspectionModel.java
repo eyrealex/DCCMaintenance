@@ -5,7 +5,8 @@ import java.util.ArrayList;
 
 public class TrafficLightInspectionModel extends InspectionReceiptModel implements Serializable {
 
-    private String inspection_by, last_inspection, next_due_inpection, status, timestamp;
+    private String inspection_by, last_inspection, status, timestamp;
+    private long next_due_inpection;
     private ArrayList<InspectionReceiptModel> receipt;
 
     public TrafficLightInspectionModel() {
@@ -27,11 +28,11 @@ public class TrafficLightInspectionModel extends InspectionReceiptModel implemen
         this.last_inspection = last_inspection;
     }
 
-    public String getnext_due_inpection() {
+    public long getnext_due_inpection() {
         return next_due_inpection;
     }
 
-    public void setnext_due_inpection(String next_due_inpection) {
+    public void setnext_due_inpection(long next_due_inpection) {
         this.next_due_inpection = next_due_inpection;
     }
 

@@ -24,6 +24,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.alexeyre.fixit.Models.InspectionReceiptModel;
+import com.alexeyre.fixit.Models.TrafficLightInspectionModel;
 import com.alexeyre.fixit.Models.TrafficLightModel;
 import com.alexeyre.fixit.Models.TrafficLightReportModel;
 import com.alexeyre.fixit.Models.UserSingletonModel;
