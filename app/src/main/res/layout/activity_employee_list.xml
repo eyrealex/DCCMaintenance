@@ -17,14 +17,32 @@
         android:textColor="@color/white"
         android:textSize="30sp" />
 
+
+    <SearchView
+        android:id="@+id/search_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/search_layout"
+        android:padding="5dp"
+        android:layout_marginLeft="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginRight="@dimen/spacing_large"
+        android:fontFamily="@font/nunito_regular"
+        android:hint="Search Here..."
+        android:textAlignment="textStart">
+
+    </SearchView>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_large"
         android:scrollbars="vertical"
-        tools:listitem="@layout/user_list_item"
-        tools:itemCount="4">
+        tools:itemCount="4"
+        tools:listitem="@layout/user_list_item">
+
 
     </androidx.recyclerview.widget.RecyclerView>
 
