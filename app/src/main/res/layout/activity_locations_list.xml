@@ -55,7 +55,9 @@
             android:background="@drawable/search_layout"
             android:fontFamily="@font/nunito_regular"
             android:padding="5dp"
-            android:textAlignment="textStart"></SearchView>
+            android:textAlignment="textStart">
+        </SearchView>
+
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView

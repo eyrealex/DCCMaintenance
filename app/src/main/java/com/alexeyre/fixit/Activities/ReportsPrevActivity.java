@@ -2,6 +2,7 @@ package com.alexeyre.fixit.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alexeyre.fixit.Adapters.PrevReportsAdapter;
+import com.alexeyre.fixit.Adapters.ReportListAdapter;
 import com.alexeyre.fixit.Constants.Constants;
 import com.alexeyre.fixit.Models.TrafficLightInspectionModel;
 import com.alexeyre.fixit.Models.TrafficLightModel;
@@ -25,16 +27,20 @@ import java.util.ArrayList;
 public class ReportsPrevActivity extends AppCompatActivity {
     private ArrayList<TrafficLightModel> reportModelList;
     private TrafficLightModel trafficLightModel;
-    private TrafficLightInspectionModel trafficLightInspectionModel;
     private PrevReportsAdapter prevReportsAdapter;
     private RecyclerView recyclerView;
     private DatabaseReference databaseReference;
     private String id, location;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reports_prev);
+
+        //hooks
+        searchView = findViewById(R.id.search_field_prev_reports);
+        searchView.setQueryHint("Search by employee or timestamp ...");
 
         //use a bundle to set the ID and Location
         Bundle bundle = getIntent().getExtras();
@@ -58,40 +64,74 @@ public class ReportsPrevActivity extends AppCompatActivity {
             finish();
         }
 
-        recyclerView = (RecyclerView) findViewById(R.id.prev_report_recycler_view);
-
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.COORDINATES).child(id).child(Constants.INSPECTIONS);
-        //set recycle view of list in a linear fashion
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ReportsPrevActivity.this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                reportModelList = new ArrayList<>();
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    String timestamp = ds.getKey();
-                    if (snapshot != null && snapshot.hasChildren()) {
-                        trafficLightModel = snapshot.getValue(TrafficLightModel.class);
-                        trafficLightModel.setname(location);
-                        trafficLightModel.setkey(id);
-                        trafficLightModel.setcreated_by(ds.child("created_by").getValue(String.class));
-                        trafficLightModel.settimestamp(timestamp);
-                        reportModelList.add(trafficLightModel);
+
+        if(databaseReference != null){
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    reportModelList = new ArrayList<>();
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        String timestamp = ds.getKey();
+                        if (snapshot != null && snapshot.hasChildren()) {
+                            trafficLightModel = snapshot.getValue(TrafficLightModel.class);
+                            trafficLightModel.setname(location);
+                            trafficLightModel.setkey(id);
+                            trafficLightModel.setcreated_by(ds.child("created_by").getValue(String.class));
+                            trafficLightModel.settimestamp(timestamp);
+                            reportModelList.add(trafficLightModel);
+                        }
                     }
+                    setAdapter(reportModelList);
                 }
-                prevReportsAdapter = new PrevReportsAdapter(ReportsPrevActivity.this, reportModelList);
-                recyclerView.setAdapter(prevReportsAdapter);
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }if(searchView != null){
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String s) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String s) {
+                    search(s);
+                    return true;
+                }
+            });
+        }
+
+
+
+
+    }
+
+    private void search(String str) {
+        ArrayList<TrafficLightModel> list = new ArrayList<>();
+        for (TrafficLightModel object : reportModelList) {
+            if (object.gettimestamp().toLowerCase().contains(str.toLowerCase()) || object.getcreated_by().toLowerCase().contains(str.toLowerCase())) {
+                list.add(object);
             }
+        }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        setSearchAdapter(list);
+    }
 
-            }
-        });
+    private void setSearchAdapter(ArrayList<TrafficLightModel> list) {
+        RecyclerView recyclerView = findViewById(R.id.prev_report_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new PrevReportsAdapter(this, list));
+    }
 
-
-
+    private void setAdapter(ArrayList<TrafficLightModel> reportModelList) {
+        RecyclerView recyclerView = findViewById(R.id.prev_report_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new PrevReportsAdapter(this, reportModelList));
     }
 
     private void getBundleInfo(String bundleInfo) {

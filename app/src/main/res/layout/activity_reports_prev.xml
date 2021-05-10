@@ -18,6 +18,19 @@
         android:textColor="@color/white"
         android:textSize="27sp" />
 
+    <SearchView
+        android:id="@+id/search_field_prev_reports"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/map_view_button"
+        android:layout_marginLeft="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginRight="@dimen/spacing_large"
+        android:background="@drawable/search_layout"
+        android:fontFamily="@font/nunito_regular"
+        android:padding="5dp"
+        android:textAlignment="textStart"></SearchView>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
