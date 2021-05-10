@@ -27,7 +27,6 @@ public class EmployeeListActivity extends AppCompatActivity {
     private ArrayList<UserProfileModel> allUsersList = new ArrayList<>();
     private ValueEventListener userListListener;
     private DatabaseReference userListReference;
-    private DatabaseReference db;
     private SearchView searchView;
 
     @Override
@@ -35,8 +34,8 @@ public class EmployeeListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_list);
         searchView = findViewById(R.id.search_field);
+        searchView.setQueryHint("Search by name, email or phone ...");
         userListReference = FirebaseDatabase.getInstance().getReference().child(Constants.USERS);
-        db = FirebaseDatabase.getInstance().getReference().child(Constants.USERS).child("ntnDO7m0KNe4QI3D3NX2ZTxxhI53");
 
         if (userListReference != null) {
             //Get a list of all employee from Firebase
