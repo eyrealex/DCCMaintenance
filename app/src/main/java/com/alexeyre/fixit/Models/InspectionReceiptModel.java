@@ -13,6 +13,14 @@ public class InspectionReceiptModel implements Serializable {
     public InspectionReceiptModel() {
     }
 
+    public InspectionReceiptModel(String timestamp, String path, String created_by, String id, String location) {
+        this.timestamp = timestamp;
+        this.path = path;
+        this.created_by = created_by;
+        this.id = id;
+        this.location = location;
+    }
+
     public String gettimestamp() {
         return timestamp;
     }

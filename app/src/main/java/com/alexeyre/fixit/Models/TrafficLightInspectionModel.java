@@ -12,6 +12,14 @@ public class TrafficLightInspectionModel extends InspectionReceiptModel implemen
     public TrafficLightInspectionModel() {
     }
 
+    public TrafficLightInspectionModel(String inspection_by, String timestamp) {
+        this.inspection_by = inspection_by;
+        this.timestamp = timestamp;
+
+    }
+
+
+
     public String getinspection_by() {
         return inspection_by;
     }
