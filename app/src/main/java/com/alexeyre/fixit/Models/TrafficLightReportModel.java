@@ -8,6 +8,20 @@ public class TrafficLightReportModel implements Serializable {
     public TrafficLightReportModel() {
     }
 
+    public TrafficLightReportModel(String physical_issues, String electrical_issues, String light_issues, String button_issues, String sound_issues, String sequence_issues, String repairs_needed, String notes, String image_url, String signature_url, String report_key, String created_by) {
+        this.physical_issues = physical_issues;
+        this.electrical_issues = electrical_issues;
+        this.light_issues = light_issues;
+        this.button_issues = button_issues;
+        this.sound_issues = sound_issues;
+        this.sequence_issues = sequence_issues;
+        this.repairs_needed = repairs_needed;
+        this.notes = notes;
+        this.image_url = image_url;
+        this.signature_url = signature_url;
+        this.report_key = report_key;
+        this.created_by = created_by;
+    }
 
     public String getPhysical_issues() {
         return physical_issues;

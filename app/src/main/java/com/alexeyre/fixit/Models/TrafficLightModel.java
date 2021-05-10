@@ -12,6 +12,13 @@ public class TrafficLightModel extends TrafficLightInspectionModel implements Se
     public TrafficLightModel() {
     }
 
+    public TrafficLightModel(String name, String latitude, String longitude, String key) {
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.key = key;
+    }
+
     public String getkey() {
         return key;
     }
