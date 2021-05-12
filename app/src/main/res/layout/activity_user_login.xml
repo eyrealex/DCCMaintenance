@@ -52,7 +52,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/login_email"
+                android:id="@+id/text_input_email"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -60,25 +60,34 @@
                 android:hint="Email"
                 android:textColorHint="@color/white"
                 android:transitionName="email_tran"
+                app:errorIconTint="@color/colorAccent"
+                app:errorTextColor="@color/colorAccent"
                 app:boxStrokeColor="@color/white"
+                app:boxStrokeErrorColor="@color/colorAccent"
                 app:hintTextColor="@color/white"
                 app:startIconDrawable="@drawable/ic_user"
                 app:startIconTint="@color/white">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
+                    android:id="@+id/email_et"
+                    android:inputType="textEmailAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:maxLines="1"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/login_password"
+                android:id="@+id/text_input_password"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:hint="Password"
+                app:boxStrokeErrorColor="@color/colorAccent"
+                app:errorIconTint="@color/colorAccent"
+                app:errorTextColor="@color/colorAccent"
                 android:textColorHint="@color/white"
                 android:transitionName="password_tran"
                 app:boxStrokeColor="@color/white"
@@ -88,11 +97,13 @@
                 app:startIconDrawable="@drawable/ic_password"
                 app:startIconTint="@color/white">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
+                    android:id="@+id/password_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:maxLines="1"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 

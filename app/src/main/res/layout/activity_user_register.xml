@@ -57,7 +57,10 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:hint="Name"
-                android:textColorHint="@color/white">
+                android:textColorHint="@color/white"
+                app:boxStrokeErrorColor="@color/colorAccent"
+                app:errorIconTint="@color/colorAccent"
+                app:errorTextColor="@color/colorAccent">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -75,7 +78,10 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:hint="Email"
-                android:textColorHint="@color/white">
+                android:textColorHint="@color/white"
+                app:boxStrokeErrorColor="@color/colorAccent"
+                app:errorIconTint="@color/colorAccent"
+                app:errorTextColor="@color/colorAccent">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -92,7 +98,10 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:hint="Phone Number"
-                android:textColorHint="@color/white">
+                android:textColorHint="@color/white"
+                app:boxStrokeErrorColor="@color/colorAccent"
+                app:errorIconTint="@color/colorAccent"
+                app:errorTextColor="@color/colorAccent">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -111,6 +120,9 @@
                 android:hint="Password"
                 android:textColorHint="@color/white"
                 android:transitionName="password_tran"
+                app:boxStrokeErrorColor="@color/colorAccent"
+                app:errorIconTint="@color/colorAccent"
+                app:errorTextColor="@color/colorAccent"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="@color/white">
 
