@@ -87,8 +87,9 @@ public class MainActivity extends AppCompatActivity {
 
         //Added for everyone
         controls.add(new HomePageWidgetModel(R.drawable.icon_inspections, "Inspections", InspectionsActivity.class));
-        controls.add(new HomePageWidgetModel(R.drawable.icon_chart, "Metrics", MetricsActivity.class));
         controls.add(new HomePageWidgetModel(R.drawable.icon_locations, "Locations", LocationsListActivity.class));
+        controls.add(new HomePageWidgetModel(R.drawable.icon_maintenance, "Maintenance", MaintenanceActivity.class));
+        controls.add(new HomePageWidgetModel(R.drawable.icon_chart, "Metrics", MetricsActivity.class));
         controls.add(new HomePageWidgetModel(R.drawable.icon_settings, "Settings", SettingsActivity.class));
 
         setAdapter(controls);

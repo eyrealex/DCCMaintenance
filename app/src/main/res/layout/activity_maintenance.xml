@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_300"
     android:orientation="vertical"
-    tools:context=".Activities.MetricsActivity">
+    tools:context=".Activities.MaintenanceActivity">
 
     <RelativeLayout
         android:id="@+id/job_inspections_header"
@@ -19,9 +18,25 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/nunito_regular"
-            android:text="Metrics"
+            android:text="Maintenance"
             android:textColor="#FFFFFF"
-            android:textSize="30sp" />#
+            android:textSize="30sp" />
+
     </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/maintenance_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            tools:listitem="@layout/inspections_list_item">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </ScrollView>
 
 </LinearLayout>
