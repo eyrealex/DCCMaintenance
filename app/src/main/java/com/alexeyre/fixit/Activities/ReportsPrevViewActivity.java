@@ -22,6 +22,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class ReportsPrevViewActivity extends AppCompatActivity {
 
     private InspectionReceiptModel inspectionReceiptModel;
@@ -30,6 +34,9 @@ public class ReportsPrevViewActivity extends AppCompatActivity {
     private ImageView signatureIv, photoIv;
     private EditText notes;
     private CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7;
+    private Calendar calendar = Calendar.getInstance();
+    private DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+    private String getMyCurrentDateTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +86,11 @@ public class ReportsPrevViewActivity extends AppCompatActivity {
     private void updateUI() {
         ((TextInputEditText) findViewById(R.id.prev_view_id_tv)).setText(key);
         ((TextInputEditText) findViewById(R.id.prev_view_location_tv)).setText(name); //Actually the location
-        ((TextInputEditText) findViewById(R.id.prev_view_reported_tv)).setText(timestamp); //Actually the location
+        //convert timestamp to string date format
+        String newDate = timestamp;
+        calendar.setTimeInMillis(Long.parseLong(newDate));
+        getMyCurrentDateTime = formatter.format(calendar.getTime());
+        ((TextInputEditText) findViewById(R.id.prev_view_reported_tv)).setText(getMyCurrentDateTime); //Actually the location
         ((TextInputEditText) findViewById(R.id.prev_view_created_by_tv)).setText(created_by); //Actually the location
     }
 

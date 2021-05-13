@@ -2,13 +2,13 @@ package com.alexeyre.fixit.Models;
 
 import java.io.Serializable;
 
-public class TrafficLightReportModel implements Serializable {
-    String physical_issues, electrical_issues, light_issues, button_issues, sound_issues, sequence_issues, repairs_needed, notes, image_url, signature_url, report_key, created_by, location;
+public class MaintenanceReportModel implements Serializable {
+    String physical_issues, electrical_issues, light_issues, button_issues, sound_issues, sequence_issues, repairs_needed, notes, image_url, signature_url, report_key, created_by;
 
-    public TrafficLightReportModel() {
+    public MaintenanceReportModel() {
     }
 
-    public TrafficLightReportModel(String physical_issues, String electrical_issues, String light_issues, String button_issues, String sound_issues, String sequence_issues, String repairs_needed, String notes, String image_url, String signature_url, String report_key, String created_by, String location) {
+    public MaintenanceReportModel(String physical_issues, String electrical_issues, String light_issues, String button_issues, String sound_issues, String sequence_issues, String repairs_needed, String notes, String image_url, String signature_url, String report_key, String created_by) {
         this.physical_issues = physical_issues;
         this.electrical_issues = electrical_issues;
         this.light_issues = light_issues;
@@ -21,7 +21,6 @@ public class TrafficLightReportModel implements Serializable {
         this.signature_url = signature_url;
         this.report_key = report_key;
         this.created_by = created_by;
-        this.location = location;
     }
 
     public String getPhysical_issues() {
@@ -118,13 +117,5 @@ public class TrafficLightReportModel implements Serializable {
 
     public void setcreated_by(String created_by) {
         this.created_by = created_by;
-    }
-
-    public String getlocation() {
-        return location;
-    }
-
-    public void setlocation(String location) {
-        this.location = location;
     }
 }

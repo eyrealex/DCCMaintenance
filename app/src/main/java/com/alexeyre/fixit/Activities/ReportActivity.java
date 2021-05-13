@@ -24,13 +24,14 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.alexeyre.fixit.Models.InspectionReceiptModel;
-import com.alexeyre.fixit.Models.TrafficLightInspectionModel;
 import com.alexeyre.fixit.Models.TrafficLightModel;
 import com.alexeyre.fixit.Models.TrafficLightReportModel;
 import com.alexeyre.fixit.Models.UserSingletonModel;
 import com.alexeyre.fixit.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -54,6 +55,7 @@ import java.util.Date;
 
 import static com.alexeyre.fixit.Constants.Constants.COORDINATES;
 import static com.alexeyre.fixit.Constants.Constants.INSPECTIONS;
+import static com.alexeyre.fixit.Constants.Constants.MAINTENANCE;
 
 
 public class ReportActivity extends AppCompatActivity implements SignatureDialog.Signature_DialogInterface {
@@ -63,8 +65,9 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
     private TrafficLightReportModel trafficLightReportModel;
     ArrayList<TrafficLightReportModel> reportModelArrayList = new ArrayList<>();
     private DatabaseReference databaseReference;
+    private DatabaseReference maintenanceReference;
     StorageReference storageReference;
-    private static String downloadURL, signatureURL;
+    private String downloadURL, signatureURL;
     String value;
     Bitmap bitmapclone;
     Uri contentSignatureUri;
@@ -83,6 +86,7 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
+
 
         //use a bundle to set the ID and Location
         Bundle bundle = getIntent().getExtras();
@@ -107,6 +111,7 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
         }
         //create hooks
         databaseReference = FirebaseDatabase.getInstance().getReference().child(COORDINATES).child(key).child(INSPECTIONS);
+        maintenanceReference = FirebaseDatabase.getInstance().getReference().child(COORDINATES).child(key).child(MAINTENANCE);
         storageReference = FirebaseStorage.getInstance().getReference();
         trafficLightReportModel = new TrafficLightReportModel();
         btnImage = findViewById(R.id.imageBtn);
@@ -161,6 +166,7 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
 
 
     }//end onCreate
+
 
     private void openDialog() {
         SignatureDialog signatureDialog = new SignatureDialog();
@@ -288,6 +294,7 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
 
 
     public void btnSubmit(View view) {
+        trafficLightReportModel = new TrafficLightReportModel();
         if (signatureURL != null) {
             trafficLightReportModel.setsignature_url(signatureURL);
 
@@ -317,43 +324,60 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
         trafficLightReportModel.setsequence_issues(cb6.isChecked() ? "Yes" : "No");
         trafficLightReportModel.setrepairs_needed(cb7.isChecked() ? "Yes" : "No");
         trafficLightReportModel.setcreated_by(UserSingletonModel.getInstance().getuser_name());
+        trafficLightReportModel.setlocation(trafficLightModel.getname());
 
         //for writing notes to the database
         trafficLightReportModel.setnotes(notes.getText().toString());//Returns "" if nothing in the input field
 
 
         //Write to database
-        databaseReference.child(timestamp).setValue(trafficLightReportModel).addOnCompleteListener(task -> {
+        databaseReference.child(timestamp).setValue(trafficLightReportModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
 
-            if (task.isSuccessful()) {
-
-                //Create the receipt object/ model
-                InspectionReceiptModel receipt = new InspectionReceiptModel();
-                receipt.settimestamp(timestamp);
-                receipt.setlocation(trafficLightModel.getname());
-                receipt.setid(trafficLightModel.getkey());
-                receipt.setcreated_by(UserSingletonModel.getInstance().getuser_name()); //get the current users name and put it in here
-                String pathURL = "https://fixit-d41f4-default-rtdb.firebaseio.com/coordinates";
-                //String path = String.format("%s/%s/%s/%s", COORDINATES, key, INSPECTIONS, timestamp); //create a path for an inspection
-                receipt.setpath(pathURL);
+                if (task.isSuccessful()) {
 
 
-                //Build the path to the users node /reports
-                FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(INSPECTIONS).child(receipt.gettimestamp())
-                        .setValue(receipt).addOnCompleteListener(task1 -> {
-                    if (task.isSuccessful()) {
-                        progressDialog.dismiss();
-                        startActivity(new Intent(ReportActivity.this, TrafficLightProfileActivity.class));
-                        finish();
-                    }
+                    //Create the receipt object/ model
+                    InspectionReceiptModel receipt = new InspectionReceiptModel();
+                    receipt.settimestamp(timestamp);
+                    receipt.setlocation(trafficLightModel.getname());
+                    receipt.setid(trafficLightModel.getkey());
+                    receipt.setcreated_by(UserSingletonModel.getInstance().getuser_name()); //get the current users name and put it in here
+                    String pathURL = "https://fixit-d41f4-default-rtdb.firebaseio.com/coordinates";
+                    //String path = String.format("%s/%s/%s/%s", COORDINATES, key, INSPECTIONS, timestamp); //create a path for an inspection
+                    receipt.setpath(pathURL);
 
-                });
-            } else {
-                //Tell the user there was an error
-                Toast.makeText(this, "Error when creating report", Toast.LENGTH_SHORT).show();
+
+                    //Build the path to the users node /reports
+                    FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(INSPECTIONS).child(receipt.gettimestamp())
+                            .setValue(receipt).addOnCompleteListener(task1 -> {
+                        if (task.isSuccessful()) {
+                            progressDialog.dismiss();
+                            ReportActivity.this.finish();
+                        }
+
+                    });
+                } else {
+                    //Tell the user there was an error
+                    Toast.makeText(ReportActivity.this, "Error when creating report", Toast.LENGTH_SHORT).show();
+                }
+
             }
-
         });
+
+        maintenanceReference.child(timestamp).setValue(trafficLightReportModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+            }
+        });
+
+        FirebaseDatabase.getInstance().getReference().child("maintenance").child(key).child(timestamp).setValue(trafficLightReportModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+            }
+        });
+
     }
 
     @Override

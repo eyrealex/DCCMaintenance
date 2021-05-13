@@ -15,22 +15,30 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alexeyre.fixit.Activities.InspectionViewActivity;
+import com.alexeyre.fixit.Activities.MaintenanceViewActivity;
+import com.alexeyre.fixit.Models.MaintenanceModel;
 import com.alexeyre.fixit.Models.TrafficLightModel;
 import com.alexeyre.fixit.R;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class MaintenanceAdapter extends RecyclerView.Adapter<MaintenanceViewHolder> {
 
     //variables
     private Context context;
-    private ArrayList<TrafficLightModel> trafficLightModels = new ArrayList<>();
+    private ArrayList<MaintenanceModel> maintenanceModels = new ArrayList<>();
     private int lastPosition = -1;
+    private Calendar calendar = Calendar.getInstance();
+    private DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+    private String getMyCurrentDateTime;
 
-    public MaintenanceAdapter(Context context, ArrayList<TrafficLightModel> trafficLightModels) {
+    public MaintenanceAdapter(Context context, ArrayList<MaintenanceModel> maintenanceModels) {
         this.context = context;
-        this.trafficLightModels = trafficLightModels;
+        this.maintenanceModels = maintenanceModels;
     }
 
 
@@ -45,31 +53,35 @@ public class MaintenanceAdapter extends RecyclerView.Adapter<MaintenanceViewHold
     public void onBindViewHolder(@NonNull MaintenanceViewHolder maintenanceViewHolder, int position) {
 
         //set the template lists with data using ID and Location from TrafficLightModel
-        maintenanceViewHolder.id_tv.setText(String.format(Locale.ENGLISH, "ID: %s", trafficLightModels.get(position).getkey()).trim());
-        maintenanceViewHolder.location_tv.setText(String.format(Locale.ENGLISH, "Location: %s", trafficLightModels.get(position).getname()).trim());
+        maintenanceViewHolder.id_tv.setText(String.format(Locale.ENGLISH, "ID: %s", maintenanceModels.get(position).getkey()).trim());
+        maintenanceViewHolder.location_tv.setText(String.format(Locale.ENGLISH, "Location: %s", maintenanceModels.get(position).getname()).trim());
 
         //set the template lists with data when the inspection was reported from TrafficLightInspectionModel
         //if there has been no inspections previously reported, print out N/A
 
-        if (trafficLightModels.get(position) == null) {
+        if (maintenanceModels.get(position) == null) {
             maintenanceViewHolder.reported_on_tv.setText(String.format(Locale.ENGLISH, "Reported on: N/A"));
         } else {
-            maintenanceViewHolder.reported_on_tv.setText(String.format(Locale.ENGLISH, "Reported on: %s", trafficLightModels.get(position).gettimestamp()).trim());
+            String newDate = maintenanceModels.get(position).gettimestamp().trim();
+            calendar.setTimeInMillis(Long.parseLong(newDate));
+            getMyCurrentDateTime = formatter.format(calendar.getTime());
+            maintenanceViewHolder.reported_on_tv.setText(String.format(Locale.ENGLISH, "Reported on: %s", getMyCurrentDateTime));
         }
 
-        maintenanceViewHolder.created_by.setText(String.format(Locale.ENGLISH, "Created by: %s", trafficLightModels.get(position).getinspection_by()).trim());
+        maintenanceViewHolder.created_by.setText(String.format(Locale.ENGLISH, "Created by: %s", maintenanceModels.get(position).getcreated_by()).trim());
 
         //create onclick for each list item
         maintenanceViewHolder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle ();
-                bundle.putString("inspection_key", trafficLightModels.get(position).getkey());
-                bundle.putString("inspection_timestamp", trafficLightModels.get(position).gettimestamp());
-                bundle.putString("inspection_path", trafficLightModels.get(position).getpath());
-                Intent inspectionIntent = new Intent(context, InspectionViewActivity.class);
-                inspectionIntent.putExtra("bundle", bundle);
-                context.startActivity(inspectionIntent);
+                bundle.putString("maintenance_key", maintenanceModels.get(position).getkey());
+                bundle.putString("maintenance_timestamp", maintenanceModels.get(position).gettimestamp());
+                bundle.putString("maintenance_location", maintenanceModels.get(position).getname());
+                bundle.putString("maintenance_created", maintenanceModels.get(position).getcreated_by());
+                Intent maintenanceIntent = new Intent(context, MaintenanceViewActivity.class);
+                maintenanceIntent.putExtra("bundle", bundle);
+                context.startActivity(maintenanceIntent);
             }
         });
 
@@ -89,7 +101,7 @@ public class MaintenanceAdapter extends RecyclerView.Adapter<MaintenanceViewHold
 
     @Override
     public int getItemCount() {
-        return trafficLightModels.size();
+        return maintenanceModels.size();
     }
 }
 

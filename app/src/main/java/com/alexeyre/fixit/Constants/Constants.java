@@ -6,6 +6,7 @@ public class Constants {
     public static String COORDINATES = "coordinates";
     public static String INSPECTIONS = "inspections";
     public static String REPORTS = "reports";
+    public static String MAINTENANCE = "maintenance";
 
 
 

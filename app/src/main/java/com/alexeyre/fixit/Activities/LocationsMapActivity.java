@@ -128,8 +128,7 @@ public class LocationsMapActivity extends FragmentActivity implements OnMapReady
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(LocationsMapActivity.this, LocationsListActivity.class));
-        finish();
+        super.onBackPressed();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 

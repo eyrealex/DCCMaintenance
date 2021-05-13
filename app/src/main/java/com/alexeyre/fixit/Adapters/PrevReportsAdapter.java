@@ -20,7 +20,10 @@ import com.alexeyre.fixit.Activities.ReportsPrevViewActivity;
 import com.alexeyre.fixit.Models.TrafficLightModel;
 import com.alexeyre.fixit.R;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class PrevReportsAdapter extends RecyclerView.Adapter<PrevReportsViewHolder> {
@@ -29,6 +32,9 @@ public class PrevReportsAdapter extends RecyclerView.Adapter<PrevReportsViewHold
     private Context context;
     private ArrayList<TrafficLightModel> trafficLightModels = new ArrayList<>();
     private int lastPosition = -1;
+    private Calendar calendar = Calendar.getInstance();
+    private DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+    private String getMyCurrentDateTime;
 
 
     public PrevReportsAdapter(Context context, ArrayList<TrafficLightModel> trafficLightModels) {
@@ -57,7 +63,11 @@ public class PrevReportsAdapter extends RecyclerView.Adapter<PrevReportsViewHold
         if (trafficLightModels.get(position) == null) {
             prevReportsViewHolder.prev_timestamp.setText(String.format(Locale.ENGLISH, "Reported on: N/A"));
         } else {
-            prevReportsViewHolder.prev_timestamp.setText(String.format(Locale.ENGLISH, "Reported on: %s", trafficLightModels.get(position).gettimestamp()).trim());
+            //convert timestamp to string date format
+            String newDate = trafficLightModels.get(position).gettimestamp().trim();
+            calendar.setTimeInMillis(Long.parseLong(newDate));
+            getMyCurrentDateTime = formatter.format(calendar.getTime());
+            prevReportsViewHolder.prev_timestamp.setText(String.format(Locale.ENGLISH, "Reported on: %s", getMyCurrentDateTime));
         }
 
         prevReportsViewHolder.prev_created_by.setText(String.format(Locale.ENGLISH, "Created by: %s", trafficLightModels.get(position).getcreated_by()).trim());

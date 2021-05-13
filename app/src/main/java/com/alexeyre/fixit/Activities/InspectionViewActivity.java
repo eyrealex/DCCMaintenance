@@ -1,6 +1,5 @@
 package com.alexeyre.fixit.Activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -23,6 +22,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class InspectionViewActivity extends AppCompatActivity {
     private DatabaseReference pathRef;
     private InspectionReceiptModel inspectionReceiptModel;
@@ -33,6 +36,9 @@ public class InspectionViewActivity extends AppCompatActivity {
     private ImageView signatureIv, photoIv;
     private EditText notes;
     private CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7;
+    private Calendar calendar = Calendar.getInstance();
+    private DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+    private String getMyCurrentDateTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +112,7 @@ public class InspectionViewActivity extends AppCompatActivity {
                         trafficLightReportModel.setsignature_url(snapshot.child("signature_url").getValue(String.class));
                         trafficLightReportModel.setsound_issues(snapshot.child("sound_issues").getValue(String.class));
 
-                        if(trafficLightReportModel != null){
+                        if (trafficLightReportModel != null) {
                             updateData();
                         }
 
@@ -136,39 +142,39 @@ public class InspectionViewActivity extends AppCompatActivity {
 
     private void updateData() {
         //get checkboxes
-        if(trafficLightReportModel.getPhysical_issues().contains("Yes")){
+        if (trafficLightReportModel.getPhysical_issues().contains("Yes")) {
             cb1.setChecked(true);
-        }else{
+        } else {
             cb1.setChecked(false);
         }
-        if(trafficLightReportModel.getelectrical_issues().contains("Yes")){
+        if (trafficLightReportModel.getelectrical_issues().contains("Yes")) {
             cb2.setChecked(true);
-        }else{
+        } else {
             cb2.setChecked(false);
         }
-        if(trafficLightReportModel.getlight_issues().contains("Yes")){
+        if (trafficLightReportModel.getlight_issues().contains("Yes")) {
             cb3.setChecked(true);
-        }else{
+        } else {
             cb3.setChecked(false);
         }
-        if(trafficLightReportModel.getbutton_issues().contains("Yes")){
+        if (trafficLightReportModel.getbutton_issues().contains("Yes")) {
             cb4.setChecked(true);
-        }else{
+        } else {
             cb4.setChecked(false);
         }
-        if(trafficLightReportModel.getsound_issues().contains("Yes")){
+        if (trafficLightReportModel.getsound_issues().contains("Yes")) {
             cb5.setChecked(true);
-        }else{
+        } else {
             cb5.setChecked(false);
         }
-        if(trafficLightReportModel.getsequence_issues().contains("Yes")){
+        if (trafficLightReportModel.getsequence_issues().contains("Yes")) {
             cb6.setChecked(true);
-        }else{
+        } else {
             cb6.setChecked(false);
         }
-        if(trafficLightReportModel.getrepairs_needed().contains("Yes")){
+        if (trafficLightReportModel.getrepairs_needed().contains("Yes")) {
             cb7.setChecked(true);
-        }else{
+        } else {
             cb7.setChecked(false);
         }
         //get notes
@@ -183,7 +189,11 @@ public class InspectionViewActivity extends AppCompatActivity {
     private void updateUI() {
         ((TextInputEditText) findViewById(R.id.inspection_id_tv)).setText(inspectionReceiptModel.getid());
         ((TextInputEditText) findViewById(R.id.inspection_location_tv)).setText(inspectionReceiptModel.getlocation()); //Actually the location
-        ((TextInputEditText) findViewById(R.id.inspection_reported_tv)).setText(inspectionReceiptModel.gettimestamp()); //Actually the location
+        //convert timestamp to string date format
+        String newDate = inspectionReceiptModel.gettimestamp();
+        calendar.setTimeInMillis(Long.parseLong(newDate));
+        getMyCurrentDateTime = formatter.format(calendar.getTime());
+        ((TextInputEditText) findViewById(R.id.inspection_reported_tv)).setText(getMyCurrentDateTime); //Actually the location
         ((TextInputEditText) findViewById(R.id.inspection_created_by_tv)).setText(inspectionReceiptModel.getcreated_by()); //Actually the location
     }
 

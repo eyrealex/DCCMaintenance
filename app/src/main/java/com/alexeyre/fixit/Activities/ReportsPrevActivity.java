@@ -22,7 +22,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class ReportsPrevActivity extends AppCompatActivity {
     private ArrayList<TrafficLightModel> reportModelList;
@@ -32,6 +35,9 @@ public class ReportsPrevActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private String id, location;
     private SearchView searchView;
+    private Calendar calendar = Calendar.getInstance();
+    private DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+    private String getMyCurrentDateTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +120,11 @@ public class ReportsPrevActivity extends AppCompatActivity {
     private void search(String str) {
         ArrayList<TrafficLightModel> list = new ArrayList<>();
         for (TrafficLightModel object : reportModelList) {
-            if (object.gettimestamp().toLowerCase().contains(str.toLowerCase()) || object.getcreated_by().toLowerCase().contains(str.toLowerCase())) {
+            //convert timestamp to string date format
+            String newDate = object.gettimestamp();
+            calendar.setTimeInMillis(Long.parseLong(newDate));
+            getMyCurrentDateTime = formatter.format(calendar.getTime());
+            if (getMyCurrentDateTime.toLowerCase().contains(str.toLowerCase()) || object.getcreated_by().toLowerCase().contains(str.toLowerCase())) {
                 list.add(object);
             }
         }
