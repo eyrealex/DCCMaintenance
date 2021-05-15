@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 public class EmployeeListActivity extends AppCompatActivity {
 
+    //class variables
     private ArrayList<UserProfileModel> allUsersList = new ArrayList<>();
     private ValueEventListener userListListener;
     private DatabaseReference userListReference;
@@ -33,25 +34,25 @@ public class EmployeeListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_list);
+
+        //hooks
         searchView = findViewById(R.id.search_field);
         searchView.setQueryHint("Search by name, email or phone ...");
         userListReference = FirebaseDatabase.getInstance().getReference().child(Constants.USERS);
 
-        if (userListReference != null) {
-            //Get a list of all employee from Firebase
-            userListListener = new ValueEventListener() {
+        if (userListReference != null) { //if the path for the users in the database is not null
+            userListListener = new ValueEventListener() { //create a listener to perform an action
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.getValue() != null && snapshot.hasChildren()) {
-                        for (DataSnapshot eachUserSnapshot : snapshot.getChildren()) {
-                            UserProfileModel userModel = eachUserSnapshot.getValue(UserProfileModel.class);
-                            allUsersList.add(userModel);
+                    if (snapshot.getValue() != null && snapshot.hasChildren()) { //if the paths snapshot value and children are present in the database
+                        for (DataSnapshot eachUserSnapshot : snapshot.getChildren()) { //create an object to get the children
+                            UserProfileModel userModel = eachUserSnapshot.getValue(UserProfileModel.class); //for each child inside users set the values to the user model class
+                            allUsersList.add(userModel); //add the users to a list
                         }
 
-                        setAdapter(allUsersList);
+                        setAdapter(allUsersList); //add the list to an adapter to populate templates for each user
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                     Toast.makeText(EmployeeListActivity.this, "Oops, Something went wrong " + error.toString(), Toast.LENGTH_SHORT).show();
@@ -59,7 +60,7 @@ public class EmployeeListActivity extends AppCompatActivity {
             };
             userListReference.addValueEventListener(userListListener);
         }
-        if (searchView != null) {
+        if (searchView != null) { //setting up search function
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String s) {
@@ -76,14 +77,14 @@ public class EmployeeListActivity extends AppCompatActivity {
     }
 
     private void search(String str) {
-        ArrayList<UserProfileModel> list = new ArrayList<>();
-        for(UserProfileModel object : allUsersList){
+        ArrayList<UserProfileModel> list = new ArrayList<>(); //create a new list to search through
+        for(UserProfileModel object : allUsersList){ //create an object to get each users values
             if(object.getname().toLowerCase().contains(str.toLowerCase()) || object.getemail().toLowerCase().contains(str.toLowerCase()) || object.getphone().toLowerCase().contains(str.toLowerCase())){
                 list.add(object);
             }
         }
 
-        setSearchAdapter(list);
+        setSearchAdapter(list); //add the list to an adapter to populate a template
 
 
     }
@@ -104,7 +105,7 @@ public class EmployeeListActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onStop() {
+    protected void onStop() { //stop listening if all data is present
         super.onStop();
         if (userListReference != null && userListListener != null) {
             userListReference.removeEventListener(userListListener);

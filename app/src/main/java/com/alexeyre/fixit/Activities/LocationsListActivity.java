@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class LocationsListActivity extends AppCompatActivity {
 
-    //variables
+    //class variables
     private ArrayList<TrafficLightModel> trafficLightModels;
     private SearchView searchView;
     private DatabaseReference databaseReference =  FirebaseDatabase.getInstance().getReference().child(Constants.COORDINATES);
@@ -41,9 +41,8 @@ public class LocationsListActivity extends AppCompatActivity {
         searchView = findViewById(R.id.search_field_locations);
         searchView.setQueryHint("Search by id ...");
 
-        if(databaseReference != null){
-            //reference the database path for the coordinates
-            databaseReference.addValueEventListener(new ValueEventListener() {
+        if(databaseReference != null){ //if the path in the datebase is not empty
+            databaseReference.addValueEventListener(new ValueEventListener() { //get the variables in the path
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     trafficLightModels = new ArrayList<>();
@@ -52,8 +51,8 @@ public class LocationsListActivity extends AppCompatActivity {
                         try{
                             if (trafficLightDataSnapshot != null && trafficLightDataSnapshot.hasChildren()) {
                                 TrafficLightModel trafficLightModel = trafficLightDataSnapshot.getValue(TrafficLightModel.class);
-                                trafficLightModel.setkey(trafficLightDataSnapshot.getKey());//We can assume all data is present
-                                trafficLightModels.add(trafficLightModel);
+                                trafficLightModel.setkey(trafficLightDataSnapshot.getKey());
+                                trafficLightModels.add(trafficLightModel); //add variables to a list
 
 
                             }
@@ -62,7 +61,7 @@ public class LocationsListActivity extends AppCompatActivity {
                         }
 
                     }
-                    setAdapter(trafficLightModels);
+                    setAdapter(trafficLightModels); //set the list to an adapter
 
                 }
 
@@ -72,7 +71,7 @@ public class LocationsListActivity extends AppCompatActivity {
                 }
 
             });
-        }if(searchView != null){
+        }if(searchView != null){ //create the search function
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String s) {
@@ -93,12 +92,12 @@ public class LocationsListActivity extends AppCompatActivity {
     private void search(String str) {
         ArrayList<TrafficLightModel> list = new ArrayList<>();
         for (TrafficLightModel object : trafficLightModels) {
-            if (object.getkey().toLowerCase().contains(str.toLowerCase())) {
-                list.add(object);
+            if (object.getkey().toLowerCase().contains(str.toLowerCase())) { //search by id
+                list.add(object); //add object containing variables to a list
             }
         }
 
-        setSearchAdapter(list);
+        setSearchAdapter(list); //set an adapter using this list
     }
 
     private void setSearchAdapter(ArrayList<TrafficLightModel> list) {
@@ -119,8 +118,8 @@ public class LocationsListActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
-    public void map_view_btn(View view) {
+    public void map_view_btn(View view) { //go to map view activity
         startActivity(new Intent(LocationsListActivity.this, LocationsMapActivity.class));
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 }//end JobInspectionActivity

@@ -20,7 +20,8 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.MetricsCurrentUserInspections"></activity>
+        <activity android:name=".Activities.SettingsAboutActivity"></activity>
+        <activity android:name=".Activities.MetricsCurrentUserInspections" />
         <activity android:name=".Activities.MetricsLocations" />
         <activity android:name=".Activities.MetricsUsers" />
         <activity android:name=".Activities.MaintenanceViewActivity" />

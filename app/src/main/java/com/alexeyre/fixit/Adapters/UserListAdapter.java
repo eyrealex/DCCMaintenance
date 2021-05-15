@@ -39,7 +39,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserLi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UserListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull UserListViewHolder holder, int position) { //create the adapter and set the adapter with variables, create on onclick for the adapter
         holder.setIsRecyclable(false);
 
         //Load profile photo from Firebase storage

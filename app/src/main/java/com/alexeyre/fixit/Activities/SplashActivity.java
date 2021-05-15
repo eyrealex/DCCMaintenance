@@ -19,7 +19,7 @@ import com.alexeyre.fixit.R;
 
 public class SplashActivity extends AppCompatActivity {
 
-    //variables
+    //class variables
     Animation topAnim, bottomAnim;
     ImageView image;
     TextView logo;
@@ -30,15 +30,11 @@ public class SplashActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
 
-        //Setting an animation to a variable
+        //hooks
         topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
         bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
-
-        //getting the app icon and title
         image = findViewById(R.id.appicon);
         logo = findViewById(R.id.apptext);
-
-        //giving app icon and title animation
         image.setAnimation(topAnim);
         logo.setAnimation(bottomAnim);
 
@@ -50,6 +46,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent(SplashActivity.this, UserLoginActivity.class);
 
+                //create animation using pairs to be used in the following activity
                 Pair[] pairs = new Pair[2];
                 pairs[0] = new Pair<View, String>(image, "app_image");
                 pairs[1] = new Pair<View, String>(logo, "app_text");

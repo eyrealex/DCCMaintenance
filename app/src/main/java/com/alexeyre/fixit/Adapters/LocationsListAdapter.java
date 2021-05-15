@@ -42,7 +42,7 @@ public class LocationsListAdapter extends RecyclerView.Adapter<LocationsListView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull LocationsListViewHolder locationsListViewHolder, int position) {
+    public void onBindViewHolder(@NonNull LocationsListViewHolder locationsListViewHolder, int position) { //create the adapter and set the adapter with variables, create on onclick for the adapter
 
         //set the template lists with data using ID, location and Next Due
         locationsListViewHolder.id_tv.setText(String.format(Locale.ENGLISH, "ID: %s", trafficLightModels.get(position).getkey()).trim());

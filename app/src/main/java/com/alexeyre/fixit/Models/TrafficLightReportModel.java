@@ -24,6 +24,7 @@ public class TrafficLightReportModel implements Serializable {
         this.location = location;
     }
 
+
     public String getPhysical_issues() {
         return physical_issues;
     }

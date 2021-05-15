@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class UserForgotPasswordActivity extends AppCompatActivity {
 
+    //class variables
     private TextInputLayout mEmail;
     private Button mResetBtn;
     private FirebaseAuth mAuth;
@@ -27,6 +28,7 @@ public class UserForgotPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_forgot_password);
 
+        //hooks
         mEmail = findViewById(R.id.reset_email);
         mResetBtn = findViewById(R.id.reset_btn);
         mAuth = FirebaseAuth.getInstance();

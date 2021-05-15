@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class ControlsAdapter extends RecyclerView.Adapter<ControlsAdapter.ControlsViewHolder> {
 
-    //variables
+    //class variables
     private Context mContext;
     private ArrayList<HomePageWidgetModel> controls;
 
@@ -36,7 +36,7 @@ public class ControlsAdapter extends RecyclerView.Adapter<ControlsAdapter.Contro
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ControlsViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ControlsViewHolder holder, int position) { //create the adapter and set the adapter with variables, create on onclick for the adapter
         holder.setIsRecyclable(false);
 
         holder.icon.setImageDrawable(mContext.getResources().getDrawable(controls.get(position).getdrawable()));

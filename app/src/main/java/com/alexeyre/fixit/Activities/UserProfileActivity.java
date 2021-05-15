@@ -47,6 +47,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserProfileActivity extends AppCompatActivity {
 
+    //class variables
     private DatabaseReference databaseReference;
     private FirebaseDatabase firebaseDatabase;
     private StorageReference storageReference;
@@ -67,7 +68,7 @@ public class UserProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-        //init components for uploading profile picture
+        //hooks
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference();
         profileImage = findViewById(R.id.profile_image);
@@ -105,7 +106,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
     }
 
-    private void selectImage() {
+    private void selectImage() { //select photo from gallery
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);

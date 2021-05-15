@@ -33,6 +33,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class MaintenanceViewActivity extends AppCompatActivity {
 
+    //class variables
     private DatabaseReference pathRef;
     private MaintenanceModel maintenanceModel;
     private MaintenanceReportModel maintenanceReportModel;
@@ -108,7 +109,7 @@ public class MaintenanceViewActivity extends AppCompatActivity {
                     maintenanceReportModelClone = snapshot.getValue(MaintenanceReportModel.class);
 
                     if (maintenanceReportModel != null) {
-                        updateReport();
+                        updateReport(); //update the ui using the data from the model
                     }
                 }
 
@@ -134,7 +135,7 @@ public class MaintenanceViewActivity extends AppCompatActivity {
         ((TextInputEditText) findViewById(R.id.maintenance_created_by_tv)).setText(created); //Actually the location
     }
 
-    private void updateReport() {
+    private void updateReport() { //setting the report information
         //get checkboxes
         if (maintenanceReportModel.getPhysical_issues().contains("Yes")) {
             cb1.setChecked(true);
@@ -180,9 +181,10 @@ public class MaintenanceViewActivity extends AppCompatActivity {
     }
 
 
-    public void btnCloseMaintenance(View view) {
+    public void btnCloseMaintenance(View view) { //closing the report and deleting it from open maintenance
 
 
+        //create database path hooks
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.COORDINATES).child(bundleInfo)
                 .child(Constants.MAINTENANCE).child(timestamp);
 
@@ -193,6 +195,7 @@ public class MaintenanceViewActivity extends AppCompatActivity {
                 .child(bundleInfo).child(timestamp);
 
 
+        //create dialog alert when pressing the button
         new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                 .setTitleText("Close Report?")
                 .setContentText("Are you sure you want to close the report?")
@@ -217,22 +220,22 @@ public class MaintenanceViewActivity extends AppCompatActivity {
                         sDialog.setCancelable(false);
                         sDialog.show();
 
-                        ValueEventListener valueEventListener = new ValueEventListener() {
+                        ValueEventListener valueEventListener = new ValueEventListener() { //create a listener to get data from database
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                closedRef.setValue(snapshot.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                closedRef.setValue(snapshot.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() { //add data to the closed path in the database
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isComplete()) {
-                                            openRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        if (task.isComplete()) { //if successful
+                                            openRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() { //remove the data from the openref database path
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
-                                                    databaseReference.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    databaseReference.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() { //remove data from the coordinates path
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             if (task.isSuccessful()) {
                                                                 sDialog.dismissWithAnimation();
-                                                                MaintenanceViewActivity.this.finish();
+                                                                MaintenanceViewActivity.this.finish(); //end the activity
                                                             } else {
                                                                 Toast.makeText(MaintenanceViewActivity.this, "ERROR, Report failed to close", Toast.LENGTH_SHORT).show();
                                                             }

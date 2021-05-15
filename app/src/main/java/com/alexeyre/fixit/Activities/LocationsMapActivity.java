@@ -28,6 +28,7 @@ import java.util.ArrayList;
 
 public class LocationsMapActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    //class variables
     GoogleMap mMap;
     private float MAP_ZOOM = 12;
     private ArrayList<TrafficLightModel> allTrafficLightsList = new ArrayList<>();
@@ -101,7 +102,7 @@ public class LocationsMapActivity extends FragmentActivity implements OnMapReady
     }
 
     @Override
-    public void onMapReady(final GoogleMap googleMap) {
+    public void onMapReady(final GoogleMap googleMap) { //load the map when its ready and show coordinates, allow for zoom and on click for markers
         mMap = googleMap;
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(53.3498, -6.2603), MAP_ZOOM));
         mMap.getUiSettings().setZoomControlsEnabled(true);
@@ -120,9 +121,8 @@ public class LocationsMapActivity extends FragmentActivity implements OnMapReady
         Toast.makeText(this, marker.getTitle(), Toast.LENGTH_SHORT).show();
     }
 
-    public void list_view_btn(View view) {
+    public void list_view_btn(View view) { //go back to list activity
         startActivity(new Intent(LocationsMapActivity.this, LocationsListActivity.class));
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 

@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TrafficLightReportModelTest {
-    TrafficLightReportModel object = new TrafficLightReportModel("physical_issues", "electrical_issues", "light_issues", "button_issues", "sound_issues", "sequence_issues", "repairs_needed", "notes", "image_url", "signature_url", "report_key", "created_by", "location");
+class MaintenanceReportModelTest {
+    MaintenanceReportModel object = new MaintenanceReportModel("physical_issues", "electrical_issues", "light_issues", "button_issues", "sound_issues", "sequence_issues", "repairs_needed", "notes", "image_url", "signature_url", "report_key", "created_by");
 
     @Test
     void getPhysical_issues() {
@@ -138,14 +138,5 @@ class TrafficLightReportModelTest {
         object.setcreated_by("Alex Eyre");
         assertEquals("Alex Eyre", object.getcreated_by());
     }
-    @Test
-    void getlocation() {
-        assertEquals("location", object.getlocation());
-    }
 
-    @Test
-    void setlocation() {
-        object.setlocation("Dublin");
-        assertEquals("Dublin", object.getlocation());
-    }
 }

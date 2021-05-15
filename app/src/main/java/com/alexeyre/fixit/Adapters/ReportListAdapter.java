@@ -42,7 +42,7 @@ public class ReportListAdapter extends RecyclerView.Adapter<ReportListViewHolder
 
     @NonNull
     @Override
-    public ReportListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ReportListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) { //create the adapter and set the adapter with variables, create on onclick for the adapter
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.inspections_list_item, viewGroup, false);
         return new ReportListViewHolder(view);
     }

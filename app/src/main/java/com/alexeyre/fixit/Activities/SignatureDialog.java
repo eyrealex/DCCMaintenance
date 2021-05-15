@@ -28,6 +28,7 @@ import java.util.Calendar;
 
 public class SignatureDialog extends AppCompatDialogFragment {
 
+    //class variables
     Signature_DialogInterface dialogInterface;
     Bitmap bitmap;
     SignatureView signatureView;
@@ -44,6 +45,7 @@ public class SignatureDialog extends AppCompatDialogFragment {
         //hooks
         signatureView =  view.findViewById(R.id.signature_view);
 
+        //build the dialogue so the user can start signature
         builder.setView(view).setTitle("Please sign the document").setNegativeButton("Clear", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -73,7 +75,7 @@ public class SignatureDialog extends AppCompatDialogFragment {
         void applyBitmap(Bitmap bitmap);
     }
 
-    private String saveImage(Bitmap myBitmap) {
+    private String saveImage(Bitmap myBitmap) { //save the image to the phone gallery
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
         File signatureDirectory = new File(

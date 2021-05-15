@@ -28,6 +28,7 @@ import java.util.Calendar;
 
 public class ReportsPrevViewActivity extends AppCompatActivity {
 
+    //class variables
     private InspectionReceiptModel inspectionReceiptModel;
     private TrafficLightReportModel trafficLightReportModel;
     private String key, name, timestamp, created_by;
@@ -83,7 +84,7 @@ public class ReportsPrevViewActivity extends AppCompatActivity {
 
     }
 
-    private void updateUI() {
+    private void updateUI() { //update the ui using the data from the modles
         ((TextInputEditText) findViewById(R.id.prev_view_id_tv)).setText(key);
         ((TextInputEditText) findViewById(R.id.prev_view_location_tv)).setText(name); //Actually the location
         //convert timestamp to string date format
@@ -94,7 +95,7 @@ public class ReportsPrevViewActivity extends AppCompatActivity {
         ((TextInputEditText) findViewById(R.id.prev_view_created_by_tv)).setText(created_by); //Actually the location
     }
 
-    private void updateData() {
+    private void updateData() { //set the report details using model data
         //get checkboxes
         if(trafficLightReportModel.getPhysical_issues().contains("Yes")){
             cb1.setChecked(true);

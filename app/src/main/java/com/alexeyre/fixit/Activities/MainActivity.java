@@ -28,6 +28,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    //class variables
     private UserProfileModel currentUser;
     private ArrayList<HomePageWidgetModel> controls = new ArrayList<>();
 
@@ -44,12 +45,12 @@ public class MainActivity extends AppCompatActivity {
                     currentUser = snapshot.getValue(UserProfileModel.class);
                     if (currentUser != null) {
 
-                        //Setup User Singleton
+                        //Setup User Singleton using the data from the current user path. This will be used as a global variable for other classes
                         UserSingletonModel.getInstance().setuser_name(currentUser.getname());
                         UserSingletonModel.getInstance().setuser_uid(currentUser.getuid());
 
-                        setupControls();
-                        setupUI();
+                        setupControls(); //set up widgets on dashboard
+                        setupUI(); //set up heading with profile icon and current users name
                     }
                 }
             }
@@ -60,12 +61,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        loadSetting();
     }
 
-    private void loadSetting() {
-
-    }
 
     private void setupUI() {
         ((TextView) findViewById(R.id.profile_name)).setText(currentUser.getname());
@@ -92,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         controls.add(new HomePageWidgetModel(R.drawable.icon_chart, "Metrics", MetricsActivity.class));
         controls.add(new HomePageWidgetModel(R.drawable.icon_settings, "Settings", SettingsActivity.class));
 
-        setAdapter(controls);
+        setAdapter(controls); //set this controls to the adapter
     }
 
     private void setAdapter(ArrayList<HomePageWidgetModel> controls) {

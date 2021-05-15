@@ -30,7 +30,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class UserLoginActivity extends AppCompatActivity {
 
-    //variables
+    //class variables
     private Button mLoginBtn, mAccountBtn, mResetBtn;
     private ImageView mImage;
     private TextView mLogo, mDesc;

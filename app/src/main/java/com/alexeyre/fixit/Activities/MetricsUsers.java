@@ -22,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class MetricsUsers extends AppCompatActivity {
+    //class varialbes
     private DatabaseReference userData;
     private PieChart pieChart;
 
@@ -36,7 +37,7 @@ public class MetricsUsers extends AppCompatActivity {
         userData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int count = (int) snapshot.getChildrenCount();
+                int count = (int) snapshot.getChildrenCount(); //add the number of children to the count integer
                 setGraph(count);
             }
 
@@ -51,8 +52,8 @@ public class MetricsUsers extends AppCompatActivity {
 
     private void setGraph(int count) {
         //create data
-        ArrayList<PieEntry> users = new ArrayList<>();
-        users.add(new PieEntry(count, "2021"));
+        ArrayList<PieEntry> users = new ArrayList<>(); //create an array list of users
+        users.add(new PieEntry(count, "2021")); //add users to the chart
 
         //chart properties
         PieDataSet pieDataSet = new PieDataSet(users, "Users");

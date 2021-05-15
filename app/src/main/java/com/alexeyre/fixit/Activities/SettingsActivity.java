@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
+    //class variables
     private RelativeLayout about, likeapp, bugreport, contact, copyright, policy, terms;
 
 
@@ -37,6 +38,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         initComponents();
     }
 
+    //create onclicks for all buttons
     private void initComponents() {
         about.setOnClickListener(this);
         likeapp.setOnClickListener(this);
@@ -48,9 +50,11 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v) { //use switch statements to handle all onclicks
         switch (v.getId()) {
             case R.id.about_layout:
+                startActivity(new Intent(SettingsActivity.this, SettingsAboutActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.like_layout:
                 Intent likeIntent = new Intent(Intent.ACTION_SEND);

@@ -42,17 +42,17 @@ public class MetricsActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
-    public void btnUsers(View view) {
+    public void btnUsers(View view) { //open all users metrics
         startActivity(new Intent(MetricsActivity.this, MetricsUsers.class));
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
-    public void btnInspections(View view) {
+    public void btnInspections(View view) { //open all current users reports metrics
         startActivity(new Intent(MetricsActivity.this, MetricsCurrentUserInspections.class));
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
-    public void btnLocations(View view) {
+    public void btnLocations(View view) { //open all locations metrics
         startActivity(new Intent(MetricsActivity.this, MetricsLocations.class));
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }

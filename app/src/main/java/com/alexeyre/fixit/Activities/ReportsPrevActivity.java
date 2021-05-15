@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class ReportsPrevActivity extends AppCompatActivity {
+    //class vatiables
     private ArrayList<TrafficLightModel> reportModelList;
     private TrafficLightModel trafficLightModel;
     private PrevReportsAdapter prevReportsAdapter;
@@ -71,6 +72,7 @@ public class ReportsPrevActivity extends AppCompatActivity {
         }
 
 
+        //database hook
         databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.COORDINATES).child(id).child(Constants.INSPECTIONS);
 
         if(databaseReference != null){
@@ -97,7 +99,7 @@ public class ReportsPrevActivity extends AppCompatActivity {
 
                 }
             });
-        }if(searchView != null){
+        }if(searchView != null){ //create search function
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String s) {
@@ -144,7 +146,7 @@ public class ReportsPrevActivity extends AppCompatActivity {
         recyclerView.setAdapter(new PrevReportsAdapter(this, reportModelList));
     }
 
-    private void getBundleInfo(String bundleInfo) {
+    private void getBundleInfo(String bundleInfo) { //get bundle information from the prev activity
         FirebaseDatabase.getInstance().getReference().child("coordinates").child(bundleInfo).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

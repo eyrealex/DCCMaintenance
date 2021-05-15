@@ -62,6 +62,8 @@ import static com.alexeyre.fixit.Constants.Constants.MAINTENANCE;
 
 
 public class ReportActivity extends AppCompatActivity implements SignatureDialog.Signature_DialogInterface {
+
+    //class variables
     private static final int CAMERA_PERMISSION_CODE = 1;
     public static final int CAMERA_REQUEST_CODE = 2;
     private TrafficLightModel trafficLightModel;
@@ -129,14 +131,14 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
         notes = findViewById(R.id.notes_box);
 
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() { //get the values in the database path
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 reportModelArrayList.clear();
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     try {
                         TrafficLightReportModel trafficLightReportModelObject = ds.getValue(TrafficLightReportModel.class);
-                        reportModelArrayList.add(trafficLightReportModelObject);
+                        reportModelArrayList.add(trafficLightReportModelObject); //add the values to the list
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -171,13 +173,13 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
     }//end onCreate
 
 
-    private void openDialog() {
+    private void openDialog() { //create a signature dialog
         SignatureDialog signatureDialog = new SignatureDialog();
         signatureDialog.show(getSupportFragmentManager(), "signature dialog");
     }
 
 
-    private void askCameraPermission() {
+    private void askCameraPermission() { //ask for permissions to use the camera
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) { //check if the user has given permission to camera to be used
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
         } else {
@@ -268,7 +270,7 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
     }
 
 
-    private void getBundleInfo(String bundleInfo) {
+    private void getBundleInfo(String bundleInfo) { //get information stored in the bundle from previous activity
 
         FirebaseDatabase.getInstance().getReference().child("coordinates").child(bundleInfo).addValueEventListener(new ValueEventListener() {
             @Override
@@ -290,15 +292,15 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
 
     }
 
-    private void updateUI() {
+    private void updateUI() { //update the ui using information from the bundle
         ((TextInputEditText) findViewById(R.id.create_id_tv)).setText(trafficLightModel.getkey());
         ((TextInputEditText) findViewById(R.id.create_location_tv)).setText(trafficLightModel.getname()); //Actually the location
     }
 
 
-    public void btnSubmit(View view) {
+    public void btnSubmit(View view) { //when the user clicks the submit button
         trafficLightReportModel = new TrafficLightReportModel();
-        if (signatureURL != null) {
+        if (signatureURL != null) { //make sure the user has added a signature first
             trafficLightReportModel.setsignature_url(signatureURL);
 
         } else {
@@ -306,14 +308,14 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
             return;
         }
         //writing image to database
-        if (downloadURL != null) {
+        if (downloadURL != null) { //make sure the user has added a photo first
             trafficLightReportModel.setimage_url(downloadURL);
         } else {
             Toast.makeText(this, "Please add a photo to the report", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+        new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE) //create a dialog to let the user know they are submitting the report
                 .setTitleText("Submit Report?")
                 .setContentText("Is the Report Complete?")
                 .setCancelText("No")
@@ -360,8 +362,6 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
                             public void onComplete(@NonNull Task<Void> task) {
 
                                 if (task.isSuccessful()) {
-
-
                                     //Create the receipt object/ model
                                     InspectionReceiptModel receipt = new InspectionReceiptModel();
                                     receipt.settimestamp(timestamp);
@@ -371,7 +371,6 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
                                     String pathURL = "https://fixit-d41f4-default-rtdb.firebaseio.com/coordinates";
                                     //String path = String.format("%s/%s/%s/%s", COORDINATES, key, INSPECTIONS, timestamp); //create a path for an inspection
                                     receipt.setpath(pathURL);
-
 
                                     //Build the path to the users node /reports
                                     FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(INSPECTIONS).child(receipt.gettimestamp())
@@ -417,7 +416,7 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
     }
 
     @Override
-    public void applyBitmap(Bitmap bitmap) {
+    public void applyBitmap(Bitmap bitmap) { //save the photos to the firebase storage
         bitmapclone = bitmap;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmapclone.compress(Bitmap.CompressFormat.PNG, 90, baos);
@@ -445,7 +444,7 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed() { //when the user attempts to leave the activity let them know with a dialogue to prevent errors with the report
         new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                 .setTitleText("Cancel Report?")
                 .setContentText("Are you sure you want to cancel the report?")

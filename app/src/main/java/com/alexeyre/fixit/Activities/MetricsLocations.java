@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class MetricsLocations extends AppCompatActivity {
+    //class variables
     private DatabaseReference locationData;
     private PieChart pieChart;
 
@@ -51,8 +52,8 @@ public class MetricsLocations extends AppCompatActivity {
 
     private void setGraph(int count) {
         //create data
-        ArrayList<PieEntry> locations = new ArrayList<>();
-        locations.add(new PieEntry(count));
+        ArrayList<PieEntry> locations = new ArrayList<>();//create an array of data
+        locations.add(new PieEntry(count)); //add data to by chart using the number of children
 
         //chart properties
         PieDataSet pieDataSet = new PieDataSet(locations, "No. of Traffic Lights");

@@ -26,7 +26,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class UserRegisterActivity extends AppCompatActivity {
 
-    //variables
+    //class variables
     private TextInputLayout mName, mEmail, mPhone, mPassword;
     private Button mAccountBtn;
     private Button mRegisterBtn;

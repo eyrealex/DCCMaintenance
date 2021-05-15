@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 public class TrafficLightProfileActivity extends AppCompatActivity {
 
+    //class variables
     private Context mContext;
     private TrafficLightModel trafficLightModel;
     private ArrayList<TrafficLightModel> trafficLightModels = new ArrayList<>();

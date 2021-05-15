@@ -28,7 +28,7 @@ import java.util.Calendar;
 
 public class InspectionsActivity extends AppCompatActivity {
 
-    //variables
+    //class variables
     private ArrayList<TrafficLightModel> reportModelList;
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.USERS)
             .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(Constants.INSPECTIONS);
@@ -42,20 +42,22 @@ public class InspectionsActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inspections);
+
+        //hooks
         searchView = findViewById(R.id.search_field_inspections);
         searchView.setQueryHint("Search by location or timestamp ...");
 
-        if (databaseReference != null) {
-            databaseReference.addValueEventListener(new ValueEventListener() {
+        if (databaseReference != null) { //if the path in the database is not empty
+            databaseReference.addValueEventListener(new ValueEventListener() { //get the values inside the path
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     reportModelList = new ArrayList<>();
                     for (DataSnapshot ds : snapshot.getChildren()) {
-                        String key = ds.getKey();
-                        String created_by = snapshot.child(key).child("created_by").getValue(String.class);
-                        String location = snapshot.child(key).child("location").getValue(String.class);
+                        String key = ds.getKey(); //set the inspection id
+                        String created_by = snapshot.child(key).child("created_by").getValue(String.class); //set created by
+                        String location = snapshot.child(key).child("location").getValue(String.class); //set the location
                         String id = snapshot.child(key).child("id").getValue(String.class);
-                        String path = snapshot.child(key).child("path").getValue(String.class);
+                        String path = snapshot.child(key).child("path").getValue(String.class); //set the path of the inspection
                         if (snapshot != null && snapshot.hasChildren()) {
                             TrafficLightModel trafficLightModel = snapshot.getValue(TrafficLightModel.class);
                             trafficLightModel.setname(location);
@@ -66,7 +68,7 @@ public class InspectionsActivity extends AppCompatActivity {
                             reportModelList.add(trafficLightModel);
                         }
                     }
-                    setAdapter(reportModelList);
+                    setAdapter(reportModelList); //add the list to an adapter
                 }
 
                 @Override
@@ -75,7 +77,7 @@ public class InspectionsActivity extends AppCompatActivity {
                 }
             });
         }
-        if (searchView != null) {
+        if (searchView != null) { //create the search function
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String s) {
@@ -97,15 +99,15 @@ public class InspectionsActivity extends AppCompatActivity {
         ArrayList<TrafficLightModel> list = new ArrayList<>();
         for (TrafficLightModel object : reportModelList) {
             //convert timestamp to string date format
-            String newDate = object.gettimestamp();
+            String newDate = object.gettimestamp(); //convert the timestamp from time in millis to readable format
             calendar.setTimeInMillis(Long.parseLong(newDate));
             getMyCurrentDateTime = formatter.format(calendar.getTime());
-            if (object.getname().toLowerCase().contains(str.toLowerCase()) || getMyCurrentDateTime.toLowerCase().contains(str.toLowerCase())) {
-                list.add(object);
+            if (object.getname().toLowerCase().contains(str.toLowerCase()) || getMyCurrentDateTime.toLowerCase().contains(str.toLowerCase())) { // search by name and date
+                list.add(object); //add search options to a list
             }
         }
 
-        setSearchAdapter(list);
+        setSearchAdapter(list); //set the search adapter with the list from the search function
     }
 
     private void setSearchAdapter(ArrayList<TrafficLightModel> list) {

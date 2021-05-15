@@ -27,6 +27,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class InspectionViewActivity extends AppCompatActivity {
+
+    //class variables
     private DatabaseReference pathRef;
     private InspectionReceiptModel inspectionReceiptModel;
     private TrafficLightReportModel trafficLightReportModel;
@@ -116,7 +118,7 @@ public class InspectionViewActivity extends AppCompatActivity {
 
                 });
 
-                if (inspectionReceiptModel != null) {
+                if (inspectionReceiptModel != null) { //update ui if the model is not empty
                     updateUI();
                 }
 
@@ -130,7 +132,7 @@ public class InspectionViewActivity extends AppCompatActivity {
 
     }
 
-    private void updateData() {
+    private void updateData() { //update report details using the model
         //get checkboxes
         if (trafficLightReportModel.getPhysical_issues().contains("Yes")) {
             cb1.setChecked(true);
@@ -176,7 +178,7 @@ public class InspectionViewActivity extends AppCompatActivity {
     }
 
 
-    private void updateUI() {
+    private void updateUI() { //update ui using the model
         ((TextInputEditText) findViewById(R.id.inspection_id_tv)).setText(inspectionReceiptModel.getid());
         ((TextInputEditText) findViewById(R.id.inspection_location_tv)).setText(inspectionReceiptModel.getlocation()); //Actually the location
         //convert timestamp to string date format

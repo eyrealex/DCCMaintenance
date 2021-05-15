@@ -24,6 +24,19 @@
 
     </RelativeLayout>
 
+    <SearchView
+        android:id="@+id/search_field_maintenance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/search_layout"
+        android:padding="5dp"
+        android:layout_marginLeft="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginRight="@dimen/spacing_large"
+        android:fontFamily="@font/nunito_regular"
+        android:textAlignment="textStart">
+    </SearchView>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

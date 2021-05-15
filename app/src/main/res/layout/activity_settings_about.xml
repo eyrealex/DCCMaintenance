@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_300"
+    android:orientation="vertical"
+    tools:context=".Activities.SettingsAboutActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/header_background"
+        android:fontFamily="@font/nunito_regular"
+        android:gravity="center"
+        android:padding="@dimen/spacing_medium"
+        android:text="About"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/spacing_large"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/about_logo"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:src="@drawable/app_icon" />
+
+                <TextView
+                    android:id="@+id/about_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:layout_toRightOf="@id/about_logo"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="FixIt"
+                    android:textColor="@color/black"
+                    android:textSize="40sp" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@id/about_logo"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:src="@drawable/ic_about" />
+
+                <TextView
+                    android:id="@+id/about_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/about_title"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:layout_toRightOf="@id/about_logo"
+                    android:fontFamily="@font/nunito_regular"
+                    android:text="Version"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/about_version_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/about_version"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:layout_toRightOf="@id/about_logo"
+                    android:fontFamily="@font/nunito_italic"
+                    android:text="1.0"
+                    android:textColor="@color/grey_800"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@id/about_version"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp"
+                    android:src="@drawable/ic_user" />
+
+                <TextView
+                    android:id="@+id/about_dev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/about_version_number"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:layout_marginTop="@dimen/spacing_xmedium"
+                    android:layout_toRightOf="@id/about_logo"
+                    android:fontFamily="@font/nunito_regular"
+                    android:text="Developer"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/about_dev_link"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/about_dev"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:layout_toRightOf="@id/about_logo"
+                    android:fontFamily="@font/nunito_italic"
+                    android:layout_marginBottom="@dimen/spacing_medium"
+                    android:onClick="githubLink"
+                    android:text="Alex Eyre (https://github.com/eyrealex)"
+                    android:textColor="@color/grey_800"
+                    android:textSize="13sp" />
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/spacing_large"
+            android:background="@color/white">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/about_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/spacing_large"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="About"
+                        android:textColor="@color/black"
+                        android:textSize="35sp" />
+
+                    <TextView
+                        android:id="@+id/about_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/about_tv"
+                        android:layout_marginLeft="@dimen/spacing_large"
+                        android:layout_marginRight="@dimen/spacing_large"
+                        android:layout_marginBottom="@dimen/spacing_large"
+                        android:fontFamily="@font/nunito_regular"
+                        android:text="FixIt is an Android application designed to aid County Councils in Dublin to manage traffic light maintenance. FixIt acts as a mobile platform for an online management system where users can create inspection reports for all the traffic lights located in Dublin. These reports would be created on a monthly basis. After an inspection report has been created, on open maintenance report will be created, this report will remain open until maintenance has been performed on the reported traffic light. All inspection reports and open/closed maintenance can be tracked through the application to allow for admins/supervisors to track employee performance. "
+                        android:textColor="@color/grey_800"
+                        android:textSize="16sp" />
+
+
+                </RelativeLayout>
+
+            </ScrollView>
+
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -50,7 +50,7 @@ public class MaintenanceAdapter extends RecyclerView.Adapter<MaintenanceViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MaintenanceViewHolder maintenanceViewHolder, int position) {
+    public void onBindViewHolder(@NonNull MaintenanceViewHolder maintenanceViewHolder, int position) { //create the adapter and set the adapter with variables, create on onclick for the adapter
 
         //set the template lists with data using ID and Location from TrafficLightModel
         maintenanceViewHolder.id_tv.setText(String.format(Locale.ENGLISH, "ID: %s", maintenanceModels.get(position).getkey()).trim());

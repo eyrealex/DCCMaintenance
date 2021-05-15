@@ -46,7 +46,7 @@ public class PrevReportsAdapter extends RecyclerView.Adapter<PrevReportsViewHold
 
     @NonNull
     @Override
-    public PrevReportsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public PrevReportsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) { //create the adapter and set the adapter with variables, create on onclick for the adapter
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.prev_report_list_item, viewGroup, false);
         return new PrevReportsViewHolder(view);
     }
