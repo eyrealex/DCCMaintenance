@@ -33,6 +33,9 @@ public class InspectionsActivity extends AppCompatActivity {
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.USERS)
             .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(Constants.INSPECTIONS);
     private SearchView searchView;
+    private Calendar calendar = Calendar.getInstance();
+    private DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+    private String getMyCurrentDateTime;
 
 
     @Override
@@ -93,7 +96,11 @@ public class InspectionsActivity extends AppCompatActivity {
     private void search(String str) {
         ArrayList<TrafficLightModel> list = new ArrayList<>();
         for (TrafficLightModel object : reportModelList) {
-            if (object.getname().toLowerCase().contains(str.toLowerCase()) || object.gettimestamp().toLowerCase().contains(str.toLowerCase())) {
+            //convert timestamp to string date format
+            String newDate = object.gettimestamp();
+            calendar.setTimeInMillis(Long.parseLong(newDate));
+            getMyCurrentDateTime = formatter.format(calendar.getTime());
+            if (object.getname().toLowerCase().contains(str.toLowerCase()) || getMyCurrentDateTime.toLowerCase().contains(str.toLowerCase())) {
                 list.add(object);
             }
         }

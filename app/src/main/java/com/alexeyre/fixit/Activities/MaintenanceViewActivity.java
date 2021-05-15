@@ -15,9 +15,8 @@ import com.alexeyre.fixit.Models.MaintenanceModel;
 import com.alexeyre.fixit.Models.MaintenanceReportModel;
 import com.alexeyre.fixit.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,11 +29,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class MaintenanceViewActivity extends AppCompatActivity {
 
     private DatabaseReference pathRef;
     private MaintenanceModel maintenanceModel;
     private MaintenanceReportModel maintenanceReportModel;
+    private MaintenanceReportModel maintenanceReportModelClone;
     private String bundleInfo; //contains traffic light id key
     private String path; //contains url for database/coordinates
     private String timestamp; //contains timestamp in millis seconds when report was submitted
@@ -103,6 +105,7 @@ public class MaintenanceViewActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot != null && snapshot.getValue() != null) {
                     maintenanceReportModel = snapshot.getValue(MaintenanceReportModel.class);
+                    maintenanceReportModelClone = snapshot.getValue(MaintenanceReportModel.class);
 
                     if (maintenanceReportModel != null) {
                         updateReport();
@@ -183,23 +186,85 @@ public class MaintenanceViewActivity extends AppCompatActivity {
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.COORDINATES).child(bundleInfo)
                 .child(Constants.MAINTENANCE).child(timestamp);
 
-        databaseReference.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                FirebaseDatabase.getInstance().getReference().child("maintenance").child(bundleInfo).child(timestamp).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+        final DatabaseReference closedRef = FirebaseDatabase.getInstance().getReference().child(Constants.MAINTENANCE).child(Constants.CLOSED)
+                .child(bundleInfo).child(timestamp);
+
+        final DatabaseReference openRef = FirebaseDatabase.getInstance().getReference().child(Constants.MAINTENANCE).child(Constants.OPEN)
+                .child(bundleInfo).child(timestamp);
+
+
+        new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                .setTitleText("Close Report?")
+                .setContentText("Are you sure you want to close the report?")
+                .setCancelText("No")
+                .setConfirmText("Yes")
+                .showCancelButton(true)
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(MaintenanceViewActivity.this, "Maintenance report has been close", Toast.LENGTH_SHORT).show();
-                        MaintenanceViewActivity.this.finish();
+                    public void onClick(SweetAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
+
+                        //allow for a smooth animation signout
+                        try {
+                            Thread.sleep(200);
+
+                        } catch (InterruptedException ie) {
+                            Thread.currentThread().interrupt();
+                        }
+
+                        sDialog.getProgressHelper().setBarColor(R.color.colorAccent);
+                        sDialog.setTitleText("Closing report...");
+                        sDialog.setCancelable(false);
+                        sDialog.show();
+
+                        ValueEventListener valueEventListener = new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                closedRef.setValue(snapshot.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isComplete()) {
+                                            openRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    databaseReference.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful()) {
+                                                                sDialog.dismissWithAnimation();
+                                                                MaintenanceViewActivity.this.finish();
+                                                            } else {
+                                                                Toast.makeText(MaintenanceViewActivity.this, "ERROR, Report failed to close", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        }
+                                                    });
+
+                                                }
+                                            });
+                                        } else {
+                                            Toast.makeText(MaintenanceViewActivity.this, "ERROR, Report failed to close", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        };
+                        openRef.addListenerForSingleValueEvent(valueEventListener);
+
+
                     }
-                });
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(MaintenanceViewActivity.this, "Maintenance report failed to close", Toast.LENGTH_SHORT).show();
-            }
-        });
+                })
+                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismissWithAnimation();
+                    }
+                })
+                .show();
 
 
     }

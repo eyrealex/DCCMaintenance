@@ -121,6 +121,6 @@ public class LocationsListActivity extends AppCompatActivity {
 
     public void map_view_btn(View view) {
         startActivity(new Intent(LocationsListActivity.this, LocationsMapActivity.class));
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }//end JobInspectionActivity

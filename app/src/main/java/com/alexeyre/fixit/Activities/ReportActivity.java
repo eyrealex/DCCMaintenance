@@ -2,10 +2,10 @@ package com.alexeyre.fixit.Activities;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -23,6 +23,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+import com.alexeyre.fixit.Constants.Constants;
 import com.alexeyre.fixit.Models.InspectionReceiptModel;
 import com.alexeyre.fixit.Models.TrafficLightModel;
 import com.alexeyre.fixit.Models.TrafficLightReportModel;
@@ -52,6 +53,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import static com.alexeyre.fixit.Constants.Constants.COORDINATES;
 import static com.alexeyre.fixit.Constants.Constants.INSPECTIONS;
@@ -310,73 +313,106 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
             return;
         }
 
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Uploading Report...");
-        progressDialog.show();
+        new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                .setTitleText("Submit Report?")
+                .setContentText("Is the Report Complete?")
+                .setCancelText("No")
+                .setConfirmText("Yes")
+                .showCancelButton(true)
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
 
+                        //allow for a smooth animation
+                        try {
+                            Thread.sleep(500);
 
-        //turnary operator for checklists
-        trafficLightReportModel.setphysical_issues(cb1.isChecked() ? "Yes" : "No");
-        trafficLightReportModel.setelectrical_issues(cb2.isChecked() ? "Yes" : "No");
-        trafficLightReportModel.setlight_issues(cb3.isChecked() ? "Yes" : "No");
-        trafficLightReportModel.setbutton_issues(cb4.isChecked() ? "Yes" : "No");
-        trafficLightReportModel.setsound_issues(cb5.isChecked() ? "Yes" : "No");
-        trafficLightReportModel.setsequence_issues(cb6.isChecked() ? "Yes" : "No");
-        trafficLightReportModel.setrepairs_needed(cb7.isChecked() ? "Yes" : "No");
-        trafficLightReportModel.setcreated_by(UserSingletonModel.getInstance().getuser_name());
-        trafficLightReportModel.setlocation(trafficLightModel.getname());
-
-        //for writing notes to the database
-        trafficLightReportModel.setnotes(notes.getText().toString());//Returns "" if nothing in the input field
-
-
-        //Write to database
-        databaseReference.child(timestamp).setValue(trafficLightReportModel).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-
-                if (task.isSuccessful()) {
-
-
-                    //Create the receipt object/ model
-                    InspectionReceiptModel receipt = new InspectionReceiptModel();
-                    receipt.settimestamp(timestamp);
-                    receipt.setlocation(trafficLightModel.getname());
-                    receipt.setid(trafficLightModel.getkey());
-                    receipt.setcreated_by(UserSingletonModel.getInstance().getuser_name()); //get the current users name and put it in here
-                    String pathURL = "https://fixit-d41f4-default-rtdb.firebaseio.com/coordinates";
-                    //String path = String.format("%s/%s/%s/%s", COORDINATES, key, INSPECTIONS, timestamp); //create a path for an inspection
-                    receipt.setpath(pathURL);
-
-
-                    //Build the path to the users node /reports
-                    FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(INSPECTIONS).child(receipt.gettimestamp())
-                            .setValue(receipt).addOnCompleteListener(task1 -> {
-                        if (task.isSuccessful()) {
-                            progressDialog.dismiss();
-                            ReportActivity.this.finish();
+                        } catch (InterruptedException ie) {
+                            Thread.currentThread().interrupt();
                         }
 
-                    });
-                } else {
-                    //Tell the user there was an error
-                    Toast.makeText(ReportActivity.this, "Error when creating report", Toast.LENGTH_SHORT).show();
-                }
+                        sDialog.getProgressHelper().setBarColor(R.color.colorAccent);
+                        sDialog.setTitleText("Uploading...");
+                        sDialog.setCancelable(false);
+                        sDialog.show();
 
-            }
-        });
 
-        maintenanceReference.child(timestamp).setValue(trafficLightReportModel).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-            }
-        });
 
-        FirebaseDatabase.getInstance().getReference().child("maintenance").child(key).child(timestamp).setValue(trafficLightReportModel).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-            }
-        });
+                        //turnary operator for checklists
+                        trafficLightReportModel.setphysical_issues(cb1.isChecked() ? "Yes" : "No");
+                        trafficLightReportModel.setelectrical_issues(cb2.isChecked() ? "Yes" : "No");
+                        trafficLightReportModel.setlight_issues(cb3.isChecked() ? "Yes" : "No");
+                        trafficLightReportModel.setbutton_issues(cb4.isChecked() ? "Yes" : "No");
+                        trafficLightReportModel.setsound_issues(cb5.isChecked() ? "Yes" : "No");
+                        trafficLightReportModel.setsequence_issues(cb6.isChecked() ? "Yes" : "No");
+                        trafficLightReportModel.setrepairs_needed(cb7.isChecked() ? "Yes" : "No");
+                        trafficLightReportModel.setcreated_by(UserSingletonModel.getInstance().getuser_name());
+                        trafficLightReportModel.setlocation(trafficLightModel.getname());
+
+                        //for writing notes to the database
+                        trafficLightReportModel.setnotes(notes.getText().toString());//Returns "" if nothing in the input field
+
+
+                        //Write to database
+                        databaseReference.child(timestamp).setValue(trafficLightReportModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+
+                                if (task.isSuccessful()) {
+
+
+                                    //Create the receipt object/ model
+                                    InspectionReceiptModel receipt = new InspectionReceiptModel();
+                                    receipt.settimestamp(timestamp);
+                                    receipt.setlocation(trafficLightModel.getname());
+                                    receipt.setid(trafficLightModel.getkey());
+                                    receipt.setcreated_by(UserSingletonModel.getInstance().getuser_name()); //get the current users name and put it in here
+                                    String pathURL = "https://fixit-d41f4-default-rtdb.firebaseio.com/coordinates";
+                                    //String path = String.format("%s/%s/%s/%s", COORDINATES, key, INSPECTIONS, timestamp); //create a path for an inspection
+                                    receipt.setpath(pathURL);
+
+
+                                    //Build the path to the users node /reports
+                                    FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(INSPECTIONS).child(receipt.gettimestamp())
+                                            .setValue(receipt).addOnCompleteListener(task1 -> {
+                                        if (task.isSuccessful()) {
+                                            sDialog.dismissWithAnimation();
+                                            ReportActivity.this.finish();
+                                        }
+
+                                    });
+                                } else {
+                                    //Tell the user there was an error
+                                    Toast.makeText(ReportActivity.this, "Error when creating report", Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        });
+
+                        maintenanceReference.child(timestamp).setValue(trafficLightReportModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                            }
+                        });
+
+                        FirebaseDatabase.getInstance().getReference().child(MAINTENANCE).child(Constants.OPEN).child(key).child(timestamp).setValue(trafficLightReportModel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                            }
+                        });
+
+
+                    }
+                })
+                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismissWithAnimation();
+                    }
+                })
+                .show();
+
 
     }
 
@@ -410,8 +446,39 @@ public class ReportActivity extends AppCompatActivity implements SignatureDialog
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                .setTitleText("Cancel Report?")
+                .setContentText("Are you sure you want to cancel the report?")
+                .setCancelText("No")
+                .setConfirmText("Yes")
+                .showCancelButton(true)
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        sDialog.dismissWithAnimation();
+
+                        //allow for a smooth animation signout
+                        try {
+                            Thread.sleep(200);
+
+                        } catch (InterruptedException ie) {
+                            Thread.currentThread().interrupt();
+                        }
+
+                        ReportActivity.this.finish();
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+
+
+                    }
+                })
+                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismissWithAnimation();
+                    }
+                })
+                .show();
+
     }
 
 }

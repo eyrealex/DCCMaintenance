@@ -7,6 +7,8 @@ public class Constants {
     public static String INSPECTIONS = "inspections";
     public static String REPORTS = "reports";
     public static String MAINTENANCE = "maintenance";
+    public static String CLOSED = "closed";
+    public static String OPEN = "open";
 
 
 

@@ -101,16 +101,6 @@ public class InspectionViewActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         trafficLightReportModel = snapshot.getValue(TrafficLightReportModel.class);
-                        trafficLightReportModel.setbutton_issues(snapshot.child("button_issues").getValue(String.class));
-                        trafficLightReportModel.setelectrical_issues(snapshot.child("electrical_issues").getValue(String.class));
-                        trafficLightReportModel.setimage_url(snapshot.child("image_url").getValue(String.class));
-                        trafficLightReportModel.setlight_issues(snapshot.child("light_issues").getValue(String.class));
-                        trafficLightReportModel.setnotes(snapshot.child("notes").getValue(String.class));
-                        trafficLightReportModel.setphysical_issues(snapshot.child("physical_issues").getValue(String.class));
-                        trafficLightReportModel.setrepairs_needed(snapshot.child("repairs_needed").getValue(String.class));
-                        trafficLightReportModel.setsequence_issues(snapshot.child("sequence_issues").getValue(String.class));
-                        trafficLightReportModel.setsignature_url(snapshot.child("signature_url").getValue(String.class));
-                        trafficLightReportModel.setsound_issues(snapshot.child("sound_issues").getValue(String.class));
 
                         if (trafficLightReportModel != null) {
                             updateData();

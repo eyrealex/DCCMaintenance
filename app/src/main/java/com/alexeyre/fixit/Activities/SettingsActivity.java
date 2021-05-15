@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
-    private RelativeLayout about, darkmode, language, likeapp, bugreport, contact, copyright, policy, terms;
+    private RelativeLayout about, likeapp, bugreport, contact, copyright, policy, terms;
 
 
     @Override
@@ -27,8 +27,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
         //hooks
         about = findViewById(R.id.about_layout);
-        darkmode = findViewById(R.id.dark_mode_layout);
-        language = findViewById(R.id.language_layout);
         likeapp = findViewById(R.id.like_layout);
         bugreport = findViewById(R.id.bug_layout);
         contact = findViewById(R.id.contact_layout);
@@ -41,8 +39,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
     private void initComponents() {
         about.setOnClickListener(this);
-        darkmode.setOnClickListener(this);
-        language.setOnClickListener(this);
         likeapp.setOnClickListener(this);
         bugreport.setOnClickListener(this);
         contact.setOnClickListener(this);
@@ -55,10 +51,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.about_layout:
-                break;
-            case R.id.dark_mode_layout:
-                break;
-            case R.id.language_layout:
                 break;
             case R.id.like_layout:
                 Intent likeIntent = new Intent(Intent.ACTION_SEND);

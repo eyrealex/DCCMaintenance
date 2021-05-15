@@ -25,7 +25,7 @@ public class MaintenanceActivity extends AppCompatActivity {
 
     //variables
     private ValueEventListener listener;
-    private DatabaseReference maintenanceRef = FirebaseDatabase.getInstance().getReference().child("maintenance");
+    private DatabaseReference maintenanceRef = FirebaseDatabase.getInstance().getReference().child(Constants.MAINTENANCE).child(Constants.OPEN);
     private ArrayList<MaintenanceModel> maintenanceModelList = new ArrayList<>();
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(Constants.COORDINATES);
     private DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child(Constants.COORDINATES);
